@@ -1,0 +1,129 @@
+<resources>
+    <string name="app_name">TenantEye</string>
+    <string name="todo">TODO</string>
+    <string name="wifi_switch_text">Turn on WIFI</string>
+    <string name="mobile_data_switch_text">Turn on Mobile Data</string>
+
+    <!--  Landing Page Activity  -->
+    <string name="landing_page_title_text">Tenant\t\t\tEye</string>
+    <string name="landing_page_body_text">A House Rental Application</string>
+
+    <!--  On Boarding Activity  -->
+    <string name="on_boarding_button_text_skip">Skip</string>
+    <string name="on_boarding_button_text_lets_get_started">Let\'s Get Started</string>
+
+    <!--  Login Activity  -->
+    <string name="login_welcome_message">Welcome To Tenant Eye</string>
+    <string name="login_sign_in_message">Sign In To Continue</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_sign_in_button_text">Sign In</string>
+    <string name="login_forgot_password_button_text">Forgot Password?</string>
+    <string name="login_new_user_signup_button_text">New User? Sign Up</string>
+    <string name="login_new_remember_checkbox_text">Remember Me</string>
+
+    <!--  Forgot Password Activity  -->
+    <string name="forgot_password_text">Forgot Password</string>
+    <string name="forgot_password_email_hint">Email</string>
+    <string name="forgot_next_button_text">Next</string>
+    <string name="forgot_login_button_text">Login</string>
+
+    <!--  Forgot Password Selection Activity  -->
+    <string name="forgot_password_selection_make_selection_text">Make Selection</string>
+    <string name="forgot_password_selection_info_text">Select which contact detail should we use to reset your password</string>
+    <string name="forgot_password_selection_mobile_title_text">via sms:</string>
+    <string name="forgot_password_selection_mobile_info_text">+1-(555)-555-5555</string>
+    <string name="forgot_password_selection_email_title_text">via email:</string>
+    <string name="forgot_password_selection_email_info_text">email@domain.com</string>
+
+    <!--  Forgot Password Mobile Activity  -->
+    <string name="forgot_password_mobile_title_text">Enter Verification Code</string>
+    <string name="forgot_password_mobile_verify_opt_text">Verify Code</string>
+    <string name="forgot_password_mobile_verify_opt_message_text">Enter one time password sent on </string>
+
+    <!--  Reset Password Mobile Activity  -->
+    <string name="reset_password_mobile_title_text">Enter New Password</string>
+    <string name="reset_password_mobile_body_text">Your identity has been verified set your new password</string>
+    <string name="reset_password_mobile_new_password_hint_text">New Password</string>
+    <string name="reset_password_mobile_confirm_password_hint_text">Confirm Password</string>
+    <string name="reset_password_mobile_progressbar_text">Weak</string>
+    <string name="reset_password_mobile_password_info_text">For security, your password must be at least 8 characters. With at least 1 number, 1 special character and 1 uppercase letter.</string>
+    <string name="reset_password_mobile_password_set_password_button_text">Set New Password</string>
+    <string name="reset_password_mobile_password_generate_password_button_text">Generate Strong Password Here</string>
+
+    <!--  Reset password Success Activity  -->
+    <string name="reset_password_success_title_text">Password Updated</string>
+    <string name="reset_password_success_body_text">Your password has been updated</string>
+    <string name="reset_password_success_button_text">Login</string>
+
+    <!--  Reset Password Email Activity  -->
+    <string name="reset_password_email_title_text">An email has been send to your email address to reset your password</string>
+    <string name="reset_password_email_login_button_text">Login</string>
+    <string name="reset_password_email_resend_button_text">Resent Email</string>
+
+    <!--  Sign Up One Activity  -->
+    <string name="sign_up_one_title_text">Create Account</string>
+    <string name="sign_up_one_title_number_text">1 / 3</string>
+    <string name="sign_up_one_first_name_hint_text">First Name</string>
+    <string name="sign_up_one_last_name_hint_text">Last Name</string>
+    <string name="sign_up_one_email_hint_text">Email</string>
+    <string name="sign_up_one_next_button_text">Next</string>
+    <string name="sign_up_one_login_button_text">Login</string>
+
+    <!--  Sign Up Two Activity  -->
+    <string name="sign_up_two_title_text">Create Account</string>
+    <string name="sign_up_two_title_number_text">2 / 3</string>
+    <string name="sign_up_two_gender_spinner_hint_text">Gender</string>
+    <string name="sign_up_two_dob_text">Select Your Date-Of-Birth</string>
+    <string name="sign_up_two_next_text">Next</string>
+    <string name="sign_up_two_login_text">Login</string>
+    <string name="sign_up_two_select_gender_text">Choose Gender</string>
+    <string name="sign_up_two_select_user_type_text">Choose User Type</string>
+    <string name="sign_up_two_gender_male_text">Male</string>
+    <string name="sign_up_two_gender_female_text">Female</string>
+    <string name="sign_up_two_gender_other_text">Other</string>
+    <string name="sign_up_two_empty_text">    </string>
+    <string name="sign_up_two_user_user_text">User</string>
+    <string name="sign_up_two_user_freelancer_text">Freelancer</string>
+
+    <!--  Sign Up Three Activity  -->
+    <string name="sign_up_three_title_text">Create Account</string>
+    <string name="sign_up_three_title_number_text">3 / 3</string>
+    <string name="sign_up_three_phone_number_hint_text">Phone Number</string>
+    <string name="sign_up_three_phone_number_next_button_text">Next</string>
+    <string name="sign_up_three_phone_number_login_button_text">Login</string>
+    <string name="sign_up_three_phone_number_password_hint_text">Password</string>
+    <string name="sign_up_three_phone_number_confirm_password_hint_text">Confirm Password</string>
+
+    <!--  Bottom Menu  -->
+    <string name="bottom_menu_search_title">Search</string>
+    <string name="bottom_menu_task_title">Task</string>
+    <string name="bottom_menu_create_title">Create</string>
+    <string name="bottom_menu_chat_title">Chat</string>
+    <string name="bottom_menu_more_title">More</string>
+
+    <!-- Search Fragment -->
+    <string name="search_fragment">Search</string>
+    <string name="search_fragment_search_hint_text">Search here…</string>
+
+    <!-- Chat Fragment -->
+    <string name="chat_fragment">Chat</string>
+
+    <!-- More Fragment -->
+    <string name="more_fragment">More</string>
+
+    <!-- Task Fragment -->
+    <string name="task_fragment">Task</string>
+
+    <!-- Create Fragment -->
+    <string name="create_fragment">Create</string>
+
+    <!--  Custom card View  -->
+    <string name="custom_card_view_name">John Doe</string>
+    <string name="custom_card_view_location">Waterloo, CA</string>
+    <string name="custom_card_view_hire">Hire</string>
+
+    <!--  Sign Up Success  -->
+    <string name="sign_up_success_title_text">Account Created</string>
+    <string name="sign_up_success_body_text">Your account is created. You can now login.</string>
+</resources>

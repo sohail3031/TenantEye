@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/show_internet_options_linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_weight="1"
+    android:background="@color/primary_background_color"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:visibility="gone">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/show_internet_options_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:fontFamily="serif"
+        android:padding="10dp"
+        android:text="@string/wifi_switch_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/show_internet_options_mobile_data"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:fontFamily="serif"
+        android:padding="10dp"
+        android:text="@string/mobile_data_switch_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</LinearLayout>

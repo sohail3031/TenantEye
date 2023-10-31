@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary_background_color"
+    android:padding="40dp"
+    tools:context=".onboarding.OnBoardingActivity"
+    tools:ignore="RtlSymmetry">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/on_boarding_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:transitionName="on_boarding_view_pager_transition"
+        app:layout_constraintBottom_toTopOf="@+id/on_boarding_relative_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <Button
+        android:id="@+id/on_boarding_skip_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent_background_color"
+        android:drawableEnd="@drawable/ic_skip_next_black_24dp"
+        android:padding="10dp"
+        android:text="@string/on_boarding_button_text_skip"
+        android:textAllCaps="true"
+        android:textColor="@color/primary_background_color"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/on_boarding_relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:transitionName="on_boarding_relative_layout_transition"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/on_boarding_lets_get_started"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_background_color"
+            android:text="@string/on_boarding_button_text_lets_get_started"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:id="@+id/on_boarding_linear_layout_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp" />
+
+        <Button
+            android:id="@+id/on_boarding_navigation_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent_background_color"
+            android:drawableEnd="@drawable/ic_skip_next_black_24dp"
+            android:paddingBottom="30dp"
+            android:textSize="50sp"
+            tools:ignore="RelativeOverlap" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

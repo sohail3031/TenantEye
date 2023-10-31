@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/show_internet_options_linear_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/primary_background_color"
+    android:visibility="gone">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/show_internet_options_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="268dp"
+        android:fontFamily="serif"
+        android:padding="10dp"
+        android:text="@string/wifi_switch_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/show_internet_options_mobile_data"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="serif"
+        android:padding="10dp"
+        android:text="@string/mobile_data_switch_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    </LinearLayout>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
