@@ -11,6 +11,11 @@
         android:icon="@drawable/baseline_task_24"
         android:title="@string/bottom_menu_task_title" />
 
+<!--    <item-->
+<!--        android:id="@+id/bottom_menu_task"-->
+<!--        android:enabled="false"-->
+<!--        android:title="" />-->
+
     <item
         android:id="@+id/bottom_menu_create"
         android:title="@string/bottom_menu_create_title"

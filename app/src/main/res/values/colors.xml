@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary_background_color">#144272</color>
+    <!--    <color name="primary_background_color">#1ca1f1</color>-->
     <!--    <color name="primary_background_color">#fece2f</color>-->
     <color name="primary_transparent_background_color">#14427200</color>
     <color name="secondary_background_color">#deebfc</color>
@@ -11,4 +12,7 @@
     <color name="card_view_background_color">#f0fff0</color>
     <color name="black_transparent">#00000000</color>
     <color name="lavender">#8692f7</color>
+    <color name="landing_page_start_color">#050424</color>
+    <color name="landing_page_center_color">#101c51</color>
+    <color name="landing_page_end_color">#204598</color>
 </resources>

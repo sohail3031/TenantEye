@@ -11,6 +11,16 @@
     <!--  On Boarding Activity  -->
     <string name="on_boarding_button_text_skip">Skip</string>
     <string name="on_boarding_button_text_lets_get_started">Let\'s Get Started</string>
+    <string name="on_boarding_welcome_title">Welcome to Tenant Eye</string>
+    <string name="on_boarding_welcome_description">A place where you can find your dream home</string>
+    <string name="on_boarding_search_title">Search for Tasker/Task</string>
+    <string name="on_boarding_search_description">A Tasker can search for a task, and Tenant can search for Tasker\'s to do the task</string>
+    <string name="on_boarding_task_title">Create a task</string>
+    <string name="on_boarding_task_description">A place where a Tenant can post the task</string>
+    <string name="on_boarding_task_done_title">Create a task</string>
+    <string name="on_boarding_task_done_description">Once the task is done, the Tenant can close the task</string>
+    <string name="on_boarding_chat_title">Chat with other\'s</string>
+    <string name="on_boarding_chat_description">Chat with the other users</string>
 
     <!--  Login Activity  -->
     <string name="login_welcome_message">Welcome To Tenant Eye</string>
@@ -121,7 +131,7 @@
     <!--  Custom card View  -->
     <string name="custom_card_view_name">John Doe</string>
     <string name="custom_card_view_location">Waterloo, CA</string>
-    <string name="custom_card_view_hire">Hire</string>
+    <string name="custom_card_view_chat">Chat</string>
 
     <!--  Sign Up Success  -->
     <string name="sign_up_success_title_text">Account Created</string>
