@@ -40,6 +40,9 @@ public class LandingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
+//        dummy database
+        createDummyDB();
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         TextView landingPageTitleText = findViewById(R.id.landing_page_title_text);
@@ -74,5 +77,12 @@ public class LandingPage extends AppCompatActivity {
 
             finish();
         }, SPLASH_SCREEN_TIME_OUT);
+    }
+
+    private void createDummyDB() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.child("xyz").setValue("Hello, World!");
     }
 }
