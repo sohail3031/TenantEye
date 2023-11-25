@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_background_color"
+    android:background="@color/white"
     android:padding="20dp"
     tools:context=".signup.SignUpTwoActivity">
 
@@ -17,18 +17,18 @@
 
         <ImageView
             android:id="@+id/sign_up_two_back_image_view"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/todo"
-            android:padding="10dp"
-            android:src="@drawable/ic_back_white"
+            android:padding="5dp"
+            android:src="@drawable/ic_back_black"
             android:transitionName="sign_up_two_back_image_view_transition" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal">
@@ -44,12 +44,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:background="@color/primary_background_color"
+                    android:background="@color/white"
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:text="@string/sign_up_two_title_text"
-                    android:textColor="@color/white"
-                    android:textSize="70sp"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
                     android:textStyle="bold"
                     android:transitionName="ign_up_two_title_text_view_transition" />
 
@@ -65,13 +65,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:background="@color/primary_background_color"
+                    android:background="@color/white"
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:text="@string/sign_up_two_title_number_text"
                     android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="70sp"
+                    android:textColor="@color/black"
+                    android:textSize="35sp"
                     android:textStyle="bold"
                     android:transitionName="sign_up_two_title_number_text_view_transition" />
 
@@ -82,7 +82,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:orientation="vertical">
 
             <TextView
@@ -90,14 +90,15 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
                 android:text="@string/sign_up_two_select_gender_text"
-                android:textColor="@color/white"
-                android:textSize="50sp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/sign_up_two_gender_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -107,8 +108,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:text="@string/sign_up_two_gender_male_text"
-                    android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -117,8 +118,8 @@
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:text="@string/sign_up_two_empty_text"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:visibility="invisible" />
 
                 <RadioButton
@@ -128,8 +129,8 @@
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:text="@string/sign_up_two_gender_female_text"
-                    android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -138,8 +139,8 @@
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:text="@string/sign_up_two_empty_text"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:visibility="invisible" />
 
                 <RadioButton
@@ -148,28 +149,29 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:text="@string/sign_up_two_gender_other_text"
-                    android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
             </RadioGroup>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:background="@color/white" />
+                android:layout_height="2dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
                 android:text="@string/sign_up_two_select_user_type_text"
-                android:textColor="@color/white"
-                android:textSize="50sp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/sign_up_two_user_radio_group"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -181,8 +183,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:text="@string/sign_up_two_user_user_text"
-                    android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -190,8 +192,8 @@
                     android:clickable="false"
                     android:fontFamily="serif"
                     android:text="@string/sign_up_two_empty_text"
-                    android:textColor="@color/white"
-                    android:textSize="40sp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:visibility="invisible" />
 
                 <RadioButton
@@ -200,34 +202,34 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:text="@string/sign_up_two_user_freelancer_text"
-                    android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
             </RadioGroup>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/white" />
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/black" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
                 android:text="@string/sign_up_two_dob_text"
-                android:textColor="@color/white"
-                android:textSize="50sp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <DatePicker
                 android:id="@+id/sign_up_two_dob_date_picker_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/secondary_background_color"
-                android:calendarTextColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:background="@color/gray"
+                android:calendarTextColor="@color/black"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
                 android:spinnersShown="true" />
@@ -238,29 +240,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="34dp"
                 android:layout_marginBottom="10dp"
-                android:background="@color/view_background_color"
+                android:background="@color/black"
                 android:fontFamily="serif"
-                android:padding="20dp"
+                android:padding="10dp"
                 android:text="@string/sign_up_two_next_text"
                 android:textColor="@color/white"
-                android:textSize="50sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:transitionName="sign_up_two_next_button_transition" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/sign_up_two_login_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/transparent_background_color"
-                android:fontFamily="serif"
-                android:padding="20dp"
-                android:text="@string/sign_up_two_login_text"
-                android:textColor="@color/white"
-                android:textSize="50sp"
-                android:textStyle="bold"
-                android:transitionName="sign_up_two_login_button_transition" />
+            <!--            <androidx.appcompat.widget.AppCompatButton-->
+            <!--                android:id="@+id/sign_up_two_login_button"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="34dp"-->
+            <!--                android:layout_marginBottom="10dp"-->
+            <!--                android:background="@color/transparent_background_color"-->
+            <!--                android:fontFamily="serif"-->
+            <!--                android:padding="20dp"-->
+            <!--                android:text="@string/sign_up_two_login_text"-->
+            <!--                android:textColor="@color/black"-->
+            <!--                android:textSize="50sp"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:transitionName="sign_up_two_login_button_transition" />-->
 
         </LinearLayout>
 

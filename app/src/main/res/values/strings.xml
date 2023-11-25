@@ -24,12 +24,13 @@
 
     <!--  Login Activity  -->
     <string name="login_welcome_message">Welcome To Tenant Eye</string>
-    <string name="login_sign_in_message">Sign In To Continue</string>
+    <string name="login_sign_in_message">Please enter your email and password to sign in</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="login_sign_in_button_text">Sign In</string>
     <string name="login_forgot_password_button_text">Forgot Password?</string>
-    <string name="login_new_user_signup_button_text">New User? Sign Up</string>
+    <string name="login_new_user_signup_text">Don\'t have an account? <font color="#0000FF">Sign up</font></string>
+    <!--    <string name="login_new_user_signup_text2">Sign up</string>-->
     <string name="login_new_remember_checkbox_text">Remember Me</string>
 
     <!--  Forgot Password Activity  -->
@@ -104,6 +105,7 @@
     <string name="sign_up_three_phone_number_login_button_text">Login</string>
     <string name="sign_up_three_phone_number_password_hint_text">Password</string>
     <string name="sign_up_three_phone_number_confirm_password_hint_text">Confirm Password</string>
+    <string name="sign_up_three_password_progress_bar_text">Weak</string>
 
     <!--  Bottom Menu  -->
     <string name="bottom_menu_search_title">Search</string>
@@ -136,4 +138,30 @@
     <!--  Sign Up Success  -->
     <string name="sign_up_success_title_text">Account Created</string>
     <string name="sign_up_success_body_text">Your account is created. You can now login.</string>
+
+    <!--  Alert messages  -->
+    <string name="sign_up_alert_title">Are you sure you want to quit?</string>
+    <string name="sign_up_alert_message">All your data will be lost</string>
+    <string name="alert_yes">Yes</string>
+    <string name="alert_no">No</string>
+
+    <!--  UI Error Messages  -->
+    <string name="first_name_required">First Name is required</string>
+    <string name="first_name_invalid">First Name is invalid</string>
+    <string name="last_name_required">Last Name is required</string>
+    <string name="last_name_invalid">Last Name is invalid</string>
+    <string name="email_address_required">Email Address is required</string>
+    <string name="email_address_invalid">Email Address is invalid</string>
+    <string name="phone_number_required">Phone Number is required</string>
+    <string name="phone_number_invalid">Phone Number is invalid</string>
+    <string name="password_required">Password is required</string>
+    <string name="password_invalid">Password is invalid. Password should contain at least 6 characters</string>
+    <string name="confirm_password_required">Confirm Password is required</string>
+    <string name="confirm_password_invalid">Password and Confirm Password are not same</string>
+
+    <!--  Password Strength Messages  -->
+    <string name="password_strength_weak">Weak</string>
+    <string name="password_strength_medium">Medium</string>
+    <string name="password_strength_strong">Strong</string>
+    <string name="password_strength_very_strong">Very Strong</string>
 </resources>

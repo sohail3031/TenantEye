@@ -43,11 +43,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/on_boarding_lets_get_started"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_background_color"
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
             android:text="@string/on_boarding_button_text_lets_get_started"
             android:textAlignment="center"
             android:textAllCaps="true"

@@ -52,27 +52,29 @@ public class LandingPage extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             onBoardingSharedPreferences = getSharedPreferences("onBoarding", MODE_PRIVATE);
-            boolean isFirstTime = onBoardingSharedPreferences.getBoolean("isFirstTime", true);
+            boolean isFirstTime = onBoardingSharedPreferences.getBoolean("isAppInstalledFirstTime", true);
 
             if (isFirstTime) {
                 SharedPreferences.Editor editor = onBoardingSharedPreferences.edit();
 
-                editor.putBoolean("firstTime", false);
+                editor.putBoolean("isAppInstalledFirstTime", false);
                 editor.apply();
 
                 Intent intent = new Intent(this, OnBoardingActivity.class);
-                Pair[] pairs = new Pair[1];
-                pairs[0] = new Pair<View, String>(landingPageTitleText, "landing_page_text_tenant_transition");
-                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
-
-                startActivity(intent, activityOptions.toBundle());
+//                Pair[] pairs = new Pair[1];
+//                pairs[0] = new Pair<View, String>(landingPageTitleText, "landing_page_text_tenant_transition");
+//                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
+//
+//                startActivity(intent, activityOptions.toBundle());
+                startActivity(intent);
             } else {
                 Intent intent = new Intent(this, LoginActivity.class);
-                Pair[] pairs = new Pair[1];
-                pairs[0] = new Pair<View, String>(landingPageTitleText, "landing_page_text_tenant_transition");
-                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
+//                Pair[] pairs = new Pair[1];
+//                pairs[0] = new Pair<View, String>(landingPageTitleText, "landing_page_text_tenant_transition");
+//                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
 
-                startActivity(intent, activityOptions.toBundle());
+//                startActivity(intent, activityOptions.toBundle());
+                startActivity(intent);
             }
 
             finish();
@@ -81,8 +83,8 @@ public class LandingPage extends AppCompatActivity {
 
     private void createDummyDB() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference myRef = database.getReference("new table");
 
-        myRef.child("xyz").setValue("Hello, World!");
+        myRef.child("example").setValue("Hello, World!");
     }
 }

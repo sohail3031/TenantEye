@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import com.example.tenanteye.homepages.HomeActivity;
 import com.example.tenanteye.signup.SignUpOneActivity;
 
 public class LoginActivity extends AppCompatActivity {
+    private SharedPreferences loginSharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
         AppCompatButton signInButton = findViewById(R.id.login_sign_in_button);
         AppCompatButton forgotPasswordButton = findViewById(R.id.login_forgot_password_button);
-        AppCompatButton signUpButton = findViewById(R.id.login_new_user_signup_button);
+        TextView signup = findViewById(R.id.login_new_user_signup_text);
 
         signInButton.setOnClickListener(view -> {
             startActivity(new Intent(this, HomeActivity.class));
@@ -32,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, ForgotPasswordActivity.class));
         });
 
-        signUpButton.setOnClickListener(view -> {
+        signup.setOnClickListener(view -> {
             startActivity(new Intent(this, SignUpOneActivity.class));
         });
     }

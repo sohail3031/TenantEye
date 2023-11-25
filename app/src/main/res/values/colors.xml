@@ -15,4 +15,6 @@
     <color name="landing_page_start_color">#050424</color>
     <color name="landing_page_center_color">#101c51</color>
     <color name="landing_page_end_color">#204598</color>
+    <color name="gray">#808080</color>
+    <color name="blue">#0000ff</color>
 </resources>
