@@ -18,7 +18,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
         ImageView backImageView = findViewById(R.id.forgot_password_back_arrow_image);
         AppCompatButton nextButton = findViewById(R.id.forgot_password_next_button);
-        AppCompatButton loginButton = findViewById(R.id.forgot_password_login_button);
+//        AppCompatButton loginButton = findViewById(R.id.forgot_password_login_button);
 
         backImageView.setOnClickListener(view -> {
             finish();
@@ -29,8 +29,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             finish();
         });
 
-        loginButton.setOnClickListener(view -> {
-            finish();
-        });
+//        loginButton.setOnClickListener(view -> {
+//            finish();
+//        });
     }
 }

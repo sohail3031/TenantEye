@@ -80,9 +80,27 @@ public class SignUpThreeActivity extends AppCompatActivity {
                             startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
                             finish();
                         } else {
+                            String errorCode = Objects.requireNonNull(task.getException()).getMessage();
+
+                            switch (Objects.requireNonNull(errorCode)) {
+                                case "ERROR_EMAIL_ALREADY_IN_USE":
+                                    Toast.makeText(SignUpThreeActivity.this, "A user with this email already exists!", Toast.LENGTH_LONG).show();
+                                    break;
+                                case "ERROR_INVALID_EMAIL":
+                                    Toast.makeText(SignUpThreeActivity.this, "Email is invalid!", Toast.LENGTH_LONG).show();
+                                    break;
+                                case "ERROR_WEAK_PASSWORD":
+                                    Toast.makeText(SignUpThreeActivity.this, "Password is weak!", Toast.LENGTH_LONG).show();
+                                    break;
+                                case "ERROR_CREDENTIAL_ALREADY_IN_USE":
+                                    Toast.makeText(SignUpThreeActivity.this, "A user with this credentials already exists!", Toast.LENGTH_LONG).show();
+                                    break;
+                                default:
+                                    showErrorDialogBox();
+                                    break;
+                            }
 //                            Toast.makeText(SignUpThreeActivity.this, "Exception: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
 //                            Log.i("Error", "onComplete: " + task.getException().getMessage());
-                            showErrorDialogBox();
                         }
                     }
                 });

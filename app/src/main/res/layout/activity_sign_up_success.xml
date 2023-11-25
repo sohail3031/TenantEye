@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_background_color"
+    android:background="@color/white"
     android:padding="5dp"
     tools:context=".signup.SignUpSuccessActivity">
 
@@ -48,17 +48,17 @@
                 android:text="@string/sign_up_success_title_text"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="40sp"
+                android:textColor="@color/black"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:transitionName="sign_up_success_title_text_view_transition" />
 
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_margin="20dp"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/ic_check_circle_white_24dp" />
+                android:src="@drawable/ic_check_circle_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,8 +67,8 @@
                 android:gravity="center"
                 android:text="@string/sign_up_success_body_text"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/sign_up_success_login_button_view"
@@ -76,11 +76,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="5dp"
-                android:background="@color/view_background_color"
+                android:background="@color/black"
                 android:fontFamily="serif"
                 android:text="@string/reset_password_success_button_text"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:transitionName="sign_up_success_login_button_view_transition" />
 
