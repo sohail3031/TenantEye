@@ -147,6 +147,8 @@
     <string name="error_alert_title">Something went wrong!</string>
     <string name="error_alert_message">Please fill the data again</string>
     <string name="error_alert_okay">Okay</string>
+    <string name="no_user_with_email_alert_title">We can\'t find this email</string>
+    <string name="no_user_with_email_alert_message">Are you sure the email is correct?</string>
 
     <!--  UI Error Messages  -->
     <string name="first_name_required">First Name is required</string>

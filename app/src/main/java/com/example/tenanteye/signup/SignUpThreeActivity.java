@@ -152,6 +152,7 @@ public class SignUpThreeActivity extends AppCompatActivity {
         userData.setUser(user);
         userData.setDateOfBirth(dateOfBirth);
         userData.setPassword(password);
+        userData.setPhoneNumber(phoneNumber);
     }
 
     private void showErrorDialogBox() {

@@ -21,9 +21,9 @@ public class ForgotPasswordSelectionActivity extends AppCompatActivity {
         Button mobileButton = findViewById(R.id.forgot_password_selection_mobile_button);
         Button emailButton = findViewById(R.id.forgot_password_selection_email_button);
 
-        backImage.setOnClickListener(view -> {
-            finish();
-        });
+//        backImage.setOnClickListener(view -> {
+//            finish();
+//        });
 
         mobileButton.setOnClickListener(view -> {
             startActivity(new Intent(this, ForgotPasswordMobileActivity.class));
