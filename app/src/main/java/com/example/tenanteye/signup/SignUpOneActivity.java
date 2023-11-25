@@ -20,26 +20,19 @@ public class SignUpOneActivity extends AppCompatActivity {
     private static final String EMAIL_RE = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private EditText firstNameField, lastNameField, emailAddressField;
     private String firstName = "", lastName = "", emailAddress = "";
+    private ImageView backImageView;
+    private AppCompatButton nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_one);
 
-        ImageView backImageView = findViewById(R.id.sign_up_one_back_image_view);
-//        AppCompatButton loginButton = findViewById(R.id.sign_up_one_login_button_view);
-        AppCompatButton nextButton = findViewById(R.id.sign_up_one_next_button_view);
-        firstNameField = findViewById(R.id.sign_up_one_first_name_field);
-        lastNameField = findViewById(R.id.sign_up_one_last_name_field);
-        emailAddressField = findViewById(R.id.sign_up_one_email_field);
+        initializeALlVariables();
 
         backImageView.setOnClickListener(view -> {
             showAlertMessage();
         });
-
-//        loginButton.setOnClickListener(view -> {
-//            finish();
-//        });
 
         nextButton.setOnClickListener(view -> {
             getData();
@@ -55,6 +48,14 @@ public class SignUpOneActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void initializeALlVariables() {
+        backImageView = findViewById(R.id.sign_up_one_back_image_view);
+        nextButton = findViewById(R.id.sign_up_one_next_button_view);
+        firstNameField = findViewById(R.id.sign_up_one_first_name_field);
+        lastNameField = findViewById(R.id.sign_up_one_last_name_field);
+        emailAddressField = findViewById(R.id.sign_up_one_email_field);
     }
 
     private void showAlertMessage() {

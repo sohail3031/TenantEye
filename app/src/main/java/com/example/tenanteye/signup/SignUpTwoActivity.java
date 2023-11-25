@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.tenanteye.R;
 import com.example.tenanteye.login.LoginActivity;
@@ -20,18 +21,16 @@ public class SignUpTwoActivity extends AppCompatActivity {
     private RadioButton genderRadioButton, userRadioButton;
     private DatePicker datePicker;
     private String gender = "", user = "", dateOfBirth = "";
+    private ImageView backImageView;
+    private AppCompatButton nextButton;
+    private RadioGroup genderRadioGroup, userRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_two);
 
-        ImageView backImageView = findViewById(R.id.sign_up_two_back_image_view);
-        AppCompatButton nextButton = findViewById(R.id.sign_up_two_next_button);
-        RadioGroup genderRadioGroup = findViewById(R.id.sign_up_two_gender_radio_group);
-        RadioGroup userRadioGroup = findViewById(R.id.sign_up_two_user_radio_group);
-        datePicker = findViewById(R.id.sign_up_two_dob_date_picker_view);
-//        AppCompatButton loginButton = findViewById(R.id.sign_up_two_login_button);
+        initializeAllVariables();
 
         backImageView.setOnClickListener(view -> {
             showAlertMessage();
@@ -48,7 +47,7 @@ public class SignUpTwoActivity extends AppCompatActivity {
                 intent.putExtra("firstName", bundle.getString("firstName"));
                 intent.putExtra("lastName", bundle.getString("lastName"));
                 intent.putExtra("emailAddress", bundle.getString("emailAddress"));
-                intent.putExtra("gander", gender);
+                intent.putExtra("gender", gender);
                 intent.putExtra("user", user);
                 intent.putExtra("dateOfBirth", dateOfBirth);
 
@@ -78,11 +77,14 @@ public class SignUpTwoActivity extends AppCompatActivity {
 
             user = userRadioButton.getText().toString();
         });
+    }
 
-//        loginButton.setOnClickListener(view -> {
-//            startActivity(new Intent(this, LoginActivity.class));
-//            finish();
-//        });
+    private void initializeAllVariables() {
+        backImageView = findViewById(R.id.sign_up_two_back_image_view);
+        nextButton = findViewById(R.id.sign_up_two_next_button);
+        genderRadioGroup = findViewById(R.id.sign_up_two_gender_radio_group);
+        userRadioGroup = findViewById(R.id.sign_up_two_user_radio_group);
+        datePicker = findViewById(R.id.sign_up_two_dob_date_picker_view);
     }
 
     private void showAlertMessage() {
@@ -109,6 +111,7 @@ public class SignUpTwoActivity extends AppCompatActivity {
     }
 
     private void getUserData() {
-        dateOfBirth = datePicker.getDayOfMonth() + "-" + datePicker.getMonth() + 1 + "-" + datePicker.getYear();
+        int month = datePicker.getMonth() + 1;
+        dateOfBirth = datePicker.getDayOfMonth() + "-" + month + "-" + datePicker.getYear();
     }
 }

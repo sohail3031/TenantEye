@@ -144,6 +144,9 @@
     <string name="sign_up_alert_message">All your data will be lost</string>
     <string name="alert_yes">Yes</string>
     <string name="alert_no">No</string>
+    <string name="error_alert_title">Something went wrong!</string>
+    <string name="error_alert_message">Please fill the data again</string>
+    <string name="error_alert_okay">Okay</string>
 
     <!--  UI Error Messages  -->
     <string name="first_name_required">First Name is required</string>
@@ -155,7 +158,7 @@
     <string name="phone_number_required">Phone Number is required</string>
     <string name="phone_number_invalid">Phone Number is invalid</string>
     <string name="password_required">Password is required</string>
-    <string name="password_invalid">Password is invalid. Password should contain at least 6 characters</string>
+    <string name="password_invalid">Password is invalid. Password should contain more than 6 characters</string>
     <string name="confirm_password_required">Confirm Password is required</string>
     <string name="confirm_password_invalid">Password and Confirm Password are not same</string>
 

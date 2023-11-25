@@ -1,5 +1,6 @@
 package com.example.tenanteye.signup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -9,44 +10,53 @@ import android.os.Bundle;
 import android.telephony.PhoneNumberUtils;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tenanteye.PasswordStrength;
 import com.example.tenanteye.R;
+import com.example.tenanteye.User;
 import com.example.tenanteye.login.LoginActivity;
+import com.futuremind.recyclerviewfastscroll.Utils;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
 
 import java.util.Objects;
 
 public class SignUpThreeActivity extends AppCompatActivity {
-    private static final String PASSWORD_RE = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
     TextView passwordStrengthText;
     private CountryCodePicker countryCodePicker;
     private EditText phoneNumberField, passwordField, confirmPasswordField;
     private LinearLayout linearLayout;
     private ProgressBar progressBar;
-    private String phoneNumber, password, confirmPassword;
+    private String phoneNumber = "", password = "", confirmPassword = "", firstName = "", lastName = "", emailAddress = "", gender = "", user = "", dateOfBirth = "";
+    private ImageView backImageView;
+    private AppCompatButton nextButton;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+    private Bundle bundle;
+    private User userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_three);
 
-        ImageView backImageView = findViewById(R.id.sign_up_three_back_image_view);
-        AppCompatButton nextButton = findViewById(R.id.sign_up_three_next_button);
-        countryCodePicker = findViewById(R.id.sign_up_three_country_code_picker);
-        phoneNumberField = findViewById(R.id.sign_up_three_number_field);
-        passwordField = findViewById(R.id.sign_up_three_password_field);
-        confirmPasswordField = findViewById(R.id.sign_up_three_confirm_password_field);
-        linearLayout = findViewById(R.id.sign_up_three_password_progress_bar_linear_layout);
-        progressBar = findViewById(R.id.sign_up_three_password_progress_bar);
-        passwordStrengthText = findViewById(R.id.sign_up_three_password_text_view);
-//        AppCompatButton loginButton = findViewById(R.id.sign_up_three_login_button);
+        initializeAllVariables();
+        getAllUserDataFromPreviousActivities();
 
         backImageView.setOnClickListener(view -> {
             showAlertMessage();
@@ -56,20 +66,27 @@ public class SignUpThreeActivity extends AppCompatActivity {
             getUserData();
 
             if (validatePhoneNumber() && validatePasswords()) {
-//                Bundle bundle = getIntent().getExtras();
-//                Intent intent = new Intent(this, SignUpSuccessActivity.class);
-//
-//                assert bundle != null;
-//                intent.putExtra("firstName", bundle.getString("firstName"));
-//                intent.putExtra("lastName", bundle.getString("lastName"));
-//                intent.putExtra("emailAddress", bundle.getString("emailAddress"));
-//                intent.putExtra("gander", bundle.getString("gender"));
-//                intent.putExtra("user", bundle.getString("user"));
-//                intent.putExtra("dateOfBirth", bundle.getString("dateOfBirth"));
-            }
+                storeUserDataInUserObject();
 
-            startActivity(new Intent(this, SignUpSuccessActivity.class));
-            finish();
+                firebaseAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            String[] splitEmailAddress = userData.getEmailAddress().split("\\.");
+
+                            databaseReference = FirebaseDatabase.getInstance().getReference("Users Data").child(splitEmailAddress[0] + "-" + splitEmailAddress[1]);
+                            databaseReference.push().setValue(userData);
+
+                            startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
+                            finish();
+                        } else {
+//                            Toast.makeText(SignUpThreeActivity.this, "Exception: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+//                            Log.i("Error", "onComplete: " + task.getException().getMessage());
+                            showErrorDialogBox();
+                        }
+                    }
+                });
+            }
         });
 
         passwordField.addTextChangedListener(new TextWatcher() {
@@ -107,11 +124,63 @@ public class SignUpThreeActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-//        loginButton.setOnClickListener(view -> {
-//            startActivity(new Intent(this, LoginActivity.class));
-//            finish();
-//        });
+    private void storeUserDataInUserObject() {
+        userData.setFirstName(firstName);
+        userData.setLastName(lastName);
+        userData.setEmailAddress(emailAddress);
+        userData.setGender(gender);
+        userData.setUser(user);
+        userData.setDateOfBirth(dateOfBirth);
+        userData.setPassword(password);
+    }
+
+    private void showErrorDialogBox() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+                .setTitle(R.string.error_alert_title)
+                .setMessage(R.string.error_alert_message)
+                .setPositiveButton(R.string.error_alert_okay, (dialog, which) -> {
+                    startActivity(new Intent(this, LoginActivity.class));
+                    finish();
+                });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
+    }
+
+    private boolean validateALlUserData() {
+        return !firstName.isEmpty() && !lastName.isEmpty() && !emailAddress.isEmpty() && !gender.isEmpty() && !user.isEmpty() && !dateOfBirth.isEmpty() && !phoneNumber.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty();
+    }
+
+    private void initializeAllVariables() {
+        backImageView = findViewById(R.id.sign_up_three_back_image_view);
+        nextButton = findViewById(R.id.sign_up_three_next_button);
+        countryCodePicker = findViewById(R.id.sign_up_three_country_code_picker);
+        phoneNumberField = findViewById(R.id.sign_up_three_number_field);
+        passwordField = findViewById(R.id.sign_up_three_password_field);
+        confirmPasswordField = findViewById(R.id.sign_up_three_confirm_password_field);
+        linearLayout = findViewById(R.id.sign_up_three_password_progress_bar_linear_layout);
+        progressBar = findViewById(R.id.sign_up_three_password_progress_bar);
+        passwordStrengthText = findViewById(R.id.sign_up_three_password_text_view);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        bundle = getIntent().getExtras();
+
+        userData = new User();
+    }
+
+    private void getAllUserDataFromPreviousActivities() {
+        firstName = bundle.getString("firstName");
+        lastName = bundle.getString("lastName");
+        emailAddress = bundle.getString("emailAddress");
+        gender = bundle.getString("gender");
+        user = bundle.getString("user");
+        dateOfBirth = bundle.getString("dateOfBirth");
     }
 
     private void getUserData() {
@@ -162,6 +231,10 @@ public class SignUpThreeActivity extends AppCompatActivity {
     private boolean validatePasswords() {
         if (password.isEmpty()) {
             passwordField.setError(getString(R.string.password_required));
+
+            return false;
+        } else if (password.length() <= 6) {
+            passwordField.setError(getString(R.string.password_invalid));
 
             return false;
         } else if (confirmPassword.isEmpty()) {
