@@ -37,6 +37,9 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
     AppCompatButton verifyCodeButton;
     private ImageView backImage;
     private TextView otpTextView;
+    private PinView pinView;
+    private Bundle bundle;
+    private String emailAddress, phoneNumber, pin, verificationID;
     private final PhoneAuthProvider.OnVerificationStateChangedCallbacks onVerificationStateChangedCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -66,10 +69,6 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
             verificationID = s;
         }
     };
-    private PinView pinView;
-    private ProgressBar progressBar;
-    private Bundle bundle;
-    private String emailAddress, phoneNumber, pin, verificationID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,24 +85,13 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
         });
 
         verifyCodeButton.setOnClickListener(view -> {
-            Log.i("TAG", "onCreate: clicked");
-
             getUserDataFromUI();
-
-            if (validateOTP()) {
-
-            }
-//            startActivity(new Intent(this, ResetPasswordMobileActivity.class));
-//            finish();
         });
     }
 
     private void sendOTPToUser() {
         PhoneAuthOptions options = PhoneAuthOptions.newBuilder().setPhoneNumber(phoneNumber).setTimeout(60L, TimeUnit.SECONDS).setActivity(this).setCallbacks(onVerificationStateChangedCallbacks).build();
         PhoneAuthProvider.verifyPhoneNumber(options);
-
-//        PhoneAuthOptions.newBuilder().setPhoneNumber(phoneNumber);
-//        PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber, 60L, TimeUnit.SECONDS, TaskExecutors.MAIN_THREAD, onVerificationStateChangedCallbacks);
     }
 
     private void showErrorDialogBox() {
@@ -137,8 +125,11 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
                     Intent intent = new Intent(ForgotPasswordMobileActivity.this, ResetPasswordMobileActivity.class);
 
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.putExtra("emailAddress", emailAddress);
+                    intent.putExtra("phoneNumber", phoneNumber);
 
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(ForgotPasswordMobileActivity.this, "" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -182,6 +173,7 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
     }
 
     private void getDataFromBundle() {
+        emailAddress = bundle.getString("emailAddress");
         phoneNumber = bundle.getString("phoneNumber");
     }
 
@@ -196,7 +188,7 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
         verifyCodeButton = findViewById(R.id.forgot_password_mobile_button);
         otpTextView = findViewById(R.id.forgot_password_mobile_opt_text_text_view);
         pinView = findViewById(R.id.forgot_password_mobile_opt_field);
-        progressBar = findViewById(R.id.forgot_password_mobile_progress_bar);
+        ProgressBar progressBar = findViewById(R.id.forgot_password_mobile_progress_bar);
 
         bundle = getIntent().getExtras();
     }

@@ -29,7 +29,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private ImageView backImageView;
     private AppCompatButton nextButton;
     private ProgressBar progressBar;
-    private String emailAddress, phoneNumber;
+    private String emailAddress = "", phoneNumber = "";
     private DatabaseReference databaseReference;
 
     @Override
@@ -48,45 +48,47 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
             if (validateEmailAddress()) {
                 verifyIfEmailAddressExistsInData();
-
-                if (isEmailFound) {
-                    Intent intent = new Intent(this, ForgotPasswordSelectionActivity.class);
-
-                    intent.putExtra("emailAddress", emailAddress);
-                    intent.putExtra("phoneNumber", phoneNumber);
-
-                    startActivity(intent);
-                    finish();
-                }
-//                else {
-//                    showErrorDialogBox();
-//                }
             }
         });
     }
 
     private void verifyIfEmailAddressExistsInData() {
+
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                progressBar.setVisibility(View.VISIBLE);
+                if (!emailAddress.isEmpty()) {
+                    progressBar.setVisibility(View.VISIBLE);
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String[] temp = dataSnapshot.getKey().split("-");
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String[] temp = dataSnapshot.getKey().split("-");
 
-                    if (emailAddress.equals(temp[0] + "." + temp[1])) {
-                        isEmailFound = true;
+                        if (emailAddress.equals(temp[0] + "." + temp[1])) {
+                            isEmailFound = true;
 
-                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            emailAddress = dataSnapshot1.child("emailAddress").getValue().toString();
-                            phoneNumber = dataSnapshot1.child("phoneNumber").getValue().toString();
+                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                emailAddress = dataSnapshot1.child("emailAddress").getValue().toString();
+                                phoneNumber = dataSnapshot1.child("phoneNumber").getValue().toString();
+
+                                Intent intent = new Intent(ForgotPasswordActivity.this, ForgotPasswordSelectionActivity.class);
+
+                                intent.putExtra("emailAddress", emailAddress);
+                                intent.putExtra("phoneNumber", phoneNumber);
+
+                                startActivity(intent);
+                                finish();
+                            }
+
+                            break;
                         }
-
-                        break;
                     }
-                }
 
-                progressBar.setVisibility(View.GONE);
+                    if (!isEmailFound) {
+                        showErrorDialogBox();
+                    }
+
+                    progressBar.setVisibility(View.GONE);
+                }
             }
 
             @Override
