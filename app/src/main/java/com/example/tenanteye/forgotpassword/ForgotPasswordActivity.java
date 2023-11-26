@@ -29,7 +29,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private ImageView backImageView;
     private AppCompatButton nextButton;
     private ProgressBar progressBar;
-    private TextView textView;
     private String emailAddress, phoneNumber;
     private DatabaseReference databaseReference;
 
@@ -58,9 +57,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                     startActivity(intent);
                     finish();
-                } else {
-                    showErrorDialogBox();
                 }
+//                else {
+//                    showErrorDialogBox();
+//                }
             }
         });
     }
@@ -80,10 +80,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             emailAddress = dataSnapshot1.child("emailAddress").getValue().toString();
                             phoneNumber = dataSnapshot1.child("phoneNumber").getValue().toString();
-
-                            Log.i("TAG", "onDataChange: " + dataSnapshot1.child("emailAddress").getValue());
-                            Log.i("TAG", "onDataChange: " + dataSnapshot1.child("phoneNumber").getValue());
                         }
+
+                        break;
                     }
                 }
 
@@ -160,7 +159,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.forgot_password_next_button);
         emailAddressField = findViewById(R.id.forgot_password_email_field);
         progressBar = findViewById(R.id.forgot_password_progress_bar);
-        textView = findViewById(R.id.forgot_password_bottom_text_view);
+        TextView textView = findViewById(R.id.forgot_password_bottom_text_view);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users Data");
     }

@@ -43,7 +43,12 @@ public class ForgotPasswordSelectionActivity extends AppCompatActivity {
         });
 
         mobileButton.setOnClickListener(view -> {
-            startActivity(new Intent(this, ForgotPasswordMobileActivity.class));
+            Intent intent = new Intent(this, ForgotPasswordMobileActivity.class);
+
+            intent.putExtra("emailAddress", emailAddress);
+            intent.putExtra("phoneNumber", phoneNumber);
+
+            startActivity(intent);
             finish();
         });
 
@@ -58,6 +63,7 @@ public class ForgotPasswordSelectionActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
                     startActivity(new Intent(ForgotPasswordSelectionActivity.this, ResetPasswordEmailActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(ForgotPasswordSelectionActivity.this, "" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
