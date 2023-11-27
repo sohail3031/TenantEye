@@ -77,8 +77,19 @@ public class SignUpThreeActivity extends AppCompatActivity {
                             databaseReference = FirebaseDatabase.getInstance().getReference("Users Data").child(splitEmailAddress[0] + "-" + splitEmailAddress[1]);
                             databaseReference.push().setValue(userData);
 
-                            startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
-                            finish();
+                            firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SignUpThreeActivity.this, "Your account has been created! Verify your account to login!", Toast.LENGTH_SHORT).show();
+                                        
+                                        startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
+                                        finish();
+                                    } else {
+                                        showErrorDialogBox();
+                                    }
+                                }
+                            });
                         } else {
                             String errorCode = Objects.requireNonNull(task.getException()).getMessage();
 

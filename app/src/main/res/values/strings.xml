@@ -94,7 +94,7 @@
     <string name="sign_up_two_gender_female_text">Female</string>
     <string name="sign_up_two_gender_other_text">Other</string>
     <string name="sign_up_two_empty_text">  </string>
-    <string name="sign_up_two_user_user_text">User</string>
+    <string name="sign_up_two_user_user_text">Tenant</string>
     <string name="sign_up_two_user_freelancer_text">Freelancer</string>
 
     <!--  Sign Up Three Activity  -->

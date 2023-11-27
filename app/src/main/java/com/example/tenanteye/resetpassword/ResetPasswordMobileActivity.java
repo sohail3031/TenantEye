@@ -16,12 +16,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tenanteye.PasswordStrength;
 import com.example.tenanteye.R;
 import com.example.tenanteye.forgotpassword.ForgotPasswordActivity;
 import com.example.tenanteye.forgotpassword.ForgotPasswordSelectionActivity;
 import com.example.tenanteye.login.LoginActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +45,7 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private TextView passwordStrengthText;
     private ProgressBar progressBar;
-    private String emailAddress, password, confirmPassword;
+    private String emailAddress, password, confirmPassword, previousPassword;
     private Bundle bundle;
     private DatabaseReference databaseReference;
 
@@ -60,8 +69,6 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
             if (validatePasswords()) {
                 updatePassword();
             }
-//            startActivity(new Intent(this, ResetPasswordSuccessActivity.class));
-//            finish();
         });
 
         passwordField.addTextChangedListener(new TextWatcher() {
@@ -107,7 +114,7 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!emailAddress.isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
-
+//
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String[] temp = dataSnapshot.getKey().split("-");
                         String databaseChild = dataSnapshot.getKey().toString();
@@ -116,10 +123,32 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
                             isEmailFound = true;
 
                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                previousPassword = dataSnapshot1.child("password").getValue().toString();
                                 databaseReference.child(databaseChild).child(dataSnapshot1.getKey().toString()).child("password").setValue(password);
 
-                                startActivity(new Intent(ResetPasswordMobileActivity.this, ResetPasswordSuccessActivity.class));
-                                finish();
+                                Log.i("TAG", "onDataChange: " + "Password Added!");
+
+                                AuthCredential authCredential = EmailAuthProvider.getCredential(emailAddress, previousPassword);
+                                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                                firebaseUser.reauthenticate(authCredential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        firebaseUser.updatePassword(password).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.i("TAG", "onComplete: Password Updated!");
+//
+                                                    startActivity(new Intent(ResetPasswordMobileActivity.this, ResetPasswordSuccessActivity.class));
+                                                    finish();
+                                                } else {
+                                                    showValidationError();
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
                             }
 
                             break;
@@ -139,6 +168,21 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void showValidationError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+                .setTitle(R.string.error_alert_title)
+                .setMessage(R.string.error_alert_message)
+                .setPositiveButton(R.string.error_alert_okay, (dialog, which) -> {
+                    dialog.dismiss();
+                });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
     }
 
     private void showErrorDialogBox() {
@@ -209,8 +253,8 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
     }
 
     private void getUserDataFromBundle() {
-//        emailAddress = bundle.getString("emailAddress");
-        emailAddress = "ahmedmohammedsohail651@gmail.com";
+        emailAddress = bundle.getString("emailAddress");
+//        emailAddress = "ahmedmohammedsohail651@gmail.com";
     }
 
     private void showAlertMessage() {
@@ -241,7 +285,7 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
         passwordStrengthText = findViewById(R.id.reset_password_mobile_progressbar_text_view);
         progressBar = findViewById(R.id.reset_password_mobile_progressbar);
 
-//        bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users Data");
     }
 }
