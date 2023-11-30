@@ -82,7 +82,7 @@ public class SignUpThreeActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(SignUpThreeActivity.this, "Your account has been created! Verify your account to login!", Toast.LENGTH_SHORT).show();
-                                        
+
                                         startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
                                         finish();
                                     } else {
@@ -110,8 +110,6 @@ public class SignUpThreeActivity extends AppCompatActivity {
                                     showErrorDialogBox();
                                     break;
                             }
-//                            Toast.makeText(SignUpThreeActivity.this, "Exception: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-//                            Log.i("Error", "onComplete: " + task.getException().getMessage());
                         }
                     }
                 });

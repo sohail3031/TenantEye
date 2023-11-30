@@ -80,13 +80,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         });
 
         skipButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-//            Pair[] pairs = new Pair[1];
-//            pairs[0] = new Pair<View, String>(relativeLayout, "on_boarding_relative_layout_transition");
-//            ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
-//
-//            startActivity(intent, activityOptions.toBundle());
-            startActivity(intent);
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
 
@@ -97,13 +91,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         });
 
         letsGetStartedButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, LoginActivity.class);
-//            Pair[] pairs = new Pair[1];
-//            pairs[0] = new Pair<View, String>(relativeLayout, "on_boarding_relative_layout_transition");
-//            ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
-
-//            startActivity(intent, activityOptions.toBundle());
-            startActivity(intent);
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
     }

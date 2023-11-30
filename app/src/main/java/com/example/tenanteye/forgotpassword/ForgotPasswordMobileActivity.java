@@ -43,8 +43,6 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
     private final PhoneAuthProvider.OnVerificationStateChangedCallbacks onVerificationStateChangedCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-            Log.i("TAG", "onVerificationCompleted: " + phoneAuthCredential);
-
             String code = phoneAuthCredential.getSmsCode();
 
             if (code != null) {
@@ -57,8 +55,7 @@ public class ForgotPasswordMobileActivity extends AppCompatActivity {
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
             Toast.makeText(ForgotPasswordMobileActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-            Log.i("TAG", "onVerificationFailed: " + e.getMessage());
-
+            
             showErrorDialogBox();
         }
 

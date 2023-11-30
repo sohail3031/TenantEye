@@ -21,7 +21,9 @@ import android.widget.Toast;
 import com.example.tenanteye.R;
 import com.example.tenanteye.login.LoginActivity;
 import com.example.tenanteye.onboarding.OnBoardingActivity;
+import com.example.tenanteye.tenanthomepages.TenantHomeActivity;
 import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,57 +36,64 @@ import java.util.Map;
 public class LandingPage extends AppCompatActivity {
     private static final int SPLASH_SCREEN_TIME_OUT = 5000;
     private SharedPreferences onBoardingSharedPreferences;
+    private boolean isUserLoggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
-//        dummy database
-//        createDummyDB();
+        keepUserLoggedIn();
 
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (!isUserLoggedIn) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        TextView landingPageTitleText = findViewById(R.id.landing_page_title_text);
-        Animation animation = AnimationUtils.loadAnimation(this, R.anim.landing_page_animation);
+            TextView landingPageTitleText = findViewById(R.id.landing_page_title_text);
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.landing_page_animation);
 
-        landingPageTitleText.setAnimation(animation);
+            landingPageTitleText.setAnimation(animation);
 
-        new Handler().postDelayed(() -> {
-            onBoardingSharedPreferences = getSharedPreferences("onBoarding", MODE_PRIVATE);
-            boolean isFirstTime = onBoardingSharedPreferences.getBoolean("isAppInstalledFirstTime", true);
+            new Handler().postDelayed(() -> {
+                onBoardingSharedPreferences = getSharedPreferences("onBoarding", MODE_PRIVATE);
+                boolean isFirstTime = onBoardingSharedPreferences.getBoolean("isAppInstalledFirstTime", true);
 
-            if (isFirstTime) {
-                SharedPreferences.Editor editor = onBoardingSharedPreferences.edit();
+                if (isFirstTime) {
+                    SharedPreferences.Editor editor = onBoardingSharedPreferences.edit();
 
-                editor.putBoolean("isAppInstalledFirstTime", false);
-                editor.apply();
+                    editor.putBoolean("isAppInstalledFirstTime", false);
+                    editor.apply();
 
-                Intent intent = new Intent(this, OnBoardingActivity.class);
-//                Pair[] pairs = new Pair[1];
-//                pairs[0] = new Pair<View, String>(landingPageTitleText, "landing_page_text_tenant_transition");
-//                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
-//
-//                startActivity(intent, activityOptions.toBundle());
-                startActivity(intent);
-            } else {
-                Intent intent = new Intent(this, LoginActivity.class);
-//                Pair[] pairs = new Pair[1];
-//                pairs[0] = new Pair<View, String>(landingPageTitleText, "landing_page_text_tenant_transition");
-//                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
+                    Intent intent = new Intent(this, OnBoardingActivity.class);
 
-//                startActivity(intent, activityOptions.toBundle());
-                startActivity(intent);
-            }
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(this, LoginActivity.class);
 
-            finish();
-        }, SPLASH_SCREEN_TIME_OUT);
+                    startActivity(intent);
+                }
+
+                finish();
+            }, SPLASH_SCREEN_TIME_OUT);
+        }
     }
 
-    private void createDummyDB() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("new table");
+    private void keepUserLoggedIn() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        SharedPreferences loginSharedPreference = getSharedPreferences("login", MODE_PRIVATE);
+        String userEmail = loginSharedPreference.getString("emailAddress", "");
+        String userPassword = loginSharedPreference.getString("password", "");
 
-        myRef.child("example").setValue("Hello, World!");
+        if (!"".equals(userEmail) && !"".equals(userPassword)) {
+            isUserLoggedIn = true;
+
+            firebaseAuth.getCurrentUser();
+
+            firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    startActivity(new Intent(LandingPage.this, TenantHomeActivity.class));
+                    finish();
+                }
+            });
+        }
     }
 }

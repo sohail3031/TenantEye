@@ -47,6 +47,8 @@ dependencies {
     implementation("com.hbb20:ccp:2.5.1")
     implementation("com.google.firebase:firebase-database:20.3.0")
     implementation("com.google.firebase:firebase-auth:22.3.0")
+    implementation("com.android.volley:volley:1.2.1")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

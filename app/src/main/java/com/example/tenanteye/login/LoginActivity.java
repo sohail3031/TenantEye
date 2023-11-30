@@ -8,7 +8,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -17,13 +16,14 @@ import android.widget.Toast;
 
 import com.example.tenanteye.R;
 import com.example.tenanteye.forgotpassword.ForgotPasswordActivity;
-import com.example.tenanteye.homepages.HomeActivity;
 import com.example.tenanteye.signup.SignUpOneActivity;
+import com.example.tenanteye.tenanthomepages.TenantHomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String EMAIL_RE = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -34,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox checkBox;
     private String emailAddress, password;
     private FirebaseAuth firebaseAuth;
-
-    private FirebaseAuth.AuthStateListener authStateListener;
-    private boolean isEmailExists = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    if (firebaseAuth.getCurrentUser().isEmailVerified()) {
+                    if (Objects.requireNonNull(firebaseAuth.getCurrentUser()).isEmailVerified()) {
                         if (checkBox.isChecked()) {
                             loginSharedPreference = getSharedPreferences("login", MODE_PRIVATE);
                             SharedPreferences.Editor editor = loginSharedPreference.edit();
@@ -93,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.apply();
                         }
 
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        startActivity(new Intent(LoginActivity.this, TenantHomeActivity.class));
                         finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "You have not verified your account. Please verify it to login.", Toast.LENGTH_SHORT).show();

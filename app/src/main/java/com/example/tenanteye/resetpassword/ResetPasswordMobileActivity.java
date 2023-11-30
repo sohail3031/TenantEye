@@ -126,8 +126,6 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
                                 previousPassword = dataSnapshot1.child("password").getValue().toString();
                                 databaseReference.child(databaseChild).child(dataSnapshot1.getKey().toString()).child("password").setValue(password);
 
-                                Log.i("TAG", "onDataChange: " + "Password Added!");
-
                                 AuthCredential authCredential = EmailAuthProvider.getCredential(emailAddress, previousPassword);
                                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -138,8 +136,6 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Log.i("TAG", "onComplete: Password Updated!");
-//
                                                     startActivity(new Intent(ResetPasswordMobileActivity.this, ResetPasswordSuccessActivity.class));
                                                     finish();
                                                 } else {

@@ -107,12 +107,12 @@
     <string name="sign_up_three_phone_number_confirm_password_hint_text">Confirm Password</string>
     <string name="sign_up_three_password_progress_bar_text">Weak</string>
 
-    <!--  Bottom Menu  -->
-    <string name="bottom_menu_search_title">Search</string>
-    <string name="bottom_menu_task_title">Task</string>
-    <string name="bottom_menu_create_title">Create</string>
-    <string name="bottom_menu_chat_title">Chat</string>
-    <string name="bottom_menu_more_title">More</string>
+    <!--  Tenant Bottom Menu  -->
+    <string name="tenant_bottom_menu_search_title">Search</string>
+    <string name="tenant_bottom_menu_task_title">Task</string>
+    <string name="tenant_bottom_menu_create_title">Create</string>
+    <string name="tenant_bottom_menu_chat_title">Chat</string>
+    <string name="tenant_bottom_menu_more_title">More</string>
 
     <!-- Search Fragment -->
     <string name="search_fragment">Search</string>
@@ -169,4 +169,23 @@
     <string name="password_strength_medium">Medium</string>
     <string name="password_strength_strong">Strong</string>
     <string name="password_strength_very_strong">Very Strong</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  Tenant Create  -->
+    <string name="tenant_create_title_text">Create Task</string>
+    <string name="tenant_create_add_title_text">Title</string>
+    <string name="tenant_create_description_text">Description</string>
+    <string name="tenant_create_address_text">Address</string>
+    <string name="tenant_create_start_date_text">Start Date</string>
+    <string name="tenant_create_start_time_text">Start Time</string>
+    <string name="tenant_create_end_date_text">End Date</string>
+    <string name="tenant_create_end_time_text">End Time</string>
+    <string name="tenant_create_link_text">Advertisement Link</string>
+    <string name="tenant_create_create_post_button_text">Create Post</string>
+    <string name="tenant_select_country">Country</string>
+    <string name="tenant_select_state">State</string>
+    <string name="tenant_select_city">City</string>
+    <string name="tenant_select_zip_code">Zip Code</string>
+    <string name="tenant_select_country_search">Search …</string>
 </resources>

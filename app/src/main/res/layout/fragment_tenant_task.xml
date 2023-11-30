@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lavender"
-    tools:context=".homepages.TaskFragment">
+    android:background="@color/white"
+    tools:context=".tenanthomepages.TenantTaskFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="@string/task_fragment"
-        android:textColor="@color/white"
+        android:text="Task"
+        android:textColor="@color/black"
         android:textSize="30sp" />
 
 </FrameLayout>
