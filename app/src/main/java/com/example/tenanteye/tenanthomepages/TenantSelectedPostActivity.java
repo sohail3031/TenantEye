@@ -93,7 +93,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
 
         initializeAllVariables();
         addDataToFields();
-//        getDataFromAPI();
+        getDataFromAPI();
 
         backImageView.setOnClickListener(view -> {
             if (isEditButtonClicked) {
