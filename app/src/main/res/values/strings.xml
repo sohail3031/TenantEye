@@ -188,4 +188,17 @@
     <string name="tenant_select_city">City</string>
     <string name="tenant_select_zip_code">Zip Code</string>
     <string name="tenant_select_country_search">Search …</string>
+
+    <!--  Show Task Info Brief  -->
+    <string name="show_task_info_brief_title">Title: </string>
+    <string name="show_task_info_brief_description">Description: </string>
+    <string name="show_task_info_brief_address">Address: </string>
+    <string name="show_task_info_brief_status">Status: </string>
+
+    <!--  Tenant Selected Post  -->
+    <string name="tenant_selected_post_title">Post</string>
+    <string name="tenant_selected_post_edit">Edit</string>
+    <string name="tenant_selected_post_update">Update</string>
+    <string name="tenant_selected_post_delete">Delete</string>
+    <string name="tenant_selected_no_posts_text">You don\'t have any posts</string>
 </resources>

@@ -1,5 +1,12 @@
 package com.example.tenanteye.tenanthomepages;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -9,43 +16,23 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.tenanteye.Post;
 import com.example.tenanteye.R;
+import com.example.tenanteye.databinding.ActivityTenantCreateBinding;
 import com.example.tenanteye.login.LoginActivity;
-import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -63,20 +50,19 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import kotlin.text.UStringsKt;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class TenantCreateFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class TenantCreateActivity extends AppCompatActivity {
     private final Calendar calendar = Calendar.getInstance();
     private final Post post = new Post();
     String[] isoCountryCode = Locale.getISOCountries();
+    ActivityTenantCreateBinding binding;
     private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link;
     private AppCompatButton createPostButton;
-    private View tenantCreateFragment;
     private Dialog dialog;
     private ArrayList<String> countries;
     private ArrayList<String> states = new ArrayList<>();
@@ -87,81 +73,54 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
     private String selectedCountry, selectedCountryCode, selectedState, selectedStateCode, selectedCity, selectedTitle, selectedDescription, selectedAddress, selectedZipCode, selectedStartDate, selectedStartTime, selectedEndDate, selectedEndTime, selectedLink, emailAddress;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        tenantCreateFragment = inflater.inflate(R.layout.fragment_tenant_create, container, false);
-//        SharedPreferences loginSharedPreference = requireActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
-//        emailAddress = loginSharedPreference.getString("emailAddress", "");
-//
-//        if (emailAddress.equals("")) {
-//            Toast.makeText(requireActivity(), "Please login in again!", Toast.LENGTH_LONG).show();
-//            startActivity(new Intent(requireActivity(), LoginActivity.class));
-//            requireActivity().finish();
-//        }
-//
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
-//
-//        initializeAllVariable();
-//        addListeners();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        return tenantCreateFragment;
-    }
+        binding = ActivityTenantCreateBinding.inflate(getLayoutInflater());
 
-    @Override
-    public void setRetainInstance(boolean retain) {
-        super.setRetainInstance(true);
-    }
+        setContentView(binding.getRoot());
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("title", title.getText().toString());
-        outState.putString("description", description.getText().toString());
-        outState.putString("address", address.getText().toString());
-        outState.putString("country", selectedCountry);
-        outState.putString("state", selectedState);
-        outState.putString("city", selectedCity);
-        outState.putString("zipCode", zipCode.getText().toString());
-        outState.putString("startDate", startDate.getText().toString());
-        outState.putString("startTime", startTime.getText().toString());
-        outState.putString("endDate", endDate.getText().toString());
-        outState.putString("endTime", endTime.getText().toString());
-        outState.putString("link", link.getText().toString());
-        outState.putStringArrayList("countries", countries);
-        outState.putStringArrayList("states", states);
-        outState.putStringArrayList("statesKeys", statesKeys);
-        outState.putStringArrayList("cities", cities);
-        outState.putStringArrayList("citiesKeys", citiesKeys);
-    }
+        binding.tenantCreateBottomNavigationView.setSelectedItemId(R.id.tenant_bottom_menu_create);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        binding.tenantCreateBottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
 
-        if (savedInstanceState != null) {
-            title.setText(savedInstanceState.getString("title"));
-            description.setText(savedInstanceState.getString("description"));
-            address.setText(savedInstanceState.getString("address"));
-            countrySpinner.setText(savedInstanceState.getString("country"));
-            stateSpinner.setText(savedInstanceState.getString("state"));
-            citySpinner.setText(savedInstanceState.getString("city"));
-            zipCode.setText(savedInstanceState.getString("zipCode"));
-            startDate.setText(savedInstanceState.getString("startDate"));
-            startTime.setText(savedInstanceState.getString("startTime"));
-            endDate.setText(savedInstanceState.getString("endDate"));
-            endTime.setText(savedInstanceState.getString("endTime"));
-            link.setText(savedInstanceState.getString("link"));
-            countries = savedInstanceState.getStringArrayList("countries");
-            states = savedInstanceState.getStringArrayList("states");
-            statesKeys = savedInstanceState.getStringArrayList("statesKeys");
-            cities = savedInstanceState.getStringArrayList("cities");
-            citiesKeys = savedInstanceState.getStringArrayList("citiesKeys");
+            if (itemId == R.id.tenant_bottom_menu_search) {
+                startActivity(new Intent(this, TenantSearchActivity.class));
+            } else if (itemId == R.id.tenant_bottom_menu_task) {
+                startActivity(new Intent(this, TenantTaskActivity.class));
+            } else if (itemId == R.id.tenant_bottom_menu_more) {
+                startActivity(new Intent(this, TenantMoreActivity.class));
+            } else if (itemId == R.id.tenant_bottom_menu_chat) {
+                startActivity(new Intent(this, TenantChatActivity.class));
+            }
+
+            return true;
+        });
+
+        SharedPreferences loginSharedPreference = getSharedPreferences("login", Context.MODE_PRIVATE);
+        emailAddress = loginSharedPreference.getString("emailAddress", "");
+
+        if (emailAddress.equals("")) {
+            Toast.makeText(this, "Please login in again!", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
         }
+
+        initializeAllVariables();
+
+        countrySpinner.setOnClickListener(view -> addCountriesToSpinner());
+        stateSpinner.setOnClickListener(view -> addStatesToSpinner());
+        citySpinner.setOnClickListener(view -> addCitiesToSpinner());
+        endTime.setOnClickListener(view -> showEndTimeDialog());
+        endDate.setOnClickListener(view -> showEndDateDialog());
+        startDate.setOnClickListener(view -> showStartDateDialog());
+        startTime.setOnClickListener(view -> showStartTimeDialog());
+        createPostButton.setOnClickListener(view -> createPost());
     }
 
     private void showDefaultStateError() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder
                 .setTitle("Invalid input!")
@@ -176,7 +135,7 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
     }
 
     private void showDefaultCountryError() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder
                 .setTitle("Invalid input!")
@@ -191,7 +150,7 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
     }
 
     private void showSomethingWentWrongError() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder
                 .setTitle("Something went wrong")
@@ -209,7 +168,7 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         getCountries();
 
         if (countries.size() > 0) {
-            dialog = new Dialog(requireActivity());
+            dialog = new Dialog(this);
 
             dialog.setContentView(R.layout.countries_dropdown_items);
             Objects.requireNonNull(dialog.getWindow()).setLayout(1000, 1000);
@@ -219,10 +178,8 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
             EditText editText = dialog.findViewById(R.id.countries_dropdown_items_edit_text);
             ListView listView = dialog.findViewById(R.id.countries_dropdown_items_list_view);
 
-            getCountries();
-
             if (countries.size() > 0) {
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity().getApplicationContext(), android.R.layout.simple_list_item_1, countries);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getApplicationContext(), android.R.layout.simple_list_item_1, countries);
 
                 listView.setAdapter(adapter);
                 editText.addTextChangedListener(new TextWatcher() {
@@ -246,6 +203,8 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
                     for (Map.Entry<String, String> entry : countryMapSorted.entrySet()) {
                         if (entry.getKey().equals(adapter.getItem(i))) {
                             selectedCountryCode = entry.getValue();
+
+                            getStatesFromAPI();
 
                             break;
                         }
@@ -305,16 +264,14 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         });
     }
 
-    private void addStatesToSpinner() throws IOException {
+    private void addStatesToSpinner() {
         selectedCountry = countrySpinner.getText().toString();
 
         if (selectedCountry.equals(getString(R.string.tenant_select_country)) || selectedCountry == null || "".equals(selectedCountry)) {
             showDefaultCountryError();
         } else {
-            getStatesFromAPI();
-
             if (states.size() > 0) {
-                dialog = new Dialog(requireActivity());
+                dialog = new Dialog(this);
 
                 dialog.setContentView(R.layout.states_dropdown_items);
                 Objects.requireNonNull(dialog.getWindow()).setLayout(1000, 1000);
@@ -324,7 +281,7 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
                 EditText editText = dialog.findViewById(R.id.states_dropdown_items_edit_text);
                 ListView listView = dialog.findViewById(R.id.states_dropdown_items_list_view);
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity().getApplicationContext(), android.R.layout.simple_list_item_1, states);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getApplicationContext(), android.R.layout.simple_list_item_1, states);
 
                 listView.setAdapter(adapter);
                 editText.addTextChangedListener(new TextWatcher() {
@@ -348,6 +305,8 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
                     for (String s : states) {
                         if (s.equals(adapter.getItem(i))) {
                             selectedStateCode = statesKeys.get(states.indexOf(s));
+
+                            getCitiesFromAPI();
 
                             break;
                         }
@@ -417,10 +376,8 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         } else if (selectedState.equalsIgnoreCase(getString(R.string.tenant_select_state)) || selectedState == null || "".equals(selectedState)) {
             showDefaultStateError();
         } else {
-            getCitiesFromAPI();
-
             if (cities.size() > 0) {
-                dialog = new Dialog(requireActivity());
+                dialog = new Dialog(this);
 
                 dialog.setContentView(R.layout.cities_dropdown_items);
                 Objects.requireNonNull(dialog.getWindow()).setLayout(1000, 1000);
@@ -429,7 +386,7 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
 
                 EditText editText = dialog.findViewById(R.id.cities_dropdown_items_edit_text);
                 ListView listView = dialog.findViewById(R.id.cities_dropdown_items_list_view);
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(requireActivity().getApplicationContext(), android.R.layout.simple_list_item_1, cities);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getApplicationContext(), android.R.layout.simple_list_item_1, cities);
 
                 listView.setAdapter(adapter);
                 editText.addTextChangedListener(new TextWatcher() {
@@ -463,7 +420,7 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         int hour = calendar.get(Calendar.HOUR);
         int minute = calendar.get(Calendar.MINUTE);
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), (timePicker, i, i1) -> {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, (timePicker, i, i1) -> {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.US);
 
             calendar.set(Calendar.HOUR_OF_DAY, i);
@@ -480,9 +437,10 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(requireActivity(), (datePicker, i, i1, i2) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (datePicker, i, i1, i2) -> {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
+            calendar.set(i, i1, i2);
             endDate.setText(simpleDateFormat.format(calendar.getTime()));
         }, year, month, day);
 
@@ -496,9 +454,10 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(requireActivity(), (datePicker, i, i1, i2) -> {
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (datePicker, i, i1, i2) -> {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
+            calendar.set(i, i1, i2);
             startDate.setText(simpleDateFormat.format(calendar.getTime()));
         }, year, month, day);
 
@@ -511,7 +470,7 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         int hour = calendar.get(Calendar.HOUR);
         int minute = calendar.get(Calendar.MINUTE);
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), (timePicker, i, i1) -> {
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, (timePicker, i, i1) -> {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm", Locale.US);
 
             calendar.set(Calendar.HOUR_OF_DAY, i);
@@ -653,7 +612,6 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
 
     private String getTimeStamp() {
         return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", Locale.US).format(new java.util.Date());
-
     }
 
     private void storePostDataInPostObject() {
@@ -681,37 +639,11 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts").child(splitEmailAddress[0] + "-" + splitEmailAddress[1]);
             databaseReference.push().setValue(post);
 
-            Toast.makeText(requireActivity(), "Post Created!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Post Created!", Toast.LENGTH_LONG).show();
 
-            replaceFragment();
+            startActivity(new Intent(this, TenantTaskActivity.class));
+            finish();
         }
-    }
-
-    private void replaceFragment() {
-        TenantTaskFragment tenantTaskFragment = new TenantTaskFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        assert fragmentManager != null;
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        fragmentTransaction.replace(R.id.tenant_home_frame_layout, tenantTaskFragment);
-        fragmentTransaction.commit();
-    }
-
-    private void addListeners() {
-        countrySpinner.setOnClickListener(view -> addCountriesToSpinner());
-        stateSpinner.setOnClickListener(view -> {
-            try {
-                addStatesToSpinner();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        citySpinner.setOnClickListener(view -> addCitiesToSpinner());
-        endTime.setOnClickListener(view -> showEndTimeDialog());
-        endDate.setOnClickListener(view -> showEndDateDialog());
-        startDate.setOnClickListener(view -> showStartDateDialog());
-        startTime.setOnClickListener(view -> showStartTimeDialog());
-        createPostButton.setOnClickListener(view -> createPost());
     }
 
     private void getCountries() {
@@ -738,27 +670,19 @@ public class TenantCreateFragment extends Fragment implements DatePickerDialog.O
         Collections.sort(countries);
     }
 
-    private void initializeAllVariable() {
-        countrySpinner = tenantCreateFragment.findViewById(R.id.tenant_create_countries_field);
-        stateSpinner = tenantCreateFragment.findViewById(R.id.tenant_create_states_field);
-        citySpinner = tenantCreateFragment.findViewById(R.id.tenant_create_cities_field);
-        title = tenantCreateFragment.findViewById(R.id.tenant_create_title_field);
-        description = tenantCreateFragment.findViewById(R.id.tenant_create_description_field);
-        address = tenantCreateFragment.findViewById(R.id.tenant_create_address_field);
-        zipCode = tenantCreateFragment.findViewById(R.id.tenant_create_zip_code_field);
-        startDate = tenantCreateFragment.findViewById(R.id.tenant_create_start_date_field);
-        startTime = tenantCreateFragment.findViewById(R.id.tenant_create_start_time_field);
-        endDate = tenantCreateFragment.findViewById(R.id.tenant_create_end_date_field);
-        endTime = tenantCreateFragment.findViewById(R.id.tenant_create_end_time_field);
-        link = tenantCreateFragment.findViewById(R.id.tenant_create_link_field);
-        createPostButton = tenantCreateFragment.findViewById(R.id.tenant_create_create_post_button);
-    }
-
-    @Override
-    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, i);
-        calendar.set(Calendar.MONTH, i1);
-        calendar.set(Calendar.DAY_OF_MONTH, i2);
+    private void initializeAllVariables() {
+        countrySpinner = findViewById(R.id.tenant_create_countries_field);
+        stateSpinner = findViewById(R.id.tenant_create_states_field);
+        citySpinner = findViewById(R.id.tenant_create_cities_field);
+        title = findViewById(R.id.tenant_create_title_field);
+        description = findViewById(R.id.tenant_create_description_field);
+        address = findViewById(R.id.tenant_create_address_field);
+        zipCode = findViewById(R.id.tenant_create_zip_code_field);
+        startDate = findViewById(R.id.tenant_create_start_date_field);
+        startTime = findViewById(R.id.tenant_create_start_time_field);
+        endDate = findViewById(R.id.tenant_create_end_date_field);
+        endTime = findViewById(R.id.tenant_create_end_time_field);
+        link = findViewById(R.id.tenant_create_link_field);
+        createPostButton = findViewById(R.id.tenant_create_create_post_button);
     }
 }

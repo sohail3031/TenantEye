@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
-    <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,14 +18,31 @@
         android:theme="@style/Theme.TenantEye"
         tools:targetApi="31">
         <activity
+            android:name=".tenanthomepages.TenantSelectedPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tenanthomepages.TenantMoreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tenanthomepages.TenantChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tenanthomepages.TenantSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tenanthomepages.TenantTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tenanthomepages.TenantCreateActivity"
+            android:exported="false" />
+        <activity
             android:name=".tenanthomepages.TenantHomeActivity"
             android:exported="true" />
         <activity
             android:name=".signup.SignUpSuccessActivity"
-            android:exported="true" />
-        <!--                <activity-->
-        <!--                    android:name=".homepages.HomeActivity"-->
-        <!--                    android:exported="true" />-->
+            android:exported="true" /> <!-- <activity -->
+        <!-- android:name=".homepages.HomeActivity" -->
+        <!-- android:exported="true" /> -->
         <activity
             android:name=".signup.SignUpThreeActivity"
             android:exported="true" />

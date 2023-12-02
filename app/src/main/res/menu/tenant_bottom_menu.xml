@@ -11,15 +11,15 @@
         android:icon="@drawable/baseline_search_24"
         android:title="@string/tenant_bottom_menu_search_title" />
 
-        <item
-            android:id="@+id/tenant_bottom_menu_create"
-            android:icon="@drawable/baseline_add_24"
-            android:title="@string/tenant_bottom_menu_create_title" />
+    <item
+        android:id="@+id/tenant_bottom_menu_create"
+        android:icon="@drawable/baseline_add_24"
+        android:title="@string/tenant_bottom_menu_create_title" />
 
-<!--    <item-->
-<!--        android:id="@+id/tenant_bottom_menu_create"-->
-<!--        android:title="@string/sign_up_two_empty_text"-->
-<!--        android:enabled="false"/>-->
+    <!--    <item-->
+    <!--        android:id="@+id/tenant_bottom_menu_create"-->
+    <!--        android:title="@string/sign_up_two_empty_text"-->
+    <!--        android:enabled="false"/>-->
 
     <item
         android:id="@+id/tenant_bottom_menu_chat"

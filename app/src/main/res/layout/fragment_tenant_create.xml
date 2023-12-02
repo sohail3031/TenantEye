@@ -9,595 +9,595 @@
     android:scrollbars="vertical"
     tools:context=".tenanthomepages.TenantCreateFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="88dp">
+    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:paddingBottom="88dp">-->
 
-        <TextView
-            android:id="@+id/tenant_create_title_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="serif"
-            android:padding="2dp"
-            android:text="@string/tenant_create_title_text"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:transitionName="login_welcome_transition"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <!--        <TextView-->
+    <!--            android:id="@+id/tenant_create_title_text"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:fontFamily="serif"-->
+    <!--            android:padding="2dp"-->
+    <!--            android:text="@string/tenant_create_title_text"-->
+    <!--            android:textAlignment="center"-->
+    <!--            android:textColor="@color/black"-->
+    <!--            android:textSize="25sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:transitionName="login_welcome_transition"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tenant_create_title_field_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/tenant_create_add_title_text"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/black"
-            app:hintTextColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_title_text"
-            app:startIconTint="@color/black">
+    <!--        <com.google.android.material.textfield.TextInputLayout-->
+    <!--            android:id="@+id/tenant_create_title_field_layout"-->
+    <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:hint="@string/tenant_create_add_title_text"-->
+    <!--            android:textColorHint="@color/black"-->
+    <!--            app:boxStrokeColor="@color/black"-->
+    <!--            app:endIconMode="clear_text"-->
+    <!--            app:endIconTint="@color/black"-->
+    <!--            app:hintTextColor="@color/black"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_title_text"-->
+    <!--            app:startIconTint="@color/black">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tenant_create_title_field"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/secondary_background_color"
-                android:fontFamily="serif"
-                android:inputType="textLongMessage"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="20sp"
-                app:hintTextColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+    <!--            <com.google.android.material.textfield.TextInputEditText-->
+    <!--                android:id="@+id/tenant_create_title_field"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:background="@color/secondary_background_color"-->
+    <!--                android:fontFamily="serif"-->
+    <!--                android:inputType="textLongMessage"-->
+    <!--                android:paddingTop="10dp"-->
+    <!--                android:paddingBottom="10dp"-->
+    <!--                android:textColor="@color/black"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                android:textSize="20sp"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tenant_create_description_field_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/tenant_create_description_text"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/black"
-            app:hintTextColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_title_field_layout"
-            app:startIconTint="@color/black">
+    <!--        <com.google.android.material.textfield.TextInputLayout-->
+    <!--            android:id="@+id/tenant_create_description_field_layout"-->
+    <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="200dp"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:hint="@string/tenant_create_description_text"-->
+    <!--            android:textColorHint="@color/black"-->
+    <!--            app:boxStrokeColor="@color/black"-->
+    <!--            app:endIconMode="clear_text"-->
+    <!--            app:endIconTint="@color/black"-->
+    <!--            app:hintTextColor="@color/black"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_title_field_layout"-->
+    <!--            app:startIconTint="@color/black">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tenant_create_description_field"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/secondary_background_color"
-                android:fontFamily="serif"
-                android:gravity="top"
-                android:inputType="text|textMultiLine"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="20sp"
-                app:hintTextColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+    <!--            <com.google.android.material.textfield.TextInputEditText-->
+    <!--                android:id="@+id/tenant_create_description_field"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:background="@color/secondary_background_color"-->
+    <!--                android:fontFamily="serif"-->
+    <!--                android:gravity="top"-->
+    <!--                android:inputType="text|textMultiLine"-->
+    <!--                android:paddingTop="10dp"-->
+    <!--                android:paddingBottom="10dp"-->
+    <!--                android:textColor="@color/black"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                android:textSize="20sp"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tenant_create_address_field_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/tenant_create_address_text"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/black"
-            app:hintTextColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_description_field_layout"
-            app:startIconTint="@color/black">
+    <!--        <com.google.android.material.textfield.TextInputLayout-->
+    <!--            android:id="@+id/tenant_create_address_field_layout"-->
+    <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="100dp"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:hint="@string/tenant_create_address_text"-->
+    <!--            android:textColorHint="@color/black"-->
+    <!--            app:boxStrokeColor="@color/black"-->
+    <!--            app:endIconMode="clear_text"-->
+    <!--            app:endIconTint="@color/black"-->
+    <!--            app:hintTextColor="@color/black"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_description_field_layout"-->
+    <!--            app:startIconTint="@color/black">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tenant_create_address_field"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/secondary_background_color"
-                android:fontFamily="serif"
-                android:gravity="top"
-                android:inputType="text|textMultiLine"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="20sp"
-                app:hintTextColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+    <!--            <com.google.android.material.textfield.TextInputEditText-->
+    <!--                android:id="@+id/tenant_create_address_field"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:background="@color/secondary_background_color"-->
+    <!--                android:fontFamily="serif"-->
+    <!--                android:gravity="top"-->
+    <!--                android:inputType="text|textMultiLine"-->
+    <!--                android:paddingTop="10dp"-->
+    <!--                android:paddingBottom="10dp"-->
+    <!--                android:textColor="@color/black"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                android:textSize="20sp"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <LinearLayout
-            android:id="@+id/tenant_create_country_state_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_address_field_layout">
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/tenant_create_country_state_linear_layout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:baselineAligned="false"-->
+    <!--            android:orientation="horizontal"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_address_field_layout">-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_countries_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:hint="@string/tenant_select_country"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_address_field_layout"
-                app:startIconTint="@color/black">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_countries_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:hint="@string/tenant_select_country"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_address_field_layout"-->
+    <!--                app:startIconTint="@color/black">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_countries_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary_background_color"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Deprecated" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_countries_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:editable="false"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    tools:ignore="Deprecated" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_states_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:hint="@string/tenant_select_state"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_countries_field_layout"
-                app:startIconTint="@color/black">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_states_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:hint="@string/tenant_select_state"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_countries_field_layout"-->
+    <!--                app:startIconTint="@color/black">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_states_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary_background_color"
-                    android:editable="false"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Deprecated" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_states_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:editable="false"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    tools:ignore="Deprecated" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-        </LinearLayout>
+    <!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:id="@+id/tenant_create_city_zip_code_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_country_state_linear_layout">
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/tenant_create_city_zip_code_linear_layout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:orientation="horizontal"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_country_state_linear_layout">-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_cities_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:hint="@string/tenant_select_city"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_country_state_linear_layout"
-                app:startIconTint="@color/black">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_cities_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:hint="@string/tenant_select_city"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_country_state_linear_layout"-->
+    <!--                app:startIconTint="@color/black">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_cities_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary_background_color"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Deprecated" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_cities_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:editable="false"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    tools:ignore="Deprecated" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_zip_code_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:hint="@string/tenant_select_zip_code"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:endIconMode="clear_text"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_description_field_layout"
-                app:startIconTint="@color/black">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_zip_code_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:hint="@string/tenant_select_zip_code"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:endIconMode="clear_text"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_description_field_layout"-->
+    <!--                app:startIconTint="@color/black">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_zip_code_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary_background_color"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:inputType="text|textLongMessage"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_zip_code_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:inputType="text|textLongMessage"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-        </LinearLayout>
+    <!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:id="@+id/tenant_create_start_date_time_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_city_zip_code_linear_layout">
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/tenant_create_start_date_time_linear_layout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:baselineAligned="false"-->
+    <!--            android:orientation="horizontal"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_city_zip_code_linear_layout">-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_start_date_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:hint="@string/tenant_create_start_date_text"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_cities_field_layout"
-                app:startIconTint="@color/black">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_start_date_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:hint="@string/tenant_create_start_date_text"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_cities_field_layout"-->
+    <!--                app:startIconTint="@color/black">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_start_date_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary_background_color"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Deprecated" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_start_date_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:editable="false"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    tools:ignore="Deprecated" />-->
 
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_start_time_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:hint="@string/tenant_create_start_time_text"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_date_field_layout"
-                app:startIconTint="@color/black">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_start_time_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:hint="@string/tenant_create_start_time_text"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_date_field_layout"-->
+    <!--                app:startIconTint="@color/black">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_start_time_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/secondary_background_color"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Deprecated" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_start_time_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:editable="false"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    tools:ignore="Deprecated" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-        </LinearLayout>
+    <!--        </LinearLayout>-->
 
-        <LinearLayout
-            android:id="@+id/tenant_create_end_date_time_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_date_time_linear_layout">
+    <!--        <LinearLayout-->
+    <!--            android:id="@+id/tenant_create_end_date_time_linear_layout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:baselineAligned="false"-->
+    <!--            android:orientation="horizontal"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_date_time_linear_layout">-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_end_date_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:hint="@string/tenant_create_end_date_text"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_time_field_layout"
-                app:startIconTint="@color/black">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_end_date_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:hint="@string/tenant_create_end_date_text"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_time_field_layout"-->
+    <!--                app:startIconTint="@color/black">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_end_date_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/secondary_background_color"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Deprecated" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_end_date_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:layout_weight="1"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:editable="false"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    tools:ignore="Deprecated" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tenant_create_end_time_field_layout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:editable="false"
-                android:hint="@string/tenant_create_end_time_text"
-                android:textColorHint="@color/black"
-                app:boxStrokeColor="@color/black"
-                app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-                app:endIconTint="@color/black"
-                app:hintTextColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_date_time_linear_layout"
-                app:startIconTint="@color/black"
-                tools:ignore="Deprecated">
+    <!--            <com.google.android.material.textfield.TextInputLayout-->
+    <!--                android:id="@+id/tenant_create_end_time_field_layout"-->
+    <!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginTop="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_weight="1"-->
+    <!--                android:clickable="true"-->
+    <!--                android:editable="false"-->
+    <!--                android:hint="@string/tenant_create_end_time_text"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                app:boxStrokeColor="@color/black"-->
+    <!--                app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--                app:endIconTint="@color/black"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/tenant_create_start_date_time_linear_layout"-->
+    <!--                app:startIconTint="@color/black"-->
+    <!--                tools:ignore="Deprecated">-->
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tenant_create_end_time_field"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/secondary_background_color"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:fontFamily="serif"
-                    android:gravity="top"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="20sp"
-                    app:hintTextColor="@color/black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:ignore="Deprecated" />
+    <!--                <com.google.android.material.textfield.TextInputEditText-->
+    <!--                    android:id="@+id/tenant_create_end_time_field"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="match_parent"-->
+    <!--                    android:background="@color/secondary_background_color"-->
+    <!--                    android:clickable="true"-->
+    <!--                    android:editable="false"-->
+    <!--                    android:fontFamily="serif"-->
+    <!--                    android:gravity="top"-->
+    <!--                    android:paddingTop="10dp"-->
+    <!--                    android:paddingBottom="10dp"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textColorHint="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    app:hintTextColor="@color/black"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+    <!--                    tools:ignore="Deprecated" />-->
 
-            </com.google.android.material.textfield.TextInputLayout>
+    <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
-        </LinearLayout>
+    <!--        </LinearLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tenant_create_link_field_layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/tenant_create_link_text"
-            android:textColorHint="@color/black"
-            app:boxStrokeColor="@color/black"
-            app:drawableEndCompat="@drawable/baseline_calendar_month_24"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/black"
-            app:hintTextColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_end_date_time_linear_layout"
-            app:startIconTint="@color/black">
+    <!--        <com.google.android.material.textfield.TextInputLayout-->
+    <!--            android:id="@+id/tenant_create_link_field_layout"-->
+    <!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:hint="@string/tenant_create_link_text"-->
+    <!--            android:textColorHint="@color/black"-->
+    <!--            app:boxStrokeColor="@color/black"-->
+    <!--            app:drawableEndCompat="@drawable/baseline_calendar_month_24"-->
+    <!--            app:endIconMode="clear_text"-->
+    <!--            app:endIconTint="@color/black"-->
+    <!--            app:hintTextColor="@color/black"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_end_date_time_linear_layout"-->
+    <!--            app:startIconTint="@color/black">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tenant_create_link_field"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/secondary_background_color"
-                android:fontFamily="serif"
-                android:gravity="top"
-                android:inputType="textUri"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
-                android:textSize="20sp"
-                app:hintTextColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="Deprecated" />
+    <!--            <com.google.android.material.textfield.TextInputEditText-->
+    <!--                android:id="@+id/tenant_create_link_field"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:background="@color/secondary_background_color"-->
+    <!--                android:fontFamily="serif"-->
+    <!--                android:gravity="top"-->
+    <!--                android:inputType="textUri"-->
+    <!--                android:paddingTop="10dp"-->
+    <!--                android:paddingBottom="10dp"-->
+    <!--                android:textColor="@color/black"-->
+    <!--                android:textColorHint="@color/black"-->
+    <!--                android:textSize="20sp"-->
+    <!--                app:hintTextColor="@color/black"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                tools:ignore="Deprecated" />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+    <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tenant_create_create_post_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/black"
-            android:fontFamily="serif"
-            android:text="@string/tenant_create_create_post_button_text"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_create_link_field_layout" />
+    <!--        <androidx.appcompat.widget.AppCompatButton-->
+    <!--            android:id="@+id/tenant_create_create_post_button"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="16dp"-->
+    <!--            android:layout_marginTop="16dp"-->
+    <!--            android:layout_marginEnd="16dp"-->
+    <!--            android:background="@color/black"-->
+    <!--            android:fontFamily="serif"-->
+    <!--            android:text="@string/tenant_create_create_post_button_text"-->
+    <!--            android:textAllCaps="false"-->
+    <!--            android:textColor="@color/white"-->
+    <!--            android:textSize="24sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/tenant_create_link_field_layout" />-->
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 </ScrollView>

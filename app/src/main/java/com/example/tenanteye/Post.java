@@ -1,7 +1,44 @@
 package com.example.tenanteye;
 
-public class Post {
-    private String title, description, address, country, state, city, zipCode, startDate, startTime, endDate, endTime, link;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class Post implements Serializable {
+    private String title;
+    private String description;
+    private String address;
+    private String country;
+    private String state;
+    private String city;
+    private String zipCode;
+    private String startDate;
+    private String startTime;
+    private String endDate;
+    private String endTime;
+    private String link;
+    private String timeStamp;
+    private String status;
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 
     public String getTitle() {
         return title;

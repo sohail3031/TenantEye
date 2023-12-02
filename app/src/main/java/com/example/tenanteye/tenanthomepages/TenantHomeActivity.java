@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.tenanteye.R;
@@ -21,24 +22,28 @@ public class TenantHomeActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
         binding.tenantHomeBottomNavigationView.setBackground(null);
+        binding.tenantHomeBottomNavigationView.setSelectedItemId(R.id.tenant_bottom_menu_task);
+
 
         if (savedInstanceState == null) {
-            replaceFragment(new TenantTaskFragment());
+            startActivity(new Intent(this, TenantTaskActivity.class));
+            finish();
         }
+
 
         binding.tenantHomeBottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.tenant_bottom_menu_search) {
-                replaceFragment(new TenantSearchFragment());
+                startActivity(new Intent(this, TenantSearchActivity.class));
             } else if (itemId == R.id.tenant_bottom_menu_task) {
-                replaceFragment(new TenantTaskFragment());
+                startActivity(new Intent(this, TenantTaskActivity.class));
             } else if (itemId == R.id.tenant_bottom_menu_create) {
-                replaceFragment(new TenantCreateFragment());
+                startActivity(new Intent(this, TenantCreateActivity.class));
             } else if (itemId == R.id.tenant_bottom_menu_chat) {
-                replaceFragment(new TenantCreateFragment());
+                startActivity(new Intent(this, TenantChatActivity.class));
             } else {
-                replaceFragment(new TenantMoreFragment());
+                startActivity(new Intent(this, TenantMoreActivity.class));
             }
 
             return true;
