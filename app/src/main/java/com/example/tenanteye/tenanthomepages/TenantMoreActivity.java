@@ -79,6 +79,16 @@ public class TenantMoreActivity extends AppCompatActivity {
         new Handler().postDelayed(this::displayUserData, 500);
 
         logoutButton.setOnClickListener(view -> logout());
+        updateProfileButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, TenantUpdateProfilePictureActivity.class);
+
+            intent.putExtra("user", user);
+
+            startActivity(intent);
+            finish();
+        });
+        editProfileButton.setOnClickListener(view -> {
+        });
     }
 
     private void logout() {
@@ -93,7 +103,7 @@ public class TenantMoreActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void displayUserData() {
         Picasso.get().load(user.getProfilePicture()).fit().centerCrop().into(profilePictureImageView);
-        
+
         userNameTextView.setText(user.getFirstName() + " " + user.getLastName());
         userEmailTextView.setText(user.getEmailAddress());
         userInfoTextView.setText(user.getUser());
