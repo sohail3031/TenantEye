@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:background="@color/secondary_background_color"
             android:padding="20dp">
 
@@ -25,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="10dp"
                 android:elevation="20dp"
@@ -43,7 +44,7 @@
 
             <TextView
                 android:id="@+id/tenant_more_user_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
@@ -55,7 +56,7 @@
 
             <TextView
                 android:id="@+id/tenant_more_user_email"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tenant_more_user_name"
                 android:layout_marginStart="20dp"

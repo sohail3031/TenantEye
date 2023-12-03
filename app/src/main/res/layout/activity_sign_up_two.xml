@@ -110,20 +110,10 @@
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:fontFamily="serif"
-                    android:gravity="center"
-                    android:text="@string/sign_up_two_empty_text"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-
-                <RadioButton
                     android:id="@+id/sign_up_two_gender_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="serif"
                     android:gravity="center"
                     android:text="@string/sign_up_two_gender_female_text"
@@ -131,20 +121,10 @@
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:fontFamily="serif"
-                    android:gravity="center"
-                    android:text="@string/sign_up_two_empty_text"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-
-                <RadioButton
                     android:id="@+id/sign_up_two_gender_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="serif"
                     android:text="@string/sign_up_two_gender_other_text"
                     android:textColor="@color/black"
@@ -185,19 +165,10 @@
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:fontFamily="serif"
-                    android:text="@string/sign_up_two_empty_text"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:visibility="invisible" />
-
-                <RadioButton
                     android:id="@+id/sign_up_two_user_freelancer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="serif"
                     android:text="@string/sign_up_two_user_freelancer_text"
                     android:textColor="@color/black"

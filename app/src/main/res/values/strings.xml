@@ -96,7 +96,7 @@
     <string name="sign_up_two_gender_male_text">Male</string>
     <string name="sign_up_two_gender_female_text">Female</string>
     <string name="sign_up_two_gender_other_text">Other</string>
-    <string name="sign_up_two_empty_text">  </string>
+    <string name="sign_up_two_empty_text"> </string>
     <string name="sign_up_two_user_user_text">Tenant</string>
     <string name="sign_up_two_user_freelancer_text">Freelancer</string>
 
@@ -193,6 +193,7 @@
     <string name="tenant_select_country_search">Search …</string>
 
     <!--  Show Task Info Brief  -->
+    <string name="tenant_task_title_text">My Tasks</string>
     <string name="show_task_info_brief_title">Title: </string>
     <string name="show_task_info_brief_description">Description: </string>
     <string name="show_task_info_brief_address">Address: </string>
@@ -211,4 +212,17 @@
     <string name="sign_up_four_save_button_text">Save</string>
     <string name="sign_up_four_title_text">Create Account</string>
     <string name="sign_up_four_title_number_text">3 / 4</string>
+
+    <!--  Tenant Search  -->
+    <string name="tenant_search_title_text">Search Freelancers</string>
+    <string name="tenant_search_no_freelancers_text">No Freelancers Available</string>
+
+    <!--  Tenant More  -->
+    <string name="tenant_more_user_name_text">User Name</string>
+    <string name="tenant_more_user_email_text">User Email</string>
+    <string name="tenant_more_login_as_text">Login As:</string>
+    <string name="tenant_more_login_info_text">Unknown</string>
+    <string name="tenant_more_edit_profile_text">Edit Profile</string>
+    <string name="tenant_more_update_profile_picture_text">Update Profile Picture</string>
+    <string name="tenant_more_logout_text">Logout</string>
 </resources>

@@ -9,7 +9,29 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="72dp">
+
+
+        <TextView
+            android:id="@+id/tenant_search_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="serif"
+            android:padding="2dp"
+            android:text="@string/tenant_search_title_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:transitionName="login_welcome_transition"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tenant_search_layout"
@@ -26,9 +48,8 @@
             app:endIconTint="@color/black"
             app:hintTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tenant_search_title_text"
             app:startIconDrawable="@drawable/baseline_search_24"
             app:startIconTint="@color/black">
 
@@ -59,7 +80,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/tenant_selected_no_posts_text"
+            android:text="@string/tenant_search_no_freelancers_text"
             android:textColor="@color/black"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
