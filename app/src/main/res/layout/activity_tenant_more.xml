@@ -154,6 +154,17 @@
                     android:textSize="20sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tenant_more_update_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/secondary_background_color"
+                    android:text="@string/tenant_more_update_password_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/tenant_more_update_profile_picture"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

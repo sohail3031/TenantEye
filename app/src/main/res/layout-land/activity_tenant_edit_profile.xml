@@ -134,11 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/secondary_background_color"
-                android:clickable="false"
-                android:cursorVisible="false"
                 android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:fontFamily="serif"
                 android:hint="@string/sign_up_one_email_hint_text"
                 android:inputType="textEmailAddress"
@@ -174,6 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/secondary_background_color"
+                android:clickable="true"
                 android:editable="false"
                 android:fontFamily="serif"
                 android:gravity="top"
@@ -211,6 +208,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/secondary_background_color"
+                android:clickable="true"
                 android:editable="false"
                 android:fontFamily="serif"
                 android:gravity="top"
@@ -248,6 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/secondary_background_color"
+                android:clickable="true"
                 android:editable="false"
                 android:fontFamily="serif"
                 android:gravity="top"
@@ -264,26 +263,6 @@
                 tools:ignore="Deprecated" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <com.hbb20.CountryCodePicker
-            android:id="@+id/tenant_edit_profile_country_code_picker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/black_border"
-            android:padding="5dp"
-            app:ccpDialog_backgroundColor="@color/secondary_background_color"
-            app:ccpDialog_fastScroller_bubbleColor="@color/black"
-            app:ccpDialog_fastScroller_handleColor="@color/secondary_background_color"
-            app:ccpDialog_textColor="@color/black"
-            app:ccp_arrowColor="@color/black"
-            app:ccp_autoDetectCountry="true"
-            app:ccp_contentColor="@color/black"
-            app:ccp_flagBorderColor="@color/black"
-            app:ccp_showFlag="true"
-            app:ccp_showFullName="true"
-            app:ccp_showNameCode="true"
-            app:ccp_textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/sign_up_three_phone_number_layout"
@@ -305,11 +284,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/secondary_background_color"
-                android:clickable="false"
-                android:cursorVisible="false"
                 android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
+                android:focusable="true"
                 android:fontFamily="serif"
                 android:hint="@string/sign_up_three_phone_number_hint_text"
                 android:inputType="number"
@@ -400,10 +376,6 @@
             android:id="@+id/tenant_edit_profile_two_user_radio_group"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="false"
-            android:cursorVisible="false"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -411,9 +383,6 @@
                 android:id="@+id/tenant_edit_profile_two_user_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:fontFamily="serif"
                 android:text="@string/sign_up_two_user_user_text"
                 android:textColor="@color/black"
@@ -424,9 +393,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:clickable="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:fontFamily="serif"
                 android:text="@string/sign_up_two_user_freelancer_text"
                 android:textColor="@color/black"
@@ -468,23 +434,56 @@
             android:layout_marginBottom="20dp"
             android:background="@color/black" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tenant_edit_profile_save_button"
+        <LinearLayout
+            android:id="@+id/tenant_edit_profile_button_linear_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_weight="1"
-            android:background="@color/black"
-            android:fontFamily="serif"
-            android:text="@string/tenant_edit_profile_save_button_text"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingBottom="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_selected_post_link_field_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/tenant_selected_post_edit_button">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tenant_edit_profile_edit_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:background="@color/black"
+                android:fontFamily="serif"
+                android:text="@string/tenant_edit_profile_edit_button_text"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tenant_selected_post_link_field_layout" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/tenant_edit_profile_save_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:background="@color/red"
+                android:fontFamily="serif"
+                android:text="@string/tenant_edit_profile_save_button_text"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tenant_selected_post_link_field_layout" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

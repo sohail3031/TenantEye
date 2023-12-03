@@ -224,5 +224,11 @@
     <string name="tenant_more_login_info_text">Unknown</string>
     <string name="tenant_more_edit_profile_text">Edit Profile</string>
     <string name="tenant_more_update_profile_picture_text">Update Profile Picture</string>
+    <string name="tenant_more_update_password_text">Update Password</string>
     <string name="tenant_more_logout_text">Logout</string>
+
+    <!--  Tenant Edit Profile  -->
+    <string name="tenant_edit_profile_edit_button_text">Edit</string>
+    <string name="tenant_edit_profile_save_button_text">Save</string>
+    <string name="tenant_edit_profile_title_text">Edit Profile</string>
 </resources>

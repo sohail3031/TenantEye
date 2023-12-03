@@ -34,7 +34,7 @@ public class TenantMoreActivity extends AppCompatActivity {
     private String emailAddress;
     private ImageView profilePictureImageView;
     private TextView userNameTextView, userEmailTextView, userInfoTextView;
-    private AppCompatButton editProfileButton, updateProfileButton, logoutButton;
+    private AppCompatButton editProfileButton, updateProfileButton, logoutButton, updatePassword;
     private User user;
 
     @Override
@@ -88,6 +88,12 @@ public class TenantMoreActivity extends AppCompatActivity {
             finish();
         });
         editProfileButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, TenantEditProfileActivity.class);
+
+            intent.putExtra("user", user);
+
+            startActivity(intent);
+            finish();
         });
     }
 
@@ -118,7 +124,7 @@ public class TenantMoreActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
                     user = new User();
 
-                    user.setState(Objects.requireNonNull(dataSnapshot.child("city").getValue()).toString());
+                    user.setState(Objects.requireNonNull(dataSnapshot.child("state").getValue()).toString());
                     user.setCountry(Objects.requireNonNull(dataSnapshot.child("country").getValue()).toString());
                     user.setDateOfBirth(Objects.requireNonNull(dataSnapshot.child("dateOfBirth").getValue()).toString());
                     user.setEmailAddress(Objects.requireNonNull(dataSnapshot.child("emailAddress").getValue()).toString());
@@ -129,6 +135,7 @@ public class TenantMoreActivity extends AppCompatActivity {
                     user.setProfilePicture(Objects.requireNonNull(dataSnapshot.child("profilePicture").getValue()).toString());
                     user.setState(Objects.requireNonNull(dataSnapshot.child("state").getValue()).toString());
                     user.setUser(Objects.requireNonNull(dataSnapshot.child("user").getValue()).toString());
+                    user.setCity(Objects.requireNonNull(dataSnapshot.child("city").getValue()).toString());
                 }
             } else {
                 showSomethingWentWrongError();
@@ -159,5 +166,6 @@ public class TenantMoreActivity extends AppCompatActivity {
         editProfileButton = findViewById(R.id.tenant_more_edit_profile);
         updateProfileButton = findViewById(R.id.tenant_more_update_profile_picture);
         logoutButton = findViewById(R.id.tenant_more_logout);
+        updatePassword = findViewById(R.id.tenant_more_update_password);
     }
 }
