@@ -1,7 +1,50 @@
 package com.example.tenanteye;
 
 public class User {
-    private String firstName, lastName, emailAddress, gender, user, dateOfBirth, phoneNumber, password;
+    private String firstName;
+    private String lastName;
+    private String emailAddress;
+    private String gender;
+    private String user;
+    private String dateOfBirth;
+    private String phoneNumber;
+    private String password;
+    private String country;
+    private String state;
+    private String city;
+    private String profilePicture;
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public String getFirstName() {
         return firstName;

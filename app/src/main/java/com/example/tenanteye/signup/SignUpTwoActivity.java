@@ -20,7 +20,7 @@ import com.example.tenanteye.login.LoginActivity;
 public class SignUpTwoActivity extends AppCompatActivity {
     private RadioButton genderRadioButton, userRadioButton;
     private DatePicker datePicker;
-    private String gender = "", user = "", dateOfBirth = "";
+    private String gender, user, dateOfBirth;
     private ImageView backImageView;
     private AppCompatButton nextButton;
     private RadioGroup genderRadioGroup, userRadioGroup;
@@ -41,12 +41,16 @@ public class SignUpTwoActivity extends AppCompatActivity {
 
             if (!"".equals(gender) && !"".equals(user)) {
                 Bundle bundle = getIntent().getExtras();
-                Intent intent = new Intent(this, SignUpThreeActivity.class);
+//                Intent intent = new Intent(this, SignUpThreeActivity.class);
+                Intent intent = new Intent(this, SignUpFourActivity.class);
                 assert bundle != null;
 
                 intent.putExtra("firstName", bundle.getString("firstName"));
                 intent.putExtra("lastName", bundle.getString("lastName"));
                 intent.putExtra("emailAddress", bundle.getString("emailAddress"));
+                intent.putExtra("country", bundle.getString("country"));
+                intent.putExtra("state", bundle.getString("state"));
+                intent.putExtra("city", bundle.getString("city"));
                 intent.putExtra("gender", gender);
                 intent.putExtra("user", user);
                 intent.putExtra("dateOfBirth", dateOfBirth);

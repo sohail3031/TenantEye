@@ -185,7 +185,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tenant_create_countries_field"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="39dp"
                         android:background="@color/secondary_background_color"
                         android:clickable="true"
                         android:editable="false"

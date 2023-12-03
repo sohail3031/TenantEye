@@ -1,6 +1,5 @@
 package com.example.tenanteye.signup;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -23,13 +22,7 @@ import com.example.tenanteye.PasswordStrength;
 import com.example.tenanteye.R;
 import com.example.tenanteye.User;
 import com.example.tenanteye.login.LoginActivity;
-import com.futuremind.recyclerviewfastscroll.Utils;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hbb20.CountryCodePicker;
@@ -42,7 +35,7 @@ public class SignUpThreeActivity extends AppCompatActivity {
     private EditText phoneNumberField, passwordField, confirmPasswordField;
     private LinearLayout linearLayout;
     private ProgressBar progressBar;
-    private String phoneNumber = "", password = "", confirmPassword = "", firstName = "", lastName = "", emailAddress = "", gender = "", user = "", dateOfBirth = "";
+    private String phoneNumber, password, confirmPassword, firstName, lastName, emailAddress, gender, user, dateOfBirth, country, state, city, profilePicture;
     private ImageView backImageView;
     private AppCompatButton nextButton;
     private FirebaseAuth firebaseAuth;
@@ -68,48 +61,42 @@ public class SignUpThreeActivity extends AppCompatActivity {
             if (validatePhoneNumber() && validatePasswords()) {
                 storeUserDataInUserObject();
 
-                firebaseAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            String[] splitEmailAddress = userData.getEmailAddress().split("\\.");
+                firebaseAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        String[] splitEmailAddress = userData.getEmailAddress().split("\\.");
 
-                            databaseReference = FirebaseDatabase.getInstance().getReference("Users Data").child(splitEmailAddress[0] + "-" + splitEmailAddress[1]);
-                            databaseReference.push().setValue(userData);
+                        databaseReference = FirebaseDatabase.getInstance().getReference("Users Data").child(splitEmailAddress[0] + "-" + splitEmailAddress[1]);
+                        databaseReference.push().setValue(userData);
 
-                            firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(SignUpThreeActivity.this, "Your account has been created! Verify your account to login!", Toast.LENGTH_SHORT).show();
+                        Objects.requireNonNull(firebaseAuth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                Toast.makeText(SignUpThreeActivity.this, "Your account has been created! Verify your account to login!", Toast.LENGTH_SHORT).show();
 
-                                        startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
-                                        finish();
-                                    } else {
-                                        showErrorDialogBox();
-                                    }
-                                }
-                            });
-                        } else {
-                            String errorCode = Objects.requireNonNull(task.getException()).getMessage();
-
-                            switch (Objects.requireNonNull(errorCode)) {
-                                case "ERROR_EMAIL_ALREADY_IN_USE":
-                                    Toast.makeText(SignUpThreeActivity.this, "A user with this email already exists!", Toast.LENGTH_LONG).show();
-                                    break;
-                                case "ERROR_INVALID_EMAIL":
-                                    Toast.makeText(SignUpThreeActivity.this, "Email is invalid!", Toast.LENGTH_LONG).show();
-                                    break;
-                                case "ERROR_WEAK_PASSWORD":
-                                    Toast.makeText(SignUpThreeActivity.this, "Password is weak!", Toast.LENGTH_LONG).show();
-                                    break;
-                                case "ERROR_CREDENTIAL_ALREADY_IN_USE":
-                                    Toast.makeText(SignUpThreeActivity.this, "A user with this credentials already exists!", Toast.LENGTH_LONG).show();
-                                    break;
-                                default:
-                                    showErrorDialogBox();
-                                    break;
+                                startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
+                                finish();
+                            } else {
+                                showErrorDialogBox();
                             }
+                        });
+                    } else {
+                        String errorCode = Objects.requireNonNull(task.getException()).getMessage();
+
+                        switch (Objects.requireNonNull(errorCode)) {
+                            case "ERROR_EMAIL_ALREADY_IN_USE":
+                                Toast.makeText(SignUpThreeActivity.this, "A user with this email already exists!", Toast.LENGTH_LONG).show();
+                                break;
+                            case "ERROR_INVALID_EMAIL":
+                                Toast.makeText(SignUpThreeActivity.this, "Email is invalid!", Toast.LENGTH_LONG).show();
+                                break;
+                            case "ERROR_WEAK_PASSWORD":
+                                Toast.makeText(SignUpThreeActivity.this, "Password is weak!", Toast.LENGTH_LONG).show();
+                                break;
+                            case "ERROR_CREDENTIAL_ALREADY_IN_USE":
+                                Toast.makeText(SignUpThreeActivity.this, "A user with this credentials already exists!", Toast.LENGTH_LONG).show();
+                                break;
+                            default:
+                                showErrorDialogBox();
+                                break;
                         }
                     }
                 });
@@ -157,11 +144,17 @@ public class SignUpThreeActivity extends AppCompatActivity {
         userData.setFirstName(firstName);
         userData.setLastName(lastName);
         userData.setEmailAddress(emailAddress);
+        userData.setCountry(country);
+        userData.setState(state);
+        userData.setCity(city);
         userData.setGender(gender);
         userData.setUser(user);
         userData.setDateOfBirth(dateOfBirth);
         userData.setPassword(password);
         userData.setPhoneNumber(phoneNumber);
+        userData.setProfilePicture(profilePicture);
+
+        Log.i("TAG", "storeUserDataInUserObject: " + profilePicture);
     }
 
     private void showErrorDialogBox() {
@@ -178,10 +171,6 @@ public class SignUpThreeActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
 
         alertDialog.show();
-    }
-
-    private boolean validateALlUserData() {
-        return !firstName.isEmpty() && !lastName.isEmpty() && !emailAddress.isEmpty() && !gender.isEmpty() && !user.isEmpty() && !dateOfBirth.isEmpty() && !phoneNumber.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty();
     }
 
     private void initializeAllVariables() {
@@ -206,9 +195,15 @@ public class SignUpThreeActivity extends AppCompatActivity {
         firstName = bundle.getString("firstName");
         lastName = bundle.getString("lastName");
         emailAddress = bundle.getString("emailAddress");
+        country = bundle.getString("country");
+        state = bundle.getString("state");
+        city = bundle.getString("city");
         gender = bundle.getString("gender");
         user = bundle.getString("user");
         dateOfBirth = bundle.getString("dateOfBirth");
+        profilePicture = bundle.getString("profilePicture");
+
+        Log.i("TAG", "getAllUserDataFromPreviousActivities: " + profilePicture);
     }
 
     private void getUserData() {

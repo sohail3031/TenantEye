@@ -74,16 +74,19 @@
 
     <!--  Sign Up One Activity  -->
     <string name="sign_up_one_title_text">Create Account</string>
-    <string name="sign_up_one_title_number_text">1 / 3</string>
+    <string name="sign_up_one_title_number_text">1 / 4</string>
     <string name="sign_up_one_first_name_hint_text">First Name</string>
     <string name="sign_up_one_last_name_hint_text">Last Name</string>
     <string name="sign_up_one_email_hint_text">Email</string>
+    <string name="sign_up_one_country_hint_text">Country</string>
+    <string name="sign_up_one_state_hint_text">State</string>
+    <string name="sign_up_one_city_hint_text">City</string>
     <string name="sign_up_one_next_button_text">Next</string>
     <string name="sign_up_one_login_button_text">Login</string>
 
     <!--  Sign Up Two Activity  -->
     <string name="sign_up_two_title_text">Create Account</string>
-    <string name="sign_up_two_title_number_text">2 / 3</string>
+    <string name="sign_up_two_title_number_text">2 / 4</string>
     <string name="sign_up_two_gender_spinner_hint_text">Gender</string>
     <string name="sign_up_two_dob_text">Select Your Date-Of-Birth</string>
     <string name="sign_up_two_next_text">Next</string>
@@ -99,7 +102,7 @@
 
     <!--  Sign Up Three Activity  -->
     <string name="sign_up_three_title_text">Create Account</string>
-    <string name="sign_up_three_title_number_text">3 / 3</string>
+    <string name="sign_up_three_title_number_text">4 / 4</string>
     <string name="sign_up_three_phone_number_hint_text">Phone Number</string>
     <string name="sign_up_three_phone_number_next_button_text">Next</string>
     <string name="sign_up_three_phone_number_login_button_text">Login</string>
@@ -132,7 +135,7 @@
 
     <!--  Custom card View  -->
     <string name="custom_card_view_name">John Doe</string>
-    <string name="custom_card_view_location">Waterloo, CA</string>
+    <string name="custom_card_view_location">Waterloo, Ontario, Canada</string>
     <string name="custom_card_view_chat">Chat</string>
 
     <!--  Sign Up Success  -->
@@ -201,4 +204,11 @@
     <string name="tenant_selected_post_update">Update</string>
     <string name="tenant_selected_post_delete">Delete</string>
     <string name="tenant_selected_no_posts_text">You don\'t have any posts</string>
+
+    <!--  Sign Up Four  -->
+    <string name="sign_up_four_upload_image_text">Click To Upload Profile Picture</string>
+    <string name="sign_up_four_cancel_button_text">Cancel</string>
+    <string name="sign_up_four_save_button_text">Save</string>
+    <string name="sign_up_four_title_text">Create Account</string>
+    <string name="sign_up_four_title_number_text">3 / 4</string>
 </resources>

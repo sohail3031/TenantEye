@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class ForgotPasswordActivity extends AppCompatActivity {
     private static final String EMAIL_RE = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     boolean isEmailFound = false;
@@ -61,14 +63,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
 
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        String[] temp = dataSnapshot.getKey().split("-");
+                        String[] temp = Objects.requireNonNull(dataSnapshot.getKey()).split("-");
 
                         if (emailAddress.equals(temp[0] + "." + temp[1])) {
                             isEmailFound = true;
 
                             for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                emailAddress = dataSnapshot1.child("emailAddress").getValue().toString();
-                                phoneNumber = dataSnapshot1.child("phoneNumber").getValue().toString();
+                                emailAddress = Objects.requireNonNull(dataSnapshot1.child("emailAddress").getValue()).toString();
+                                phoneNumber = Objects.requireNonNull(dataSnapshot1.child("phoneNumber").getValue()).toString();
 
                                 Intent intent = new Intent(ForgotPasswordActivity.this, ForgotPasswordSelectionActivity.class);
 
