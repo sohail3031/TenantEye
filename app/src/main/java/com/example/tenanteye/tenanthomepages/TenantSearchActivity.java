@@ -10,15 +10,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tenanteye.FreelancerAdapter;
+import com.example.tenanteye.FreelancerRating;
 import com.example.tenanteye.R;
 import com.example.tenanteye.User;
 import com.example.tenanteye.databinding.ActivityTenantSearchBinding;
@@ -33,22 +32,24 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TenantSearchActivity extends AppCompatActivity {
+    private final ArrayList<User> freelancersArrayList = new ArrayList<>();
+    private final ArrayList<String> freelancersName = new ArrayList<>();
+    private final ArrayList<String> freelancersLocation = new ArrayList<>();
+    private final ArrayList<FreelancerRating> freelancersRatingsArrayList = new ArrayList<>();
     ActivityTenantSearchBinding binding;
     private EditText searchEditText;
     private TextView noDataTextView;
     private ListView listView;
     private DatabaseReference databaseReference;
-    private ArrayList<User> freelancersArrayList = new ArrayList<>();
-    private ArrayList<String> freelancersName = new ArrayList<>();
-    private ArrayList<String> freelancersLocation = new ArrayList<>();
     private FreelancerAdapter freelancerAdapter;
+    private String emailAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SharedPreferences loginSharedPreference = getSharedPreferences("login", Context.MODE_PRIVATE);
-        String emailAddress = loginSharedPreference.getString("emailAddress", "");
+        emailAddress = loginSharedPreference.getString("emailAddress", "");
 
         if (emailAddress.equals("")) {
             Toast.makeText(this, "Please login in again!", Toast.LENGTH_LONG).show();
@@ -81,6 +82,7 @@ public class TenantSearchActivity extends AppCompatActivity {
 
         initializeAllVariables();
         getFreelancersDataFromDatabase();
+        getFreelancersRatings();
 
         new Handler().postDelayed(() -> {
             if (freelancersArrayList.size() == 0) {
@@ -90,31 +92,85 @@ public class TenantSearchActivity extends AppCompatActivity {
                 noDataTextView.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
             }
+        }, 500);
 
-            searchEditText.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                checkSearchData(charSequence.toString().toLowerCase());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void getFreelancersRatings() {
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Freelancers Ratings");
+//        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Users Data");
+
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        String[] spiltEmailAddress = Objects.requireNonNull(dataSnapshot.getKey()).split("-");
+
+                        if (!emailAddress.equalsIgnoreCase(spiltEmailAddress[0] + "." + spiltEmailAddress[1])) {
+                            FreelancerRating freelancerRating = new FreelancerRating();
+
+                            freelancerRating.setOneStar(Integer.parseInt(Objects.requireNonNull(dataSnapshot1.child("oneStar").getValue()).toString()));
+                            freelancerRating.setTwoStar(Integer.parseInt(Objects.requireNonNull(dataSnapshot1.child("twoStar").getValue()).toString()));
+                            freelancerRating.setThreeStar(Integer.parseInt(Objects.requireNonNull(dataSnapshot1.child("threeStar").getValue()).toString()));
+                            freelancerRating.setFourStar(Integer.parseInt(Objects.requireNonNull(dataSnapshot1.child("fourStar").getValue()).toString()));
+                            freelancerRating.setFiveStar(Integer.parseInt(Objects.requireNonNull(dataSnapshot1.child("fiveStar").getValue()).toString()));
+
+                            freelancersRatingsArrayList.add(freelancerRating);
+                        }
+                    }
                 }
+            }
 
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        for (int i = 0; i < freelancersArrayList.size(); i++) {
+            freelancersArrayList.get(i).setFreelancerRating(freelancersRatingsArrayList.get(i));
+        }
+
+//        Collections.shuffle(freelancersArrayList);
+    }
+
+    private void checkSearchData(String s) {
+        if (freelancersArrayList.size() > 0) {
+            noDataTextView.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
+
+            ArrayList<User> freelancers = new ArrayList<>();
+
+            for (int i = 0; i < freelancersArrayList.size(); i++) {
+                if (freelancersName.get(i).toLowerCase().contains(s) || freelancersLocation.get(i).toLowerCase().contains(s)) {
+                    freelancers.add(freelancersArrayList.get(i));
                 }
+            }
 
-                @Override
-                public void afterTextChanged(Editable editable) {
+            FreelancerAdapter freelancerAdapter1 = new FreelancerAdapter(this, R.layout.freelancer_info_card_view, freelancers, freelancersRatingsArrayList);
 
-                }
-            });
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                }
-            });
-        }, 1000);
+            listView.setAdapter(freelancerAdapter1);
+        } else {
+            noDataTextView.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        }
     }
 
     private void getFreelancersDataFromDatabase() {
@@ -123,7 +179,7 @@ public class TenantSearchActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                        if (Objects.requireNonNull(dataSnapshot1.child("user").getValue()).toString().equalsIgnoreCase("freelancer")) {
+                        if (Objects.requireNonNull(dataSnapshot1.child("user").getValue()).toString().equalsIgnoreCase("freelancer") && !Objects.requireNonNull(dataSnapshot1.child("emailAddress").getValue()).toString().equalsIgnoreCase(emailAddress)) {
                             User freelancerData = new User();
 
                             freelancerData.setCity(Objects.requireNonNull(dataSnapshot1.child("city").getValue()).toString());
@@ -142,7 +198,7 @@ public class TenantSearchActivity extends AppCompatActivity {
                     }
                 }
 
-                freelancerAdapter = new FreelancerAdapter(TenantSearchActivity.this, R.layout.freelancer_info_card_view, freelancersArrayList);
+                freelancerAdapter = new FreelancerAdapter(TenantSearchActivity.this, R.layout.freelancer_info_card_view, freelancersArrayList, freelancersRatingsArrayList);
 
                 listView.setAdapter(freelancerAdapter);
             }

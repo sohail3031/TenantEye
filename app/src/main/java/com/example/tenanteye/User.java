@@ -13,6 +13,15 @@ public class User {
     private String state;
     private String city;
     private String profilePicture;
+    private FreelancerRating freelancerRating;
+
+    public FreelancerRating getFreelancerRating() {
+        return freelancerRating;
+    }
+
+    public void setFreelancerRating(FreelancerRating freelancerRating) {
+        this.freelancerRating = freelancerRating;
+    }
 
     public String getProfilePicture() {
         return profilePicture;
