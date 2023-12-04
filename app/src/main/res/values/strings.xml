@@ -189,15 +189,17 @@
     <string name="tenant_select_country">Country</string>
     <string name="tenant_select_state">State</string>
     <string name="tenant_select_city">City</string>
+    <string name="tenant_select_freelancer">Search Freelancer</string>
     <string name="tenant_select_zip_code">Zip Code</string>
     <string name="tenant_select_country_search">Search …</string>
 
     <!--  Show Task Info Brief  -->
     <string name="tenant_task_title_text">My Tasks</string>
-    <string name="show_task_info_brief_title">Title: </string>
-    <string name="show_task_info_brief_description">Description: </string>
-    <string name="show_task_info_brief_address">Address: </string>
-    <string name="show_task_info_brief_status">Status: </string>
+    <string name="tenant_show_task_info_brief_title">Title: </string>
+    <string name="tenant_show_task_info_brief_description">Description: </string>
+    <string name="tenant_show_task_info_brief_address">Address: </string>
+    <string name="tenant_show_task_info_brief_status">Status: </string>
+    <string name="tenant_show_task_info_brief_assigned_to">Assigned To: </string>
 
     <!--  Tenant Selected Post  -->
     <string name="tenant_selected_post_title">Post</string>
@@ -237,4 +239,7 @@
 
     <!--  Freelancer Bottom  -->
     <string name="freelancer_bottom_menu_all_tasks">All Tasks</string>
+
+    <!--  Freelancers Dropdown Items  -->
+    <string name="freelancers_drop_down_text">Freelancers</string>
 </resources>

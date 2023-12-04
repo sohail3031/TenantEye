@@ -1,10 +1,5 @@
 package com.example.tenanteye;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 
 public class Post implements Serializable {
@@ -22,7 +17,24 @@ public class Post implements Serializable {
     private String link;
     private String timeStamp;
     private String status;
+    private String assignedTo;
+    private String assignedBy;
 
+    public String getAssignedTo() {
+        return assignedTo;
+    }
+
+    public void setAssignedTo(String assignedTo) {
+        this.assignedTo = assignedTo;
+    }
+
+    public String getAssignedBy() {
+        return assignedBy;
+    }
+
+    public void setAssignedBy(String assignedBy) {
+        this.assignedBy = assignedBy;
+    }
 
     public String getStatus() {
         return status;

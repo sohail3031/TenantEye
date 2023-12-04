@@ -629,6 +629,8 @@ public class TenantCreateActivity extends AppCompatActivity {
         post.setLink(link.getText().toString());
         post.setTimeStamp(getTimeStamp());
         post.setStatus("Active");
+        post.setAssignedBy(emailAddress);
+        post.setAssignedTo("");
     }
 
     private void createPost() {

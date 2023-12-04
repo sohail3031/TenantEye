@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,8 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Objects;
 
 public class TenantTaskActivity extends AppCompatActivity {
@@ -38,6 +34,7 @@ public class TenantTaskActivity extends AppCompatActivity {
     private final ArrayList<String> descriptionArrayList = new ArrayList<>();
     private final ArrayList<String> addressArrayList = new ArrayList<>();
     private final ArrayList<String> statusArrayList = new ArrayList<>();
+    private final ArrayList<String> assignedToArrayList = new ArrayList<>();
     ActivityTenantTaskBinding binding;
     private EditText searchEditText;
     private TextView noDataTextView;
@@ -204,7 +201,7 @@ public class TenantTaskActivity extends AppCompatActivity {
                 }
             }
 
-            PostAdapter postAdapter1 = new PostAdapter(this, R.layout.show_task_info_brief, posts);
+            PostAdapter postAdapter1 = new PostAdapter(this, R.layout.tenant_show_task_info_brief, posts);
 
             listView.setAdapter(postAdapter1);
         } else {
@@ -235,15 +232,18 @@ public class TenantTaskActivity extends AppCompatActivity {
                     post.setTimeStamp(Objects.requireNonNull(dataSnapshot.child("timeStamp").getValue()).toString());
                     post.setTitle(Objects.requireNonNull(dataSnapshot.child("title").getValue()).toString());
                     post.setZipCode(Objects.requireNonNull(dataSnapshot.child("zipCode").getValue()).toString());
+                    post.setAssignedTo(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString());
+                    post.setAssignedBy(Objects.requireNonNull(dataSnapshot.child("assignedBy").getValue()).toString());
 
                     titleArrayList.add(Objects.requireNonNull(dataSnapshot.child("title").getValue()).toString());
                     descriptionArrayList.add(Objects.requireNonNull(dataSnapshot.child("description").getValue()).toString());
                     addressArrayList.add(Objects.requireNonNull(dataSnapshot.child("address").getValue()).toString());
                     statusArrayList.add(Objects.requireNonNull(dataSnapshot.child("status").getValue()).toString());
+                    assignedToArrayList.add(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString());
                     postArrayList.add(post);
                 }
 
-                postAdapter = new PostAdapter(this, R.layout.show_task_info_brief, postArrayList);
+                postAdapter = new PostAdapter(this, R.layout.tenant_show_task_info_brief, postArrayList);
 
                 listView.setAdapter(postAdapter);
             } else {

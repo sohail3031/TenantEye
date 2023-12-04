@@ -33,15 +33,22 @@ public class PostAdapter extends ArrayAdapter<Post> {
             view = LayoutInflater.from(context).inflate(resource, null);
         }
 
-        TextView titleText = view.findViewById(R.id.show_task_info_brief_title_text);
-        TextView descriptionText = view.findViewById(R.id.show_task_info_brief_description_text);
-        TextView addressText = view.findViewById(R.id.show_task_info_brief_address_text);
-        TextView statusText = view.findViewById(R.id.show_task_info_brief_status_text);
+        TextView titleText = view.findViewById(R.id.tenant_show_task_info_brief_title_text);
+        TextView descriptionText = view.findViewById(R.id.tenant_show_task_info_brief_description_text);
+        TextView addressText = view.findViewById(R.id.tenant_show_task_info_brief_address_text);
+        TextView statusText = view.findViewById(R.id.tenant_show_task_info_brief_status_text);
+        TextView assignedToText = view.findViewById(R.id.show_task_info_brief_status_assigned_to_text);
 
         titleText.setText(post.getTitle().substring(0, Math.min(post.getTitle().length(), 50)));
         descriptionText.setText(post.getDescription().substring(0, Math.min(post.getDescription().length(), 50)));
         addressText.setText(post.getAddress().substring(0, Math.min(post.getAddress().length(), 50)));
-        statusText.setText(post.getStatus().substring(0, Math.min(post.getStatus().length(), 50)));
+        statusText.setText(post.getStatus());
+
+        if (post.getAssignedTo() != null && post.getAssignedTo().length() > 0) {
+            assignedToText.setText(post.getAssignedTo());
+        } else {
+            assignedToText.setText("");
+        }
 
         return view;
     }

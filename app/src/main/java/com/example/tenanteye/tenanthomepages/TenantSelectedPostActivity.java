@@ -30,8 +30,10 @@ import com.example.tenanteye.Post;
 import com.example.tenanteye.R;
 import com.example.tenanteye.login.LoginActivity;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,9 +58,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class TenantSelectedPostActivity extends AppCompatActivity {
+    private final ArrayList<String> freelancers = new ArrayList<>();
     String[] isoCountryCode = Locale.getISOCountries();
     private Post post = new Post();
-    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link;
+    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, freelancerSpinner;
     private AppCompatButton editButton, updateButton, deleteButton;
     private ImageView backImageView;
     private Dialog dialog;
@@ -94,26 +97,116 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         initializeAllVariables();
         addDataToFields();
         getDataFromAPI();
+        findFreelancersForTask();
 
-        backImageView.setOnClickListener(view -> {
-            if (isEditButtonClicked) {
-                showAlertMessage();
+        new Handler().postDelayed(() -> {
+            backImageView.setOnClickListener(view -> {
+                if (isEditButtonClicked) {
+                    showAlertMessage();
+                } else {
+                    startActivity(new Intent(this, TenantHomeActivity.class));
+                    finish();
+                }
+            });
+
+            countrySpinner.setOnClickListener(view -> addCountriesToSpinner());
+            stateSpinner.setOnClickListener(view -> addStatesToSpinner());
+            citySpinner.setOnClickListener(view -> addCitiesToSpinner());
+            endTime.setOnClickListener(view -> showEndTimeDialog());
+            endDate.setOnClickListener(view -> showEndDateDialog());
+            startDate.setOnClickListener(view -> showStartDateDialog());
+            startTime.setOnClickListener(view -> showStartTimeDialog());
+            editButton.setOnClickListener(view -> enableEditing());
+            updateButton.setOnClickListener(view -> updatePost());
+            deleteButton.setOnClickListener(view -> showDeleteAlert());
+            freelancerSpinner.setOnClickListener(view -> addFreelancersToSpinner());
+        }, 500);
+    }
+
+    private void addFreelancersToSpinner() {
+        if (isEditButtonClicked) {
+            if (freelancers.size() == 0) {
+                showNoFreelancersAvailableMessage();
             } else {
-                startActivity(new Intent(this, TenantHomeActivity.class));
-                finish();
+                if (!freelancers.contains("")) {
+                    freelancers.add(0, "");
+                }
+
+                dialog = new Dialog(this);
+
+                dialog.setContentView(R.layout.freelancers_dropdown_items);
+                Objects.requireNonNull(dialog.getWindow()).setLayout(1000, 1000);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                EditText editText = dialog.findViewById(R.id.freelancers_dropdown_items_edit_text);
+                ListView listView = dialog.findViewById(R.id.freelancers_dropdown_items_list_view);
+
+                if (countries.size() > 0) {
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getApplicationContext(), android.R.layout.simple_list_item_1, freelancers);
+
+                    listView.setAdapter(adapter);
+                    editText.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            adapter.getFilter().filter(charSequence);
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+
+                    listView.setOnItemClickListener((adapterView, view1, i, l) -> {
+                        freelancerSpinner.setText(adapter.getItem(i));
+                        dialog.dismiss();
+                    });
+                }
+            }
+        }
+    }
+
+    private void findFreelancersForTask() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users Data");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        if (Objects.requireNonNull(dataSnapshot1.child("user").getValue()).toString().equalsIgnoreCase("freelancer") && (Objects.requireNonNull(dataSnapshot1.child("city").getValue()).toString().equalsIgnoreCase(post.getCity()) || Objects.requireNonNull(dataSnapshot1.child("state").getValue()).toString().equalsIgnoreCase(post.getState()))) {
+                            freelancers.add(Objects.requireNonNull(dataSnapshot1.child("emailAddress").getValue()).toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+    }
 
-        countrySpinner.setOnClickListener(view -> addCountriesToSpinner());
-        stateSpinner.setOnClickListener(view -> addStatesToSpinner());
-        citySpinner.setOnClickListener(view -> addCitiesToSpinner());
-        endTime.setOnClickListener(view -> showEndTimeDialog());
-        endDate.setOnClickListener(view -> showEndDateDialog());
-        startDate.setOnClickListener(view -> showStartDateDialog());
-        startTime.setOnClickListener(view -> showStartTimeDialog());
-        editButton.setOnClickListener(view -> enableEditing());
-        updateButton.setOnClickListener(view -> updatePost());
-        deleteButton.setOnClickListener(view -> showDeleteAlert());
+    private void showNoFreelancersAvailableMessage() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+                .setTitle("No data found!")
+                .setMessage("No freelancers available in the this location!")
+                .setPositiveButton(R.string.error_alert_okay, (dialog, which) -> {
+                    dialog.dismiss();
+                });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
     }
 
     private void showDeleteAlert() {
@@ -306,7 +399,16 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         post.setEndTime(endTime.getText().toString());
         post.setLink(link.getText().toString());
         post.setTimeStamp(getTimeStamp());
-        post.setStatus("Active");
+
+        if (freelancerSpinner.getText().toString().length() > 0 && freelancerSpinner != null) {
+            post.setStatus("Assigned");
+            post.setAssignedTo(freelancerSpinner.getText().toString());
+        } else {
+            post.setStatus("Active");
+            post.setAssignedTo("");
+        }
+
+        Log.i("TAG", "storePostDataInPostObject: " + post.getStatus());
     }
 
     private void updatePost() {
@@ -335,6 +437,8 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
                             databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("endTime").setValue(post.getEndTime());
                             databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("link").setValue(post.getLink());
                             databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("timeStamp").setValue(post.getTimeStamp());
+                            databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("assignedTo").setValue(post.getAssignedTo());
+                            databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("status").setValue(post.getStatus());
 
                             Toast.makeText(this, "Post Updated!", Toast.LENGTH_LONG).show();
 
@@ -817,6 +921,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         endDate.setText(post.getEndDate());
         endTime.setText(post.getEndTime());
         link.setText(post.getLink());
+        freelancerSpinner.setText(post.getAssignedTo());
     }
 
     private void enableEditing() {
@@ -895,7 +1000,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
                     .setTitle(R.string.sign_up_alert_title)
                     .setMessage(R.string.sign_up_alert_message)
                     .setPositiveButton(R.string.alert_yes, (dialog, which) -> {
-                        startActivity(new Intent(this, LoginActivity.class));
+                        startActivity(new Intent(this, TenantTaskActivity.class));
                         finish();
                     })
                     .setNegativeButton(R.string.alert_no, (dialog, which) -> {
@@ -927,5 +1032,6 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         updateButton = findViewById(R.id.tenant_selected_post_update_button);
         deleteButton = findViewById(R.id.tenant_selected_post_delete_button);
         backImageView = findViewById(R.id.tenant_selected_post_back_arrow_image);
+        freelancerSpinner = findViewById(R.id.tenant_selected_post_freelancers_field);
     }
 }

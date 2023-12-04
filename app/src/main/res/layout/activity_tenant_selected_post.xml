@@ -325,7 +325,8 @@
                     app:hintTextColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="Deprecated" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -623,6 +624,53 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tenant_selected_post_freelancers_field_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:hint="@string/tenant_select_freelancer"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:drawableEndCompat="@drawable/baseline_calendar_month_24"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tenant_selected_post_link_field_layout"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tenant_selected_post_freelancers_field"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/secondary_background_color"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="serif"
+                android:gravity="top"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"
+                app:hintTextColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="Deprecated" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tenant_selected_post_edit_button"
             android:layout_width="0dp"
@@ -640,7 +688,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_selected_post_link_field_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/tenant_selected_post_freelancers_field_layout" />
 
         <LinearLayout
             android:id="@+id/tenant_selected_post_button_linear_layout"
