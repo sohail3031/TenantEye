@@ -173,7 +173,7 @@ public class FreelancerUpdateProfilePictureActivity extends AppCompatActivity {
                 .setTitle(R.string.sign_up_alert_title)
                 .setMessage(R.string.sign_up_alert_message)
                 .setPositiveButton(R.string.alert_yes, (dialog, which) -> {
-                    startActivity(new Intent(this, TenantMoreActivity.class));
+                    startActivity(new Intent(this, FreelancerMoreActivity.class));
                     finish();
                 })
                 .setNegativeButton(R.string.alert_no, (dialog, which) -> {
