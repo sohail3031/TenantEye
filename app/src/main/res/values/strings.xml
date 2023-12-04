@@ -231,4 +231,7 @@
     <string name="tenant_edit_profile_edit_button_text">Edit</string>
     <string name="tenant_edit_profile_save_button_text">Save</string>
     <string name="tenant_edit_profile_title_text">Edit Profile</string>
+
+    <!--  Tenant Update Password  -->
+    <string name="tenant_update_password_current_password_text">Current Password</string>
 </resources>

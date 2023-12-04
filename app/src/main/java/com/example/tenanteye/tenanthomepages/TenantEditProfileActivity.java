@@ -71,6 +71,7 @@ public class TenantEditProfileActivity extends AppCompatActivity {
     private CountryCodePicker countryCodePicker;
     private User userData;
     private String firstName, lastName, selectedCountry, selectedState, selectedCity, phoneNumber, gender, user, dateOfBirth, selectedCountryCode, selectedStateCode, emailAddress;
+    private boolean isClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +87,14 @@ public class TenantEditProfileActivity extends AppCompatActivity {
         cityField.setOnClickListener(view -> addCitiesToSpinner());
 
         saveButton.setOnClickListener(view -> {
-            getData();
+            if (!isClicked) {
+                getData();
 
-            if (validateFirstName() && validateLastName() && validateCountry() && validateState() && validateCity() && !"".equals(gender) && !"".equals(user) && validatePhoneNumber()) {
-                saveDataToDatabase();
-            } else {
-                Toast.makeText(this, "No", Toast.LENGTH_SHORT).show();
+                if (validateFirstName() && validateLastName() && validateCountry() && validateState() && validateCity() && !"".equals(gender) && !"".equals(user) && validatePhoneNumber()) {
+                    saveDataToDatabase();
+                } else {
+                    Toast.makeText(this, "No", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -178,6 +181,8 @@ public class TenantEditProfileActivity extends AppCompatActivity {
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("user").setValue(userData.getUser());
 
                         Toast.makeText(this, "Profile Updated!", Toast.LENGTH_LONG).show();
+
+                        isClicked = true;
 
                         startActivity(new Intent(TenantEditProfileActivity.this, TenantMoreActivity.class));
                         finish();

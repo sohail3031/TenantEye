@@ -8,139 +8,139 @@
     tools:context=".tenanthomepages.TenantMoreActivity">
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="40dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/secondary_background_color"
-            android:padding="20dp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/tenant_more_profile_picture_card_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="10dp"
-                android:elevation="20dp"
-                app:cardCornerRadius="80dp">
-
-                <ImageView
-                    android:id="@+id/tenant_more_profile_picture"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@color/secondary_background_color"
-                    android:contentDescription="@string/todo"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/baseline_android_24" />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/tenant_more_user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
-                android:layout_toEndOf="@+id/tenant_more_profile_picture_card_view"
-                android:text="@string/tenant_more_user_name_text"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tenant_more_user_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tenant_more_user_name"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/tenant_more_profile_picture_card_view"
-                android:text="@string/tenant_more_user_email_text"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-80dp"
-            android:padding="20dp">
+            android:orientation="vertical"
+            android:paddingBottom="40dp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/card_view_background_color"
-                app:cardElevation="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/secondary_background_color"
+                android:padding="20dp">
 
-                <RelativeLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/tenant_more_profile_picture_card_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:elevation="20dp"
+                    app:cardCornerRadius="80dp">
+
+                    <ImageView
+                        android:id="@+id/tenant_more_profile_picture"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@color/secondary_background_color"
+                        android:contentDescription="@string/todo"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/baseline_android_24" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tenant_more_user_name"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_toEndOf="@+id/tenant_more_profile_picture_card_view"
+                    android:text="@string/tenant_more_user_name_text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tenant_more_login_as"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="serif"
-                        android:text="@string/tenant_more_login_as_text"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardBackgroundColor="@color/card_view_background_color"
-                app:cardElevation="10dp">
-
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/tenant_more_user_email"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tenant_more_user_name"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@+id/tenant_more_profile_picture_card_view"
+                    android:text="@string/tenant_more_user_email_text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tenant_more_login_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="serif"
-                        android:text="@string/tenant_more_login_info_text"
-                        android:textColor="@color/black"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+            </RelativeLayout>
 
-                </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-80dp"
+                android:padding="20dp">
 
-            </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/card_view_background_color"
+                    app:cardElevation="10dp">
 
-        </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tenant_more_login_as"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="serif"
+                            android:text="@string/tenant_more_login_as_text"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/card_view_background_color"
+                    app:cardElevation="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="5dp">
+
+                        <TextView
+                            android:id="@+id/tenant_more_login_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="serif"
+                            android:text="@string/tenant_more_login_info_text"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -150,6 +150,17 @@
                     android:layout_height="wrap_content"
                     android:background="@color/secondary_background_color"
                     android:text="@string/tenant_more_edit_profile_text"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tenant_more_update_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/secondary_background_color"
+                    android:text="@string/tenant_more_update_password_text"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -178,9 +189,9 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -95,6 +95,14 @@ public class TenantMoreActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+        updatePassword.setOnClickListener(view -> {
+            Intent intent = new Intent(this, TenantUpdatePasswordActivity.class);
+
+            intent.putExtra("user", user);
+
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void logout() {
@@ -136,6 +144,7 @@ public class TenantMoreActivity extends AppCompatActivity {
                     user.setState(Objects.requireNonNull(dataSnapshot.child("state").getValue()).toString());
                     user.setUser(Objects.requireNonNull(dataSnapshot.child("user").getValue()).toString());
                     user.setCity(Objects.requireNonNull(dataSnapshot.child("city").getValue()).toString());
+                    user.setPassword(Objects.requireNonNull(dataSnapshot.child("password").getValue()).toString());
                 }
             } else {
                 showSomethingWentWrongError();

@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TenantEye"
         tools:targetApi="31">
         <activity
+            android:name=".tenanthomepages.TenantUpdatePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".tenanthomepages.TenantEditProfileActivity"
             android:exported="false" />
         <activity

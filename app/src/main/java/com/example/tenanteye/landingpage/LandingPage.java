@@ -1,6 +1,7 @@
 package com.example.tenanteye.landingpage;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
@@ -82,6 +83,7 @@ public class LandingPage extends AppCompatActivity {
         SharedPreferences loginSharedPreference = getSharedPreferences("login", MODE_PRIVATE);
         String userEmail = loginSharedPreference.getString("emailAddress", "");
         String userPassword = loginSharedPreference.getString("password", "");
+        String user = loginSharedPreference.getString("user", "");
 
         if (!"".equals(userEmail) && !"".equals(userPassword)) {
             isUserLoggedIn = true;
@@ -90,10 +92,32 @@ public class LandingPage extends AppCompatActivity {
 
             firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    startActivity(new Intent(LandingPage.this, TenantHomeActivity.class));
-                    finish();
+                    if (user.equalsIgnoreCase("tenant")) {
+                        startActivity(new Intent(LandingPage.this, TenantHomeActivity.class));
+                        finish();
+                    } else {
+                        startActivity(new Intent(LandingPage.this, TenantHomeActivity.class));
+                        finish();
+                    }
+                } else {
+                    showSomethingWentWrongError();
                 }
             });
         }
+    }
+
+    private void showSomethingWentWrongError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+                .setTitle("Something went wrong")
+                .setMessage("Please try again")
+                .setPositiveButton(R.string.error_alert_okay, (dialog, which) -> {
+                    dialog.dismiss();
+                });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
     }
 }
