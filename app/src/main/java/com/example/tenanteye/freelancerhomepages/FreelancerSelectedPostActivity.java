@@ -1,6 +1,5 @@
 package com.example.tenanteye.freelancerhomepages;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -19,9 +18,6 @@ import android.widget.Toast;
 import com.example.tenanteye.Post;
 import com.example.tenanteye.R;
 import com.example.tenanteye.login.LoginActivity;
-import com.example.tenanteye.tenanthomepages.TenantTaskActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,20 +28,11 @@ import java.util.Map;
 import java.util.Objects;
 
 public class FreelancerSelectedPostActivity extends AppCompatActivity {
-    private final ArrayList<String> freelancers = new ArrayList<>();
-    String[] isoCountryCode = Locale.getISOCountries();
     private Post post = new Post();
     private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, assignedBy;
     private AppCompatButton acceptTaskButton, addProofButton;
     private ImageView backImageView;
-    private Dialog dialog;
-    private ArrayList<String> countries;
-    private ArrayList<String> states = new ArrayList<>();
-    private ArrayList<String> statesKeys = new ArrayList<>();
-    private ArrayList<String> cities = new ArrayList<>();
-    private ArrayList<String> citiesKeys = new ArrayList<>();
-    private Map<String, String> countryMapSorted;
-    private String selectedCountry, selectedCountryCode, selectedState, selectedStateCode, selectedCity, selectedTitle, selectedDescription, selectedAddress, selectedZipCode, selectedStartDate, selectedStartTime, selectedEndDate, selectedEndTime, selectedLink, emailAddress, timeStamp;
+    private String emailAddress;
     private boolean isButtonClicked = false;
 
     @Override
@@ -66,7 +53,6 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         assert bundle != null;
         post = (Post) bundle.getSerializable("post");
         assert post != null;
-        timeStamp = post.getTimeStamp();
 
         initializeAllVariables();
         addDataToFields();
@@ -88,6 +74,12 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         });
 
         addProofButton.setOnClickListener(view -> {
+            Intent intent = new Intent(this, FreelancerAddEvidenceOptionActivity.class);
+
+            intent.putExtra("post", post);
+
+            startActivity(intent);
+            finish();
         });
 
         backImageView.setOnClickListener(view -> showAlertMessage());
@@ -131,7 +123,7 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
                         post.setStatus("In Progress");
                         post.setUniqueIdentifier(Objects.requireNonNull(dataSnapshot.getKey()).substring(1));
 
-                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("isFreelancerAcceptedTask").setValue(post.isFreelancerAcceptedTask());
+                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("freelancerAcceptedTask").setValue(post.isFreelancerAcceptedTask());
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("status").setValue(post.getStatus());
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("uniqueIdentifier").setValue(post.getUniqueIdentifier());
                     }

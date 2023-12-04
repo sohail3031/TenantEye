@@ -174,7 +174,7 @@ public class FreelancerTaskActivity extends AppCompatActivity {
                             post.setZipCode(Objects.requireNonNull(dataSnapshot1.child("zipCode").getValue()).toString());
                             post.setAssignedTo(Objects.requireNonNull(dataSnapshot1.child("assignedTo").getValue()).toString());
                             post.setAssignedBy(Objects.requireNonNull(dataSnapshot1.child("assignedBy").getValue()).toString());
-                            post.setFreelancerAcceptedTask((boolean) Objects.requireNonNull(dataSnapshot1.child("isFreelancerAcceptedTask").getValue()));
+                            post.setFreelancerAcceptedTask((boolean) Objects.requireNonNull(dataSnapshot1.child("freelancerAcceptedTask").getValue()));
 
                             titleArrayList.add(Objects.requireNonNull(dataSnapshot1.child("title").getValue()).toString());
                             descriptionArrayList.add(Objects.requireNonNull(dataSnapshot1.child("description").getValue()).toString());

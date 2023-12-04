@@ -25,6 +25,9 @@ import com.example.tenanteye.login.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.hbb20.CountryCodePicker;
 
 import java.util.Objects;
@@ -35,13 +38,14 @@ public class SignUpThreeActivity extends AppCompatActivity {
     private EditText phoneNumberField, passwordField, confirmPasswordField;
     private LinearLayout linearLayout;
     private ProgressBar progressBar;
-    private String phoneNumber, password, confirmPassword, firstName, lastName, emailAddress, gender, user, dateOfBirth, country, state, city, profilePicture;
+    private String phoneNumber, password, confirmPassword, firstName, lastName, emailAddress, gender, user, dateOfBirth, country, state, city, profilePicture, phoneNumberCountry;
     private ImageView backImageView;
     private AppCompatButton nextButton;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private Bundle bundle;
     private User userData;
+    private PhoneNumberUtil phoneNumberUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,48 +62,52 @@ public class SignUpThreeActivity extends AppCompatActivity {
         nextButton.setOnClickListener(view -> {
             getUserData();
 
-            if (validatePhoneNumber() && validatePasswords()) {
-                storeUserDataInUserObject();
+            try {
+                if (validatePhoneNumber() && validatePasswords()) {
+                    storeUserDataInUserObject();
 
-                firebaseAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        String[] splitEmailAddress = userData.getEmailAddress().split("\\.");
+                    firebaseAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            String[] splitEmailAddress = userData.getEmailAddress().split("\\.");
 
-                        databaseReference = FirebaseDatabase.getInstance().getReference("Users Data").child(splitEmailAddress[0] + "-" + splitEmailAddress[1]);
-                        databaseReference.push().setValue(userData);
+                            databaseReference = FirebaseDatabase.getInstance().getReference("Users Data").child(splitEmailAddress[0] + "-" + splitEmailAddress[1]);
+                            databaseReference.push().setValue(userData);
 
-                        Objects.requireNonNull(firebaseAuth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()) {
-                                Toast.makeText(SignUpThreeActivity.this, "Your account has been created! Verify your account to login!", Toast.LENGTH_SHORT).show();
+                            Objects.requireNonNull(firebaseAuth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(task1 -> {
+                                if (task1.isSuccessful()) {
+                                    Toast.makeText(SignUpThreeActivity.this, "Your account has been created! Verify your account to login!", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
-                                finish();
-                            } else {
-                                showErrorDialogBox();
+                                    startActivity(new Intent(SignUpThreeActivity.this, SignUpSuccessActivity.class));
+                                    finish();
+                                } else {
+                                    showErrorDialogBox();
+                                }
+                            });
+                        } else {
+                            String errorCode = Objects.requireNonNull(task.getException()).getMessage();
+
+                            switch (Objects.requireNonNull(errorCode)) {
+                                case "ERROR_EMAIL_ALREADY_IN_USE":
+                                    Toast.makeText(SignUpThreeActivity.this, "A user with this email already exists!", Toast.LENGTH_LONG).show();
+                                    break;
+                                case "ERROR_INVALID_EMAIL":
+                                    Toast.makeText(SignUpThreeActivity.this, "Email is invalid!", Toast.LENGTH_LONG).show();
+                                    break;
+                                case "ERROR_WEAK_PASSWORD":
+                                    Toast.makeText(SignUpThreeActivity.this, "Password is weak!", Toast.LENGTH_LONG).show();
+                                    break;
+                                case "ERROR_CREDENTIAL_ALREADY_IN_USE":
+                                    Toast.makeText(SignUpThreeActivity.this, "A user with this credentials already exists!", Toast.LENGTH_LONG).show();
+                                    break;
+                                default:
+                                    showErrorDialogBox();
+                                    break;
                             }
-                        });
-                    } else {
-                        String errorCode = Objects.requireNonNull(task.getException()).getMessage();
-
-                        switch (Objects.requireNonNull(errorCode)) {
-                            case "ERROR_EMAIL_ALREADY_IN_USE":
-                                Toast.makeText(SignUpThreeActivity.this, "A user with this email already exists!", Toast.LENGTH_LONG).show();
-                                break;
-                            case "ERROR_INVALID_EMAIL":
-                                Toast.makeText(SignUpThreeActivity.this, "Email is invalid!", Toast.LENGTH_LONG).show();
-                                break;
-                            case "ERROR_WEAK_PASSWORD":
-                                Toast.makeText(SignUpThreeActivity.this, "Password is weak!", Toast.LENGTH_LONG).show();
-                                break;
-                            case "ERROR_CREDENTIAL_ALREADY_IN_USE":
-                                Toast.makeText(SignUpThreeActivity.this, "A user with this credentials already exists!", Toast.LENGTH_LONG).show();
-                                break;
-                            default:
-                                showErrorDialogBox();
-                                break;
                         }
-                    }
-                });
+                    });
+                }
+            } catch (NumberParseException e) {
+                Log.i("TAG", "onCreate: " + e.getMessage());
             }
         });
 
@@ -138,6 +146,21 @@ public class SignUpThreeActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void showSomethingWentWrongError() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+                .setTitle("Something went wrong")
+                .setMessage("Please try again")
+                .setPositiveButton(R.string.error_alert_okay, (dialog, which) -> {
+                    dialog.dismiss();
+                });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
     }
 
     private void storeUserDataInUserObject() {
@@ -185,10 +208,9 @@ public class SignUpThreeActivity extends AppCompatActivity {
         passwordStrengthText = findViewById(R.id.sign_up_three_password_text_view);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
         bundle = getIntent().getExtras();
-
         userData = new User();
+        phoneNumberUtil = PhoneNumberUtil.getInstance();
     }
 
     private void getAllUserDataFromPreviousActivities() {
@@ -210,6 +232,7 @@ public class SignUpThreeActivity extends AppCompatActivity {
         countryCodePicker.registerCarrierNumberEditText(phoneNumberField);
 
         phoneNumber = countryCodePicker.getFullNumberWithPlus();
+        phoneNumberCountry = countryCodePicker.getSelectedCountryCode();
         password = passwordField.getText().toString();
         confirmPassword = confirmPasswordField.getText().toString();
     }
@@ -237,12 +260,14 @@ public class SignUpThreeActivity extends AppCompatActivity {
         }
     }
 
-    private boolean validatePhoneNumber() {
+    private boolean validatePhoneNumber() throws NumberParseException {
+        Phonenumber.PhoneNumber number = phoneNumberUtil.parse(phoneNumber, phoneNumberCountry);
+
         if ("".equals(phoneNumber)) {
             phoneNumberField.setError(getString(R.string.phone_number_required));
 
             return false;
-        } else if (!PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)) {
+        } else if (!phoneNumberUtil.isValidNumber(number)) {
             phoneNumberField.setError(getString(R.string.phone_number_invalid));
 
             return false;

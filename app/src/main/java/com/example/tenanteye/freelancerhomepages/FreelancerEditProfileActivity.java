@@ -30,6 +30,9 @@ import com.example.tenanteye.tenanthomepages.TenantMoreActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.hbb20.CountryCodePicker;
 
 import org.json.JSONArray;
@@ -55,6 +58,7 @@ import okhttp3.Response;
 public class FreelancerEditProfileActivity extends AppCompatActivity {
     private static final String NAME_RE = "^[a-zA-Z]+";
     private final String[] isoCountryCode = Locale.getISOCountries();
+    private final PhoneNumberUtil phoneNumberUtil = PhoneNumberUtil.getInstance();
     private ImageView backImageView;
     private ArrayList<String> countries;
     private Dialog dialog;
@@ -70,7 +74,7 @@ public class FreelancerEditProfileActivity extends AppCompatActivity {
     private AppCompatButton saveButton;
     private CountryCodePicker countryCodePicker;
     private User userData;
-    private String firstName, lastName, selectedCountry, selectedState, selectedCity, phoneNumber, gender, user, dateOfBirth, selectedCountryCode, selectedStateCode, emailAddress;
+    private String firstName, lastName, selectedCountry, selectedState, selectedCity, phoneNumber, gender, user, dateOfBirth, selectedCountryCode, selectedStateCode, emailAddress, phoneNumberCountry;
     private boolean isClicked = false;
 
     @Override
@@ -90,10 +94,14 @@ public class FreelancerEditProfileActivity extends AppCompatActivity {
             if (!isClicked) {
                 getData();
 
-                if (validateFirstName() && validateLastName() && validateCountry() && validateState() && validateCity() && !"".equals(gender) && !"".equals(user) && validatePhoneNumber()) {
-                    saveDataToDatabase();
-                } else {
-                    Toast.makeText(this, "No", Toast.LENGTH_SHORT).show();
+                try {
+                    if (validateFirstName() && validateLastName() && validateCountry() && validateState() && validateCity() && !"".equals(gender) && !"".equals(user) && validatePhoneNumber()) {
+                        saveDataToDatabase();
+                    } else {
+                        Toast.makeText(this, "No", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (NumberParseException e) {
+                    Log.i("TAG", "onCreate: " + e.getMessage());
                 }
             }
         });
@@ -196,12 +204,14 @@ public class FreelancerEditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private boolean validatePhoneNumber() {
+    private boolean validatePhoneNumber() throws NumberParseException {
+        Phonenumber.PhoneNumber number = phoneNumberUtil.parse(phoneNumber, phoneNumberCountry);
+
         if ("".equals(phoneNumber)) {
             phoneNumberField.setError(getString(R.string.phone_number_required));
 
             return false;
-        } else if (!PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber)) {
+        } else if (!phoneNumberUtil.isValidNumber(number)) {
             phoneNumberField.setError(getString(R.string.phone_number_invalid));
 
             return false;

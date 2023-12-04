@@ -18,6 +18,12 @@
         android:theme="@style/Theme.TenantEye"
         tools:targetApi="31">
         <activity
+            android:name=".freelancerhomepages.FreelancerAddEvidenceOptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".freelancerhomepages.FreelancerAddEvidenceActivity"
+            android:exported="false" />
+        <activity
             android:name=".freelancerhomepages.FreelancerSelectedPostActivity"
             android:exported="false" />
         <activity

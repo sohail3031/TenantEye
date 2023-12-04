@@ -250,4 +250,7 @@
     <string name="freelancer_selected_post_assigned_by_text">Assigned By</string>
     <string name="freelancer_selected_post_accept_task_button_text">Accept Task</string>
     <string name="freelancer_selected_post_add_proof_button_text">Add Evidence</string>
+
+    <!--  Freelancer Add Evidence Option  -->
+    <string name="freelancer_add_evidence_option_title_text">Make A Selection</string>
 </resources>
