@@ -18,6 +18,15 @@
         android:theme="@style/Theme.TenantEye"
         tools:targetApi="31">
         <activity
+            android:name=".freelancerhomepages.FreelancerUpdatePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".freelancerhomepages.FreelancerEditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".freelancerhomepages.FreelancerUpdateProfilePictureActivity"
+            android:exported="false" />
+        <activity
             android:name=".freelancerhomepages.FreelancerMoreActivity"
             android:exported="false" />
         <activity
@@ -31,7 +40,7 @@
             android:exported="false" />
         <activity
             android:name=".freelancerhomepages.FreelancerHomeActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".tenanthomepages.TenantUpdatePasswordActivity"
             android:exported="false" />

@@ -116,7 +116,9 @@ public class TenantMoreActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void displayUserData() {
-        Picasso.get().load(user.getProfilePicture()).fit().centerCrop().into(profilePictureImageView);
+        new Handler().postDelayed(() -> {
+            Picasso.get().load(user.getProfilePicture()).fit().centerCrop().into(profilePictureImageView);
+        }, 500);
 
         userNameTextView.setText(user.getFirstName() + " " + user.getLastName());
         userEmailTextView.setText(user.getEmailAddress());

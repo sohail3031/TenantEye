@@ -1,4 +1,4 @@
-package com.example.tenanteye.tenanthomepages;
+package com.example.tenanteye.freelancerhomepages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,8 +23,8 @@ import com.example.tenanteye.PasswordStrength;
 import com.example.tenanteye.R;
 import com.example.tenanteye.User;
 import com.example.tenanteye.login.LoginActivity;
-import com.example.tenanteye.resetpassword.ResetPasswordMobileActivity;
-import com.example.tenanteye.resetpassword.ResetPasswordSuccessActivity;
+import com.example.tenanteye.tenanthomepages.TenantMoreActivity;
+import com.example.tenanteye.tenanthomepages.TenantUpdatePasswordActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -40,7 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
-public class TenantUpdatePasswordActivity extends AppCompatActivity {
+public class FreelancerUpdatePasswordActivity extends AppCompatActivity {
     private ImageView backImageView;
     private EditText currentPasswordField, passwordField, confirmPasswordField;
     private AppCompatButton button;
@@ -54,7 +53,7 @@ public class TenantUpdatePasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tenant_update_password);
+        setContentView(R.layout.activity_freelancer_update_password);
 
         initializeAllVariables();
         getDataFromPreviousActivity();
@@ -116,13 +115,17 @@ public class TenantUpdatePasswordActivity extends AppCompatActivity {
         });
     }
 
-    private void showSamePasswordErrorPassword() {
+    private void showAlertMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder
-                .setTitle("Invalid Password!")
-                .setMessage("Current password and new password should not be same!")
-                .setPositiveButton(R.string.error_alert_okay, (dialog, which) -> {
+                .setTitle(R.string.sign_up_alert_title)
+                .setMessage(R.string.sign_up_alert_message)
+                .setPositiveButton(R.string.alert_yes, (dialog, which) -> {
+                    startActivity(new Intent(this, FreelancerMoreActivity.class));
+                    finish();
+                })
+                .setNegativeButton(R.string.alert_no, (dialog, which) -> {
                     dialog.dismiss();
                 });
 
@@ -131,17 +134,13 @@ public class TenantUpdatePasswordActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void showAlertMessage() {
+    private void showSamePasswordErrorPassword() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder
-                .setTitle(R.string.sign_up_alert_title)
-                .setMessage(R.string.sign_up_alert_message)
-                .setPositiveButton(R.string.alert_yes, (dialog, which) -> {
-                    startActivity(new Intent(this, TenantMoreActivity.class));
-                    finish();
-                })
-                .setNegativeButton(R.string.alert_no, (dialog, which) -> {
+                .setTitle("Invalid Password!")
+                .setMessage("Current password and new password should not be same!")
+                .setPositiveButton(R.string.error_alert_okay, (dialog, which) -> {
                     dialog.dismiss();
                 });
 
@@ -272,13 +271,13 @@ public class TenantUpdatePasswordActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(TenantUpdatePasswordActivity.this, "Password Updated!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(FreelancerUpdatePasswordActivity.this, "Password Updated!", Toast.LENGTH_SHORT).show();
 
                                                     SharedPreferences loginSharedPreference = getSharedPreferences("login", Context.MODE_PRIVATE);
 
                                                     loginSharedPreference.edit().clear().apply();
 
-                                                    startActivity(new Intent(TenantUpdatePasswordActivity.this, LoginActivity.class));
+                                                    startActivity(new Intent(FreelancerUpdatePasswordActivity.this, LoginActivity.class));
                                                     finish();
                                                 } else {
                                                     showValidationError();
@@ -324,13 +323,13 @@ public class TenantUpdatePasswordActivity extends AppCompatActivity {
     }
 
     private void initializeAllVariables() {
-        backImageView = findViewById(R.id.tenant_update_password_back_image_view);
-        currentPasswordField = findViewById(R.id.tenant_update_password_current_password_field);
-        passwordField = findViewById(R.id.tenant_update_password_new_password_field);
-        confirmPasswordField = findViewById(R.id.tenant_update_password_confirm_password_field);
-        button = findViewById(R.id.tenant_update_password_set_password_button_view);
-        linearLayout = findViewById(R.id.tenant_update_password_progress_bar_linear_layout);
-        passwordStrengthText = findViewById(R.id.tenant_update_password_progressbar_text_view);
-        progressBar = findViewById(R.id.tenant_update_password_progressbar);
+        backImageView = findViewById(R.id.freelancer_update_password_back_image_view);
+        currentPasswordField = findViewById(R.id.freelancer_update_password_current_password_field);
+        passwordField = findViewById(R.id.freelancer_update_password_new_password_field);
+        confirmPasswordField = findViewById(R.id.freelancer_update_password_confirm_password_field);
+        button = findViewById(R.id.freelancer_update_password_set_password_button_view);
+        linearLayout = findViewById(R.id.freelancer_update_password_progress_bar_linear_layout);
+        passwordStrengthText = findViewById(R.id.freelancer_update_password_progressbar_text_view);
+        progressBar = findViewById(R.id.freelancer_update_password_progressbar);
     }
 }

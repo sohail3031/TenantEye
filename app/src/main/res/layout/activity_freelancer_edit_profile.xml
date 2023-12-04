@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="10dp"
+    tools:context=".freelancerhomepages.FreelancerEditProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/freelancer_edit_profile_back_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/todo"
+            android:padding="5dp"
+            android:src="@drawable/ic_back_black"
+            android:transitionName="freelancer_edit_profile_back_image_view_transition" />
+
+        <TextView
+            android:id="@+id/freelancer_edit_profile_post_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="serif"
+            android:padding="2dp"
+            android:text="@string/tenant_edit_profile_title_text"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:transitionName="login_welcome_transition"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/freelancer_edit_profile_first_name_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/ic_baseline_create_24"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/freelancer_edit_profile_first_name_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_background_color"
+                android:ems="10"
+                android:fontFamily="serif"
+                android:hint="@string/sign_up_one_first_name_hint_text"
+                android:inputType="text"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:hintTextColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/freelancer_edit_profile_top_linear_layout" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/freelancer_edit_profile_last_name_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/ic_baseline_create_24"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/freelancer_edit_profile_last_name_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_background_color"
+                android:ems="10"
+                android:fontFamily="serif"
+                android:hint="@string/sign_up_one_last_name_hint_text"
+                android:inputType="text"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:hintTextColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/freelancer_edit_profile_first_name_layout" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/freelancer_edit_profile_email_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/ic_baseline_email_24"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/freelancer_edit_profile_email_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_background_color"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="serif"
+                android:hint="@string/sign_up_one_email_hint_text"
+                android:inputType="textEmailAddress"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:hintTextColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/freelancer_edit_profile_last_name_layout" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/freelancer_edit_profile_country_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/sign_up_one_country_hint_text"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/baseline_location_city_24"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/freelancer_edit_profile_country_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_background_color"
+                android:editable="false"
+                android:fontFamily="serif"
+                android:gravity="top"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"
+                app:hintTextColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="Deprecated" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/freelancer_edit_profile_state_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/sign_up_one_state_hint_text"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/baseline_location_city_24"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/freelancer_edit_profile_state_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_background_color"
+                android:editable="false"
+                android:fontFamily="serif"
+                android:gravity="top"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"
+                app:hintTextColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="Deprecated" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/freelancer_edit_profile_city_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/sign_up_one_city_hint_text"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/baseline_location_city_24"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/freelancer_edit_profile_city_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_background_color"
+                android:editable="false"
+                android:fontFamily="serif"
+                android:gravity="top"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="20sp"
+                app:drawableEndCompat="@drawable/baseline_arrow_drop_down_24"
+                app:hintTextColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="Deprecated" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/freelancer_edit_profile_country_code_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/black_border"
+            android:padding="5dp"
+            app:ccpDialog_backgroundColor="@color/secondary_background_color"
+            app:ccpDialog_fastScroller_bubbleColor="@color/black"
+            app:ccpDialog_fastScroller_handleColor="@color/secondary_background_color"
+            app:ccpDialog_textColor="@color/black"
+            app:ccp_arrowColor="@color/black"
+            app:ccp_autoDetectCountry="true"
+            app:ccp_contentColor="@color/black"
+            app:ccp_flagBorderColor="@color/black"
+            app:ccp_showFlag="true"
+            app:ccp_showFullName="true"
+            app:ccp_showNameCode="true"
+            app:ccp_textSize="20sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/freelancer_up_three_phone_number_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColorHint="@color/black"
+            app:boxStrokeColor="@color/black"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            app:startIconDrawable="@drawable/ic_baseline_phone_24"
+            app:startIconTint="@color/black">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/freelancer_edit_profile_three_number_field"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/secondary_background_color"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:ems="10"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="serif"
+                android:hint="@string/sign_up_three_phone_number_hint_text"
+                android:inputType="number"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="25sp"
+                app:hintTextColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:text="@string/sign_up_two_select_gender_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/freelancer_edit_profile_two_gender_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/freelancer_edit_profile_two_gender_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="@string/sign_up_two_gender_male_text"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/freelancer_edit_profile_two_gender_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="@string/sign_up_two_gender_female_text"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/freelancer_edit_profile_two_gender_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="serif"
+                android:text="@string/sign_up_two_gender_other_text"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:text="@string/sign_up_two_select_user_type_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:id="@+id/freelancer_edit_profile_two_user_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/freelancer_edit_profile_two_user_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="serif"
+                android:text="@string/sign_up_two_user_user_text"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/freelancer_edit_profile_two_user_freelancer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="serif"
+                android:text="@string/sign_up_two_user_freelancer_text"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+        </RadioGroup>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:text="@string/sign_up_two_dob_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <DatePicker
+            android:id="@+id/freelancer_edit_profile_two_dob_date_picker_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/gray"
+            android:calendarTextColor="@color/black"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:spinnersShown="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/black" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/freelancer_edit_profile_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:fontFamily="serif"
+            android:text="@string/tenant_edit_profile_save_button_text"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_selected_post_link_field_layout" />
+
+    </LinearLayout>
+
+</ScrollView>
