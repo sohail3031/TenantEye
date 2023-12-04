@@ -1,6 +1,7 @@
 package com.example.tenanteye;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,12 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public class PostAdapter extends ArrayAdapter<Post> {
+public class TenantPostAdapter extends ArrayAdapter<Post> {
     private Context context;
     private int resource;
     private ArrayList<Post> postArrayList;
 
-    public PostAdapter(Context context, int resource, ArrayList<Post> postArrayList) {
+    public TenantPostAdapter(Context context, int resource, ArrayList<Post> postArrayList) {
         super(context, resource, postArrayList);
 
         this.context = context;
@@ -37,7 +38,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         TextView descriptionText = view.findViewById(R.id.tenant_show_task_info_brief_description_text);
         TextView addressText = view.findViewById(R.id.tenant_show_task_info_brief_address_text);
         TextView statusText = view.findViewById(R.id.tenant_show_task_info_brief_status_text);
-        TextView assignedToText = view.findViewById(R.id.show_task_info_brief_status_assigned_to_text);
+        TextView assignedToText = view.findViewById(R.id.tenant_show_task_info_brief_status_assigned_to_text);
 
         titleText.setText(post.getTitle().substring(0, Math.min(post.getTitle().length(), 50)));
         descriptionText.setText(post.getDescription().substring(0, Math.min(post.getDescription().length(), 50)));

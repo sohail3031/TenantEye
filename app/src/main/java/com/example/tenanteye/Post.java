@@ -19,6 +19,24 @@ public class Post implements Serializable {
     private String status;
     private String assignedTo;
     private String assignedBy;
+    private boolean isFreelancerAcceptedTask;
+    private String uniqueIdentifier;
+
+    public String getUniqueIdentifier() {
+        return uniqueIdentifier;
+    }
+
+    public void setUniqueIdentifier(String uniqueIdentifier) {
+        this.uniqueIdentifier = uniqueIdentifier;
+    }
+
+    public boolean isFreelancerAcceptedTask() {
+        return isFreelancerAcceptedTask;
+    }
+
+    public void setFreelancerAcceptedTask(boolean freelancerAcceptedTask) {
+        isFreelancerAcceptedTask = freelancerAcceptedTask;
+    }
 
     public String getAssignedTo() {
         return assignedTo;

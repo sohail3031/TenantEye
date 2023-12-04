@@ -15,7 +15,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_title"
+            android:id="@+id/freelancer_show_task_info_brief_title"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_title_text"
+            android:id="@+id/freelancer_show_task_info_brief_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -35,11 +35,11 @@
             android:text="@string/sign_up_two_empty_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/tenant_show_task_info_brief_title"
+            app:layout_constraintStart_toEndOf="@+id/freelancer_show_task_info_brief_title"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_description"
+            android:id="@+id/freelancer_show_task_info_brief_description"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -48,10 +48,10 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_title" />
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_title" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_description_text"
+            android:id="@+id/freelancer_show_task_info_brief_description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -59,11 +59,11 @@
             android:text="@string/sign_up_two_empty_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/tenant_show_task_info_brief_description"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_title_text" />
+            app:layout_constraintStart_toEndOf="@+id/freelancer_show_task_info_brief_description"
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_title_text" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_address"
+            android:id="@+id/freelancer_show_task_info_brief_address"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -72,10 +72,10 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_description" />
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_description" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_address_text"
+            android:id="@+id/freelancer_show_task_info_brief_address_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -83,11 +83,11 @@
             android:text="@string/sign_up_two_empty_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/tenant_show_task_info_brief_address"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_description_text" />
+            app:layout_constraintStart_toEndOf="@+id/freelancer_show_task_info_brief_address"
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_description_text" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_status"
+            android:id="@+id/freelancer_show_task_info_brief_status"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -96,10 +96,10 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_address" />
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_address" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_status_text"
+            android:id="@+id/freelancer_show_task_info_brief_status_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -107,23 +107,23 @@
             android:text="@string/sign_up_two_empty_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/tenant_show_task_info_brief_status"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_address_text" />
+            app:layout_constraintStart_toEndOf="@+id/freelancer_show_task_info_brief_status"
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_address_text" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_assigned_to"
+            android:id="@+id/freelancer_show_task_info_brief_assigned_to"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/tenant_show_task_info_brief_assigned_to"
+            android:text="@string/freelancer_show_task_info_brief_assigned_by"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_status" />
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_status" />
 
         <TextView
-            android:id="@+id/tenant_show_task_info_brief_status_assigned_to_text"
+            android:id="@+id/freelancer_show_task_info_brief_status_assigned_to_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -131,8 +131,8 @@
             android:text="@string/sign_up_two_empty_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/tenant_show_task_info_brief_assigned_to"
-            app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_status_text" />
+            app:layout_constraintStart_toEndOf="@+id/freelancer_show_task_info_brief_status"
+            app:layout_constraintTop_toBottomOf="@+id/freelancer_show_task_info_brief_status_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

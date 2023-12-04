@@ -631,6 +631,8 @@ public class TenantCreateActivity extends AppCompatActivity {
         post.setStatus("Active");
         post.setAssignedBy(emailAddress);
         post.setAssignedTo("");
+        post.setFreelancerAcceptedTask(false);
+        post.setUniqueIdentifier("");
     }
 
     private void createPost() {

@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tenanteye.Post;
-import com.example.tenanteye.PostAdapter;
+import com.example.tenanteye.TenantPostAdapter;
 import com.example.tenanteye.R;
 import com.example.tenanteye.databinding.ActivityTenantTaskBinding;
 import com.example.tenanteye.login.LoginActivity;
@@ -41,7 +41,7 @@ public class TenantTaskActivity extends AppCompatActivity {
     private ListView listView;
     private String emailAddress, timeStamp;
     private DatabaseReference databaseReference;
-    private PostAdapter postAdapter;
+    private TenantPostAdapter tenantPostAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,14 +196,14 @@ public class TenantTaskActivity extends AppCompatActivity {
             ArrayList<Post> posts = new ArrayList<>();
 
             for (int i = 0; i < postArrayList.size(); i++) {
-                if (titleArrayList.get(i).toLowerCase().contains(s) || descriptionArrayList.get(i).toLowerCase().contains(s) || addressArrayList.get(i).toLowerCase().contains(s) || statusArrayList.get(i).toLowerCase().contains(s)) {
+                if (titleArrayList.get(i).toLowerCase().contains(s) || descriptionArrayList.get(i).toLowerCase().contains(s) || addressArrayList.get(i).toLowerCase().contains(s) || statusArrayList.get(i).toLowerCase().contains(s) || assignedToArrayList.get(i).toLowerCase().contains(s)) {
                     posts.add(postArrayList.get(i));
                 }
             }
 
-            PostAdapter postAdapter1 = new PostAdapter(this, R.layout.tenant_show_task_info_brief, posts);
+            TenantPostAdapter tenantPostAdapter1 = new TenantPostAdapter(this, R.layout.tenant_show_task_info_brief, posts);
 
-            listView.setAdapter(postAdapter1);
+            listView.setAdapter(tenantPostAdapter1);
         } else {
             noDataTextView.setVisibility(View.VISIBLE);
             listView.setVisibility(View.GONE);
@@ -243,9 +243,9 @@ public class TenantTaskActivity extends AppCompatActivity {
                     postArrayList.add(post);
                 }
 
-                postAdapter = new PostAdapter(this, R.layout.tenant_show_task_info_brief, postArrayList);
+                tenantPostAdapter = new TenantPostAdapter(this, R.layout.tenant_show_task_info_brief, postArrayList);
 
-                listView.setAdapter(postAdapter);
+                listView.setAdapter(tenantPostAdapter);
             } else {
                 showSomethingWentWrongError();
             }

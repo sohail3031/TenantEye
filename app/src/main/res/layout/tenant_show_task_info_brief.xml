@@ -123,7 +123,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_status" />
 
         <TextView
-            android:id="@+id/show_task_info_brief_status_assigned_to_text"
+            android:id="@+id/tenant_show_task_info_brief_status_assigned_to_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -131,7 +131,7 @@
             android:text="@string/sign_up_two_empty_text"
             android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/tenant_show_task_info_brief_status"
+            app:layout_constraintStart_toEndOf="@+id/tenant_show_task_info_brief_assigned_to"
             app:layout_constraintTop_toBottomOf="@+id/tenant_show_task_info_brief_status_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

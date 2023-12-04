@@ -114,7 +114,7 @@ public class ResetPasswordMobileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!emailAddress.isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
-//
+
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String[] temp = dataSnapshot.getKey().split("-");
                         String databaseChild = dataSnapshot.getKey().toString();

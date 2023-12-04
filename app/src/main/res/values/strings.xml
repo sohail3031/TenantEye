@@ -242,4 +242,12 @@
 
     <!--  Freelancers Dropdown Items  -->
     <string name="freelancers_drop_down_text">Freelancers</string>
+
+    <!--  Freelancer Show Info Brief  -->
+    <string name="freelancer_show_task_info_brief_assigned_by">Assigned By: </string>
+
+    <!--  Freelancer Selected Post  -->
+    <string name="freelancer_selected_post_assigned_by_text">Assigned By</string>
+    <string name="freelancer_selected_post_accept_task_button_text">Accept Task</string>
+    <string name="freelancer_selected_post_add_proof_button_text">Add Evidence</string>
 </resources>
