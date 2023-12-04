@@ -234,4 +234,7 @@
 
     <!--  Tenant Update Password  -->
     <string name="tenant_update_password_current_password_text">Current Password</string>
+
+    <!--  Freelancer Bottom  -->
+    <string name="freelancer_bottom_menu_all_tasks">All Tasks</string>
 </resources>

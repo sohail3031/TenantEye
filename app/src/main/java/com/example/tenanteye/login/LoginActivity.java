@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.tenanteye.R;
 import com.example.tenanteye.User;
 import com.example.tenanteye.forgotpassword.ForgotPasswordActivity;
+import com.example.tenanteye.freelancerhomepages.FreelancerHomeActivity;
 import com.example.tenanteye.signup.SignUpOneActivity;
 import com.example.tenanteye.tenanthomepages.TenantHomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -146,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(new Intent(LoginActivity.this, TenantHomeActivity.class));
                                             finish();
                                         } else {
-                                            startActivity(new Intent(LoginActivity.this, TenantHomeActivity.class));
+                                            startActivity(new Intent(LoginActivity.this, FreelancerHomeActivity.class));
                                             finish();
                                         }
                                     }
@@ -165,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             } else {
                 isButtonClicked = false;
-                
+
                 showEmailError();
             }
         });

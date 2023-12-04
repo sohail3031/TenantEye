@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tenanteye.R;
+import com.example.tenanteye.freelancerhomepages.FreelancerHomeActivity;
 import com.example.tenanteye.login.LoginActivity;
 import com.example.tenanteye.onboarding.OnBoardingActivity;
 import com.example.tenanteye.tenanthomepages.TenantHomeActivity;
@@ -96,7 +97,7 @@ public class LandingPage extends AppCompatActivity {
                         startActivity(new Intent(LandingPage.this, TenantHomeActivity.class));
                         finish();
                     } else {
-                        startActivity(new Intent(LandingPage.this, TenantHomeActivity.class));
+                        startActivity(new Intent(LandingPage.this, FreelancerHomeActivity.class));
                         finish();
                     }
                 } else {

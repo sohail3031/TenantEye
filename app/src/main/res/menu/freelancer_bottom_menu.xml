@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/freelancer_bottom_menu_task"
+        android:icon="@drawable/baseline_task_24"
+        android:title="@string/tenant_bottom_menu_task_title" />
+
+    <item
+        android:id="@+id/freelancer_bottom_menu_all_tasks"
+        android:icon="@drawable/baseline_list_24"
+        android:title="@string/freelancer_bottom_menu_all_tasks" />
+
+    <item
+        android:id="@+id/freelancer_bottom_menu_chat"
+        android:icon="@drawable/baseline_chat_24"
+        android:title="@string/tenant_bottom_menu_chat_title" />
+
+    <item
+        android:id="@+id/freelancer_bottom_menu_more"
+        android:icon="@drawable/baseline_more_horiz_24"
+        android:title="@string/tenant_bottom_menu_more_title" />
+
+</menu>
