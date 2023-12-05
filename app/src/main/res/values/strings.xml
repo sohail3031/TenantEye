@@ -253,4 +253,12 @@
 
     <!--  Freelancer Add Evidence Option  -->
     <string name="freelancer_add_evidence_option_title_text">Make A Selection</string>
+
+    <!--  Freelancer Camera Evidence  -->
+    <string name="freelancer_camera_evidence_title_text">Take Pictures</string>
+    <string name="freelancer_camera_evidence_take_button_text">Open Camera</string>
+
+    <!--  Freelancer Upload Evidence  -->
+    <string name="freelancer_upload_evidence_title_text">Upload Pictures</string>
+    <string name="freelancer_upload_evidence_select_images_button_text">Select Images</string>
 </resources>
