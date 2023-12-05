@@ -1,6 +1,5 @@
 package com.example.tenanteye.login;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -8,7 +7,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,9 +18,6 @@ import com.example.tenanteye.forgotpassword.ForgotPasswordActivity;
 import com.example.tenanteye.freelancerhomepages.FreelancerHomeActivity;
 import com.example.tenanteye.signup.SignUpOneActivity;
 import com.example.tenanteye.tenanthomepages.TenantHomeActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -122,7 +117,6 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 if (Objects.requireNonNull(firebaseAuth.getCurrentUser()).isEmailVerified()) {
-//                    if (checkBox.isChecked()) {
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users Data");
                     String[] splitEmailAddress = emailAddress.split("\\.");
                     User user = new User();
@@ -141,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("password", password);
                                     editor.putString("user", user.getUser());
                                 }
-                                
+
                                 editor.apply();
 
                                 if (user.getUser().equalsIgnoreCase("tenant")) {
@@ -158,7 +152,6 @@ public class LoginActivity extends AppCompatActivity {
                             showSomethingWentWrongError();
                         }
                     });
-//                    }
                 } else {
                     isButtonClicked = false;
 
