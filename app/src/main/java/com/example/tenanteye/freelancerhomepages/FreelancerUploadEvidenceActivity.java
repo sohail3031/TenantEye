@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +41,7 @@ import java.util.Objects;
 public class FreelancerUploadEvidenceActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private final ArrayList<Uri> uris = new ArrayList<>();
+    private final ArrayList<String> savedImages = new ArrayList<>();
     private ImageView backImageView;
     private AppCompatButton selectImagesButton, cancelButton, saveButton;
     private GridView gridView;
@@ -92,7 +94,12 @@ public class FreelancerUploadEvidenceActivity extends AppCompatActivity {
 
                 storageReference.putFile(uris.get(i)).addOnSuccessListener(taskSnapshot -> {
                     Toast.makeText(FreelancerUploadEvidenceActivity.this, "Please Wait!", Toast.LENGTH_SHORT).show();
-                    saveDataToDatabase();
+
+                    storageReference.getDownloadUrl().addOnCompleteListener(task -> {
+                        savedImages.add(task.getResult().toString());
+                    });
+
+                    new Handler().postDelayed(this::saveDataToDatabase, 500);
                 }).addOnFailureListener(e -> {
                     Toast.makeText(FreelancerUploadEvidenceActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -112,11 +119,15 @@ public class FreelancerUploadEvidenceActivity extends AppCompatActivity {
         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
-                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString())) {
+                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString()) && post.getUniqueIdentifier().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("uniqueIdentifier").getValue()).toString())) {
                         post.setStatus("Completed");
 
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("status").setValue(post.getStatus());
-                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("uniqueIdentifier").setValue(post.getUniqueIdentifier());
+
+                        for (int i = 0; i < savedImages.size(); i++) {
+                            Log.i("TAG", "saveDataToDatabase: " + savedImages.get(i));
+                            databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("evidences").child("evidence " + i).setValue(savedImages.get(i));
+                        }
                     }
                 }
 

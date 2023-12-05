@@ -114,11 +114,17 @@ public class TenantTaskActivity extends AppCompatActivity {
             listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
                 timeStamp = postArrayList.get(i).getTimeStamp();
 
-                showDeleteAlert();
+                if (postArrayList.get(i).getStatus().equalsIgnoreCase("active") || postArrayList.get(i).getStatus().equalsIgnoreCase("assigned")) {
+                    showDeleteAlert();
 
-                return true;
+                    return true;
+                } else {
+                    Toast.makeText(this, "You can't delete the task now!", Toast.LENGTH_SHORT).show();
+
+                    return false;
+                }
             });
-        }, 1000);
+        }, 500);
 
         new Handler().postDelayed(() -> {
             if (postArrayList.size() == 0) {
@@ -128,7 +134,7 @@ public class TenantTaskActivity extends AppCompatActivity {
                 noDataTextView.setVisibility(View.GONE);
                 listView.setVisibility(View.VISIBLE);
             }
-        }, 1000);
+        }, 500);
     }
 
     private void showDeleteAlert() {
@@ -234,6 +240,7 @@ public class TenantTaskActivity extends AppCompatActivity {
                     post.setZipCode(Objects.requireNonNull(dataSnapshot.child("zipCode").getValue()).toString());
                     post.setAssignedTo(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString());
                     post.setAssignedBy(Objects.requireNonNull(dataSnapshot.child("assignedBy").getValue()).toString());
+                    post.setUniqueIdentifier(Objects.requireNonNull(dataSnapshot.child("uniqueIdentifier").getValue()).toString());
 
                     titleArrayList.add(Objects.requireNonNull(dataSnapshot.child("title").getValue()).toString());
                     descriptionArrayList.add(Objects.requireNonNull(dataSnapshot.child("description").getValue()).toString());

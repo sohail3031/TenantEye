@@ -206,6 +206,7 @@
     <string name="tenant_selected_post_edit">Edit</string>
     <string name="tenant_selected_post_update">Update</string>
     <string name="tenant_selected_post_delete">Delete</string>
+    <string name="tenant_selected_post_check_evidence">Check Evidence</string>
     <string name="tenant_selected_no_posts_text">You don\'t have any posts</string>
 
     <!--  Sign Up Four  -->
@@ -261,4 +262,9 @@
     <!--  Freelancer Upload Evidence  -->
     <string name="freelancer_upload_evidence_title_text">Upload Pictures</string>
     <string name="freelancer_upload_evidence_select_images_button_text">Select Images</string>
+
+    <!--  Tenant Check Evidence  -->
+    <string name="tenant_check_evidence_title">Images</string>
+    <string name="tenant_check_evidence_accept_button_title">Accept</string>
+    <string name="tenant_check_evidence_reject_button_title">Reject</string>
 </resources>

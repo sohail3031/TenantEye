@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TenantEye"
         tools:targetApi="31">
         <activity
+            android:name=".tenanthomepages.TenantCheckEvidenceActivity"
+            android:exported="false" />
+        <activity
             android:name=".freelancerhomepages.FreelancerUploadEvidenceActivity"
             android:exported="false" />
         <activity

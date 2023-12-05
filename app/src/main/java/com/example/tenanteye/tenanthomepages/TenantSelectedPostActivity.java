@@ -19,6 +19,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -62,7 +63,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
     String[] isoCountryCode = Locale.getISOCountries();
     private Post post = new Post();
     private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, freelancerSpinner;
-    private AppCompatButton editButton, updateButton, deleteButton;
+    private AppCompatButton editButton, updateButton, deleteButton, checkEvidenceButton;
     private ImageView backImageView;
     private Dialog dialog;
     private ArrayList<String> countries;
@@ -116,10 +117,36 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
             endDate.setOnClickListener(view -> showEndDateDialog());
             startDate.setOnClickListener(view -> showStartDateDialog());
             startTime.setOnClickListener(view -> showStartTimeDialog());
-            editButton.setOnClickListener(view -> enableEditing());
-            updateButton.setOnClickListener(view -> updatePost());
-            deleteButton.setOnClickListener(view -> showDeleteAlert());
+            editButton.setOnClickListener(view -> {
+                if (post.getStatus().equalsIgnoreCase("active") || post.getStatus().equalsIgnoreCase("assigned") || post.getStatus().equalsIgnoreCase("in progress")) {
+                    enableEditing();
+                } else {
+                    Toast.makeText(this, "You can't edit the task now!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            updateButton.setOnClickListener(view -> {
+                if (post.getStatus().equalsIgnoreCase("active") || post.getStatus().equalsIgnoreCase("assigned") || post.getStatus().equalsIgnoreCase("in progress")) {
+                    updatePost();
+                } else {
+                    Toast.makeText(this, "You can't update the task now!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            deleteButton.setOnClickListener(view -> {
+                if (post.getStatus().equalsIgnoreCase("active") || post.getStatus().equalsIgnoreCase("assigned")) {
+                    showDeleteAlert();
+                } else {
+                    Toast.makeText(this, "You can't delete the task now!", Toast.LENGTH_SHORT).show();
+                }
+            });
             freelancerSpinner.setOnClickListener(view -> addFreelancersToSpinner());
+            checkEvidenceButton.setOnClickListener(view -> {
+                Intent intent = new Intent(this, TenantCheckEvidenceActivity.class);
+
+                intent.putExtra("post", post);
+
+                startActivity(intent);
+                finish();
+            });
         }, 500);
     }
 
@@ -922,6 +949,10 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         endTime.setText(post.getEndTime());
         link.setText(post.getLink());
         freelancerSpinner.setText(post.getAssignedTo());
+
+        if (post.getStatus().equalsIgnoreCase("completed")) {
+            checkEvidenceButton.setVisibility(View.VISIBLE);
+        }
     }
 
     private void enableEditing() {
@@ -1033,5 +1064,6 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.tenant_selected_post_delete_button);
         backImageView = findViewById(R.id.tenant_selected_post_back_arrow_image);
         freelancerSpinner = findViewById(R.id.tenant_selected_post_freelancers_field);
+        checkEvidenceButton = findViewById(R.id.tenant_selected_post_check_evidence_button);
     }
 }

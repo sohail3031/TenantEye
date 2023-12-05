@@ -1,5 +1,6 @@
 package com.example.tenanteye.freelancerhomepages;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -140,7 +142,7 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
-                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString())) {
+                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString()) && post.getUniqueIdentifier().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("uniqueIdentifier").getValue()).toString())) {
                         post.setStatus("Completed");
 
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("status").setValue(post.getStatus());
@@ -171,6 +173,23 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
         AlertDialog alertDialog = builder.create();
 
         alertDialog.show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            } else {
+                Toast.makeText(this, "Camera and storage permissions are required to take pictures", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void showAlertMessage() {

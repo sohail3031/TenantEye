@@ -60,6 +60,9 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         if (!post.isFreelancerAcceptedTask()) {
             acceptTaskButton.setVisibility(View.VISIBLE);
             addProofButton.setVisibility(View.GONE);
+        } else if (post.getStatus().equalsIgnoreCase("completed")) {
+            acceptTaskButton.setVisibility(View.GONE);
+            addProofButton.setVisibility(View.GONE);
         } else {
             acceptTaskButton.setVisibility(View.GONE);
             addProofButton.setVisibility(View.VISIBLE);
@@ -116,7 +119,7 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
-                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString())) {
+                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString()) && post.getTimeStamp().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("timeStamp").getValue()).toString())) {
                         Log.i("TAG", "freelancerAcceptedTheTask: " + dataSnapshot.getKey());
 
                         post.setFreelancerAcceptedTask(true);
@@ -126,6 +129,9 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("freelancerAcceptedTask").setValue(post.isFreelancerAcceptedTask());
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("status").setValue(post.getStatus());
                         databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("uniqueIdentifier").setValue(post.getUniqueIdentifier());
+
+                        Log.i("TAG", "freelancerAcceptedTheTask: 1 " + post.getUniqueIdentifier());
+                        Log.i("TAG", "freelancerAcceptedTheTask: 2 " + dataSnapshot.child("uniqueIdentifier").getValue());
                     }
                 }
 
