@@ -122,43 +122,43 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signInWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 if (Objects.requireNonNull(firebaseAuth.getCurrentUser()).isEmailVerified()) {
-                    if (checkBox.isChecked()) {
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users Data");
-                        String[] splitEmailAddress = emailAddress.split("\\.");
-                        User user = new User();
+//                    if (checkBox.isChecked()) {
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users Data");
+                    String[] splitEmailAddress = emailAddress.split("\\.");
+                    User user = new User();
 
-                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).get().addOnCompleteListener(task1 -> {
-                            if (task.isSuccessful()) {
-                                for (DataSnapshot dataSnapshot : task1.getResult().getChildren()) {
-                                    user.setUser(Objects.requireNonNull(dataSnapshot.child("user").getValue()).toString());
+                    databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).get().addOnCompleteListener(task1 -> {
+                        if (task.isSuccessful()) {
+                            for (DataSnapshot dataSnapshot : task1.getResult().getChildren()) {
+                                user.setUser(Objects.requireNonNull(dataSnapshot.child("user").getValue()).toString());
 
-                                    Log.i("TAG", "getUserTypeFromDatabase: " + user);
+                                loginSharedPreference = getSharedPreferences("login", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = loginSharedPreference.edit();
 
-                                    if (user.getUser() != null && user.getUser().length() > 0) {
-                                        loginSharedPreference = getSharedPreferences("login", MODE_PRIVATE);
-                                        SharedPreferences.Editor editor = loginSharedPreference.edit();
+                                editor.putString("emailAddress", emailAddress);
 
-                                        editor.putString("emailAddress", emailAddress);
-                                        editor.putString("password", password);
-                                        editor.putString("user", user.getUser());
-                                        editor.apply();
-
-                                        if (user.getUser().equalsIgnoreCase("tenant")) {
-                                            startActivity(new Intent(LoginActivity.this, TenantHomeActivity.class));
-                                            finish();
-                                        } else {
-                                            startActivity(new Intent(LoginActivity.this, FreelancerHomeActivity.class));
-                                            finish();
-                                        }
-                                    }
+                                if (checkBox.isChecked() && user.getUser() != null && user.getUser().length() > 0) {
+                                    editor.putString("password", password);
+                                    editor.putString("user", user.getUser());
                                 }
-                            } else {
-                                isButtonClicked = false;
+                                
+                                editor.apply();
 
-                                showSomethingWentWrongError();
+                                if (user.getUser().equalsIgnoreCase("tenant")) {
+                                    startActivity(new Intent(LoginActivity.this, TenantHomeActivity.class));
+                                    finish();
+                                } else {
+                                    startActivity(new Intent(LoginActivity.this, FreelancerHomeActivity.class));
+                                    finish();
+                                }
                             }
-                        });
-                    }
+                        } else {
+                            isButtonClicked = false;
+
+                            showSomethingWentWrongError();
+                        }
+                    });
+//                    }
                 } else {
                     isButtonClicked = false;
 
