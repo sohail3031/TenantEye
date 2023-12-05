@@ -267,4 +267,15 @@
     <string name="tenant_check_evidence_title">Images</string>
     <string name="tenant_check_evidence_accept_button_title">Accept</string>
     <string name="tenant_check_evidence_reject_button_title">Reject</string>
+
+    <!--  Freelancer All Tasks  -->
+    <string name="freelancer_all_tasks_title_text">Available Tasks</string>
+    <string name="freelancer_all_tasks_no_posts_text">No tasks available in you place</string>
+
+    <!--  Freelancer Available Posts  -->
+    <string name="freelancer_available_post_assigned_by">Posted By: </string>
+
+    <!--  Freelancer Show Selected Post  -->
+    <string name="freelancer_show_selected_post_chat_button_text">Chat</string>
+    <string name="freelancer_show_selected_post_posted_by_text">Posted By</string>
 </resources>

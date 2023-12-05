@@ -48,15 +48,15 @@ public class TenantSearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        SharedPreferences loginSharedPreference = getSharedPreferences("login", Context.MODE_PRIVATE);
-//        emailAddress = loginSharedPreference.getString("emailAddress", "");
-//
-//        if (emailAddress.equals("")) {
-//            Toast.makeText(this, "Please login in again!", Toast.LENGTH_LONG).show();
-//
-//            startActivity(new Intent(this, LoginActivity.class));
-//            finish();
-//        }
+        SharedPreferences loginSharedPreference = getSharedPreferences("login", Context.MODE_PRIVATE);
+        emailAddress = loginSharedPreference.getString("emailAddress", "");
+
+        if (emailAddress.equals("")) {
+            Toast.makeText(this, "Please login in again!", Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
 
         binding = ActivityTenantSearchBinding.inflate(getLayoutInflater());
 
