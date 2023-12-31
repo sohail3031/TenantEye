@@ -46,6 +46,7 @@ import java.util.Objects;
 
 public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private final ArrayList<Uri> uris = new ArrayList<>();
     private ImageView backImageView;
     private AppCompatButton openCameraButton, cancelButton, saveButton;
     private GridView gridView;
@@ -53,7 +54,6 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
     private ImageAdapter mAdapter;
     private ArrayList<Bitmap> imageList;
     private ImageAdapter imageAdapter;
-    private ArrayList<Uri> uris = new ArrayList<>();
 
     @SuppressLint("QueryPermissionsNeeded")
     @Override
@@ -129,9 +129,13 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
 
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
 
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        try {
+            String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
 
-        uris.add(Uri.parse(path));
+            uris.add(Uri.parse(path));
+        } catch (Exception e) {
+            Toast.makeText(this, "Please try again!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void saveDataToDatabase() {
@@ -153,7 +157,7 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
                 Toast.makeText(FreelancerCameraEvidenceActivity.this, "Task Completed!", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(FreelancerCameraEvidenceActivity.this, FreelancerTaskActivity.class));
-                finish();
+//                finish();
             } else {
                 showSomethingWentWrongError();
             }
@@ -200,7 +204,7 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
                 .setMessage(R.string.sign_up_alert_message)
                 .setPositiveButton(R.string.alert_yes, (dialog, which) -> {
                     startActivity(new Intent(this, FreelancerTaskActivity.class));
-                    finish();
+//                    finish();
                 })
                 .setNegativeButton(R.string.alert_no, (dialog, which) -> {
                     dialog.dismiss();
@@ -215,7 +219,7 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             uris.add(data.getData());
 
             Log.i("TAG", "onActivityResult: " + data.getData());
@@ -230,6 +234,8 @@ public class FreelancerCameraEvidenceActivity extends AppCompatActivity {
 
             assert imageBitmap != null;
             getImageUri(this, imageBitmap);
+        } else {
+            Toast.makeText(this, "Please try again!", Toast.LENGTH_SHORT).show();
         }
     }
 

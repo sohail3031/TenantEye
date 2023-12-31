@@ -4,11 +4,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -29,7 +31,7 @@ import java.util.Objects;
 
 public class FreelancerSelectedPostActivity extends AppCompatActivity {
     private Post post = new Post();
-    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, assignedBy;
+    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, assignedBy, amount;
     private AppCompatButton acceptTaskButton, addProofButton;
     private ImageView backImageView;
     private String emailAddress;
@@ -57,10 +59,10 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         initializeAllVariables();
         addDataToFields();
 
-        if (!post.isFreelancerAcceptedTask()) {
+        if (!post.isFreelancerAcceptedTask() || post.getStatus().equalsIgnoreCase("assigned")) {
             acceptTaskButton.setVisibility(View.VISIBLE);
             addProofButton.setVisibility(View.GONE);
-        } else if (post.getStatus().equalsIgnoreCase("completed")) {
+        } else if (post.getStatus().equalsIgnoreCase("completed") || post.getStatus().equalsIgnoreCase("closed")) {
             acceptTaskButton.setVisibility(View.GONE);
             addProofButton.setVisibility(View.GONE);
         } else {
@@ -112,41 +114,61 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
     }
 
     private void freelancerAcceptedTheTask() {
-        String[] splitEmailAddress = post.getAssignedBy().split("\\.");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
+        builder
+                .setTitle("Alert!")
+                .setMessage("You are about to pay " + post.getAmount() + " to " + post.getAssignedBy())
+                .setPositiveButton(R.string.alert_yes, (dialog, which) -> {
+                    Toast.makeText(this, "Please wait while we process the payment", Toast.LENGTH_SHORT).show();
 
-        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
-                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString()) && post.getTimeStamp().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("timeStamp").getValue()).toString())) {
-                        Log.i("TAG", "freelancerAcceptedTheTask: " + dataSnapshot.getKey());
+                    new Handler().postDelayed(() -> {
+                        String[] splitEmailAddress = post.getAssignedBy().split("\\.");
 
-                        post.setFreelancerAcceptedTask(true);
-                        post.setStatus("In Progress");
-                        post.setUniqueIdentifier(Objects.requireNonNull(dataSnapshot.getKey()).substring(1));
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
 
-                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("freelancerAcceptedTask").setValue(post.isFreelancerAcceptedTask());
-                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("status").setValue(post.getStatus());
-                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("uniqueIdentifier").setValue(post.getUniqueIdentifier());
+                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).get().addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                                    if (post.getAssignedTo().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString()) && post.getTimeStamp().equalsIgnoreCase(Objects.requireNonNull(dataSnapshot.child("timeStamp").getValue()).toString())) {
+                                        Log.i("TAG", "freelancerAcceptedTheTask: " + dataSnapshot.getKey());
 
-                        Log.i("TAG", "freelancerAcceptedTheTask: 1 " + post.getUniqueIdentifier());
-                        Log.i("TAG", "freelancerAcceptedTheTask: 2 " + dataSnapshot.child("uniqueIdentifier").getValue());
-                    }
-                }
+                                        post.setFreelancerAcceptedTask(true);
+                                        post.setStatus("In Progress");
+                                        post.setUniqueIdentifier(Objects.requireNonNull(dataSnapshot.getKey()).substring(1));
 
-                isButtonClicked = true;
+                                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("freelancerAcceptedTask").setValue(post.isFreelancerAcceptedTask());
+                                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("status").setValue(post.getStatus());
+                                        databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(Objects.requireNonNull(dataSnapshot.getKey())).child("uniqueIdentifier").setValue(post.getUniqueIdentifier());
 
-                Toast.makeText(FreelancerSelectedPostActivity.this, "Task Accepted!", Toast.LENGTH_SHORT).show();
+                                        Log.i("TAG", "freelancerAcceptedTheTask: 1 " + post.getUniqueIdentifier());
+                                        Log.i("TAG", "freelancerAcceptedTheTask: 2 " + dataSnapshot.child("uniqueIdentifier").getValue());
+                                    }
+                                }
 
-                startActivity(new Intent(FreelancerSelectedPostActivity.this, FreelancerTaskActivity.class));
-                finish();
-            } else {
-                showSomethingWentWrongError();
+                                isButtonClicked = true;
 
-                isButtonClicked = false;
-            }
-        });
+                                Toast.makeText(FreelancerSelectedPostActivity.this, "Task Accepted!", Toast.LENGTH_SHORT).show();
+
+                                startActivity(new Intent(FreelancerSelectedPostActivity.this, FreelancerTaskActivity.class));
+                                finish();
+                            } else {
+                                showSomethingWentWrongError();
+
+                                isButtonClicked = false;
+                            }
+                        });
+                    }, 5000);
+
+                    Toast.makeText(this, "Payment is completed", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton(R.string.alert_no, (dialog, which) -> {
+                    dialog.dismiss();
+                });
+
+        AlertDialog alertDialog = builder.create();
+
+        alertDialog.show();
     }
 
     private void showSomethingWentWrongError() {
@@ -164,6 +186,7 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+    @SuppressLint("SetTextI18n")
     private void addDataToFields() {
         title.setText(post.getTitle());
         description.setText(post.getDescription());
@@ -178,6 +201,7 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         endTime.setText(post.getEndTime());
         link.setText(post.getLink());
         assignedBy.setText(post.getAssignedBy());
+        amount.setText(post.getAmount());
     }
 
     private void initializeAllVariables() {
@@ -197,5 +221,6 @@ public class FreelancerSelectedPostActivity extends AppCompatActivity {
         addProofButton = findViewById(R.id.freelancer_selected_post_add_proof_button);
         backImageView = findViewById(R.id.freelancer_selected_post_back_arrow_image);
         assignedBy = findViewById(R.id.freelancer_selected_post_assigned_by_field);
+        amount = findViewById(R.id.freelancer_selected_post_amount_field);
     }
 }

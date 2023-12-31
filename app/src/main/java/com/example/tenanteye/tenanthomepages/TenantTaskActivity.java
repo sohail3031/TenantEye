@@ -241,6 +241,7 @@ public class TenantTaskActivity extends AppCompatActivity {
                     post.setAssignedTo(Objects.requireNonNull(dataSnapshot.child("assignedTo").getValue()).toString());
                     post.setAssignedBy(Objects.requireNonNull(dataSnapshot.child("assignedBy").getValue()).toString());
                     post.setUniqueIdentifier(Objects.requireNonNull(dataSnapshot.child("uniqueIdentifier").getValue()).toString());
+                    post.setAmount(Objects.requireNonNull(dataSnapshot.child("amount").getValue()).toString());
 
                     titleArrayList.add(Objects.requireNonNull(dataSnapshot.child("title").getValue()).toString());
                     descriptionArrayList.add(Objects.requireNonNull(dataSnapshot.child("description").getValue()).toString());

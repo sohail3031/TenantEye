@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/messages_adapter_layout_root_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical"-->
+    <!--        tools:ignore="UselessParent">-->
+
+    <!--        <RelativeLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content">-->
+
+    <!--            <de.hdodenhof.circleimageview.CircleImageView-->
+    <!--                android:id="@+id/messages_adapter_layout_profile_picture"-->
+    <!--                android:layout_width="50dp"-->
+    <!--                android:layout_height="50dp"-->
+    <!--                android:layout_centerVertical="true"-->
+    <!--                android:layout_marginStart="20dp"-->
+    <!--                android:layout_marginTop="40dp"-->
+    <!--                android:contentDescription="@string/todo"-->
+    <!--                android:src="@drawable/baseline_android_24" />-->
+
+    <!--            <LinearLayout-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_centerVertical="true"-->
+    <!--                android:layout_marginStart="20dp"-->
+    <!--                android:layout_marginEnd="10dp"-->
+    <!--                android:layout_toStartOf="@+id/messages_adapter_layout_unseen_messages"-->
+    <!--                android:layout_toEndOf="@+id/messages_adapter_layout_profile_picture"-->
+    <!--                android:gravity="center"-->
+    <!--                android:orientation="vertical">-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/messages_adapter_layout_name"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:maxLines="1"-->
+    <!--                    android:text="Full Name"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="20sp"-->
+    <!--                    android:textStyle="bold" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/messages_adapter_layout_last_message"-->
+    <!--                    android:layout_width="match_parent"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:layout_marginTop="5dp"-->
+    <!--                    android:maxLines="1"-->
+    <!--                    android:text="This is last message"-->
+    <!--                    android:textColor="@color/black"-->
+    <!--                    android:textSize="16sp"-->
+    <!--                    android:textStyle="bold" />-->
+
+    <!--            </LinearLayout>-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/messages_adapter_layout_unseen_messages"-->
+    <!--                android:layout_width="20dp"-->
+    <!--                android:layout_height="20dp"-->
+    <!--                android:layout_alignParentEnd="true"-->
+    <!--                android:layout_centerVertical="true"-->
+    <!--                android:layout_marginEnd="20dp"-->
+    <!--                android:background=""-->
+    <!--                android:backgroundTint="@color/secondary_background_color"-->
+    <!--                android:gravity="center"-->
+    <!--                android:text="1"-->
+    <!--                android:textColor="@color/black"-->
+    <!--                android:textSize="20sp" />-->
+
+    <!--        </RelativeLayout>-->
+
+    <!--    </LinearLayout>-->
+
+</RelativeLayout>

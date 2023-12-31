@@ -21,6 +21,15 @@ public class Post implements Serializable {
     private String assignedBy;
     private boolean isFreelancerAcceptedTask;
     private String uniqueIdentifier;
+    private String amount;
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
 
     public String getUniqueIdentifier() {
         return uniqueIdentifier;

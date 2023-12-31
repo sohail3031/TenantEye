@@ -43,6 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -61,7 +62,7 @@ public class TenantCreateActivity extends AppCompatActivity {
     private final Post post = new Post();
     String[] isoCountryCode = Locale.getISOCountries();
     ActivityTenantCreateBinding binding;
-    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link;
+    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, amount;
     private AppCompatButton createPostButton;
     private Dialog dialog;
     private ArrayList<String> countries;
@@ -614,6 +615,16 @@ public class TenantCreateActivity extends AppCompatActivity {
         return new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss", Locale.US).format(new java.util.Date());
     }
 
+    private boolean validateAmount() {
+        if ("".equals(link.getText().toString())) {
+            amount.setError("Amount is required");
+
+            return false;
+        }
+
+        return true;
+    }
+
     private void storePostDataInPostObject() {
         post.setTitle(title.getText().toString());
         post.setDescription(description.getText().toString());
@@ -633,10 +644,11 @@ public class TenantCreateActivity extends AppCompatActivity {
         post.setAssignedTo("");
         post.setFreelancerAcceptedTask(false);
         post.setUniqueIdentifier("");
+        post.setAmount(amount.getText().toString());
     }
 
     private void createPost() {
-        if (validateTitle() && validateDescription() && validateAddress() && validateCountry() && validateState() && validateCity() && validateZipCode() && validateStateDate() && validateState() && validateEndDate() && validateEndTime() && validateLink()) {
+        if (validateTitle() && validateDescription() && validateAddress() && validateCountry() && validateState() && validateCity() && validateZipCode() && validateStateDate() && validateStartTime() && validateEndDate() && validateEndTime() && validateLink()) {
             storePostDataInPostObject();
 
             String[] splitEmailAddress = emailAddress.split("\\.");
@@ -688,5 +700,6 @@ public class TenantCreateActivity extends AppCompatActivity {
         endTime = findViewById(R.id.tenant_create_end_time_field);
         link = findViewById(R.id.tenant_create_link_field);
         createPostButton = findViewById(R.id.tenant_create_create_post_button);
+        amount = findViewById(R.id.tenant_create_amount_field);
     }
 }

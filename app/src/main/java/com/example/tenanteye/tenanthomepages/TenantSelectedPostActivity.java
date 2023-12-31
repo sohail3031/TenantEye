@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -62,7 +63,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
     private final ArrayList<String> freelancers = new ArrayList<>();
     String[] isoCountryCode = Locale.getISOCountries();
     private Post post = new Post();
-    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, freelancerSpinner;
+    private EditText countrySpinner, stateSpinner, citySpinner, endTime, endDate, title, description, address, zipCode, startDate, startTime, link, freelancerSpinner, amount;
     private AppCompatButton editButton, updateButton, deleteButton, checkEvidenceButton;
     private ImageView backImageView;
     private Dialog dialog;
@@ -426,6 +427,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         post.setEndTime(endTime.getText().toString());
         post.setLink(link.getText().toString());
         post.setTimeStamp(getTimeStamp());
+        post.setAmount(amount.getText().toString());
 
         if (freelancerSpinner.getText().toString().length() > 0 && freelancerSpinner != null) {
             post.setStatus("Assigned");
@@ -439,7 +441,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
     }
 
     private void updatePost() {
-        if (validateTitle() && validateDescription() && validateAddress() && validateCountry() && validateState() && validateCity() && validateZipCode() && validateStateDate() && validateState() && validateEndDate() && validateEndTime() && validateLink()) {
+        if (validateTitle() && validateDescription() && validateAddress() && validateCountry() && validateState() && validateCity() && validateZipCode() && validateStateDate() && validateStartTime() && validateEndDate() && validateEndTime() && validateLink()) {
             storePostDataInPostObject();
 
             String[] splitEmailAddress = emailAddress.split("\\.");
@@ -466,6 +468,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
                             databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("timeStamp").setValue(post.getTimeStamp());
                             databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("assignedTo").setValue(post.getAssignedTo());
                             databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("status").setValue(post.getStatus());
+                            databaseReference.child(splitEmailAddress[0] + "-" + splitEmailAddress[1]).child(key).child("amount").setValue(post.getStatus());
 
                             Toast.makeText(this, "Post Updated!", Toast.LENGTH_LONG).show();
 
@@ -935,6 +938,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         Collections.sort(countries);
     }
 
+    @SuppressLint("SetTextI18n")
     private void addDataToFields() {
         title.setText(post.getTitle());
         description.setText(post.getDescription());
@@ -949,6 +953,7 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         endTime.setText(post.getEndTime());
         link.setText(post.getLink());
         freelancerSpinner.setText(post.getAssignedTo());
+        amount.setText(post.getAmount());
 
         if (post.getStatus().equalsIgnoreCase("completed")) {
             checkEvidenceButton.setVisibility(View.VISIBLE);
@@ -1019,6 +1024,11 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
             link.setFocusable(true);
             link.setFocusableInTouchMode(true);
 
+            amount.setClickable(true);
+            amount.setCursorVisible(true);
+            amount.setFocusable(true);
+            amount.setFocusableInTouchMode(true);
+
             Toast.makeText(this, "You can edit the post!", Toast.LENGTH_LONG).show();
         }
     }
@@ -1065,5 +1075,6 @@ public class TenantSelectedPostActivity extends AppCompatActivity {
         backImageView = findViewById(R.id.tenant_selected_post_back_arrow_image);
         freelancerSpinner = findViewById(R.id.tenant_selected_post_freelancers_field);
         checkEvidenceButton = findViewById(R.id.tenant_selected_post_check_evidence_button);
+        amount = findViewById(R.id.tenant_selected_post_amount_field);
     }
 }

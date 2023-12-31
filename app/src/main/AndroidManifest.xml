@@ -18,6 +18,9 @@
         android:theme="@style/Theme.TenantEye"
         tools:targetApi="31">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".freelancerhomepages.FreelancerShowSelectedPostActivity"
             android:exported="false" />
         <activity

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +20,7 @@ import com.example.tenanteye.login.LoginActivity;
 public class FreelancerShowSelectedPostActivity extends AppCompatActivity {
     private ImageView backImageView;
     private AppCompatButton chatButton;
-    private EditText title, description, address, country, state, city, zipCode, startDate, startTime, endDate, endTime, advertisementLink, postedBy;
+    private EditText title, description, address, country, state, city, zipCode, startDate, startTime, endDate, endTime, advertisementLink, postedBy, amount;
     private Post post;
     private String emailAddress;
 
@@ -41,32 +42,24 @@ public class FreelancerShowSelectedPostActivity extends AppCompatActivity {
         getDataFromPreviousActivity();
         showDataOnUI();
 
-        backImageView.setOnClickListener(view -> showAlertMessage());
-    }
-
-    private void showAlertMessage() {
-        if (!emailAddress.isEmpty()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder
-                    .setTitle(R.string.sign_up_alert_title)
-                    .setMessage(R.string.sign_up_alert_message)
-                    .setPositiveButton(R.string.alert_yes, (dialog, which) -> {
-                        startActivity(new Intent(this, FreelancerAllTasksActivity.class));
-                        finish();
-                    })
-                    .setNegativeButton(R.string.alert_no, (dialog, which) -> {
-                        dialog.dismiss();
-                    });
-
-            AlertDialog alertDialog = builder.create();
-
-            alertDialog.show();
-        } else {
+        backImageView.setOnClickListener(view -> {
+            startActivity(new Intent(this, FreelancerAllTasksActivity.class));
             finish();
-        }
+        });
+
+        chatButton.setOnClickListener(view -> startChat());
     }
 
+    private void startChat() {
+        Intent intent = new Intent(this, FreelancerChatActivity.class);
+
+        intent.putExtra("post", post);
+
+        startActivity(intent);
+        finish();
+    }
+
+    @SuppressLint("SetTextI18n")
     private void showDataOnUI() {
         title.setText(post.getTitle());
         description.setText(post.getDescription());
@@ -81,6 +74,7 @@ public class FreelancerShowSelectedPostActivity extends AppCompatActivity {
         endTime.setText(post.getEndTime());
         advertisementLink.setText(post.getLink());
         postedBy.setText(post.getAssignedBy());
+        amount.setText(post.getAmount());
     }
 
     private void getDataFromPreviousActivity() {
@@ -106,5 +100,6 @@ public class FreelancerShowSelectedPostActivity extends AppCompatActivity {
         endTime = findViewById(R.id.freelancer_show_selected_post_end_time_field);
         advertisementLink = findViewById(R.id.freelancer_show_selected_post_link_field);
         postedBy = findViewById(R.id.freelancer_show_selected_post_assigned_by_field);
+        amount = findViewById(R.id.freelancer_show_selected_post_amount_field);
     }
 }

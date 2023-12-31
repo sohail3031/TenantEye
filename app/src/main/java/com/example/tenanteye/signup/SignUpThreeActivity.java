@@ -263,17 +263,22 @@ public class SignUpThreeActivity extends AppCompatActivity {
     private boolean validatePhoneNumber() throws NumberParseException {
         Phonenumber.PhoneNumber number = phoneNumberUtil.parse(phoneNumber, phoneNumberCountry);
 
-        if ("".equals(phoneNumber)) {
-            phoneNumberField.setError(getString(R.string.phone_number_required));
+        if (phoneNumber.length() > 12) {
+            phoneNumberField.setError("Phone Number can't be more than 10 digits");
 
             return false;
-        } else if (!phoneNumberUtil.isValidNumber(number)) {
-            phoneNumberField.setError(getString(R.string.phone_number_invalid));
+        } else if ("".equals(phoneNumber)) {
+            phoneNumberField.setError(getString(R.string.phone_number_required));
 
             return false;
         } else {
             return true;
         }
+//        else if (!phoneNumberUtil.isValidNumber(number)) {
+//            phoneNumberField.setError(getString(R.string.phone_number_invalid));
+//
+//            return false;
+//        }
     }
 
     private boolean validatePasswords() {
